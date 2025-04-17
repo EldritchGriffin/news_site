@@ -1,21 +1,34 @@
 import React from 'react'
+import Markdown from 'react-markdown'
+import { getAllPosts } from './(handlers)/requestHandlers'
+import Image from 'next/image'
+import CardPost from './(components)/cardPost'
 
-export default function page() {
+export default async function page() {
+  const posts = await getAllPosts()
+  console.log(posts)
   return (
-    <div
-    className='w-full h-screen flex items-center justify-center text-4xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900'
-    >Hello world!
-    <div className='text-2xl text-gray-500 dark:text-gray-400'>
-      <p>Welcome to the Next.js 13.4 App Router!</p>
-      <p>Click on the links above to navigate.</p>
-      <p>Use the sidebar to explore the app.</p>
-      <p>Enjoy your stay!</p>
-      <p>Have a great day!</p>
-      <p>Happy coding!</p>
-      <p>Happy learning!</p>
-      <p>Happy Next.js!</p>
-    </div>
-    </div>
-
+    <main>
+      <div className='h-screen w-screen border-amber-600 border-8'>
+        <div className='m-10 h-96 w-xl'>
+          <CardPost
+            title={posts.data[0].title}
+            imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
+            category={posts.data[0].Category}
+            author={posts.data[0].author}
+            date={posts.data[0].publishedAt}
+          ></CardPost>
+        </div>
+        <div className='m-10 h-72 w-96'>
+          <CardPost
+            title={posts.data[0].title}
+            imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
+            category={posts.data[0].Category}
+            author={posts.data[0].author}
+            date={posts.data[0].publishedAt}
+          ></CardPost>
+        </div>
+      </div>
+    </main>
   )
 }
