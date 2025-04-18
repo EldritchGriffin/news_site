@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Footer from "./footer/page";
 import React from 'react'
 import Markdown from 'react-markdown'
 import { getAllPosts } from './(handlers)/requestHandlers'
@@ -12,6 +14,9 @@ export default async function page() {
   return (
     <main className="bg-white text-gray-900 flex flex-col items-center min-h-screen w-full">
       <Hero />
+      <footer className=" w-full flex flex-col">
+        <Footer />
+      </footer>
     </main>
   )
 }
