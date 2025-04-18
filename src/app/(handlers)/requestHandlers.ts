@@ -27,3 +27,13 @@ export const getPostById = async (id: string) => {
         throw error;
     }
 }
+
+export const getAllFromCategory = async (category: string) => {
+    try {
+        const response = await api.get(`/api/posts?filters[category][$eq]=${category}&populate=*`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching posts:", error);
+        throw error;
+    }
+}
