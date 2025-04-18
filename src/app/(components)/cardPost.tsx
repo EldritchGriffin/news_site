@@ -20,7 +20,7 @@ const CardPost: React.FC<CardPostProps> = ({
     <div className="relative w-full h-full rounded-lg shadow-md">
       <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/70"></div>
-      <div className="absolute bottom-0 left-0 p-5 w-full">
+      <div className="absolute  -bottom-5 left-0 p-5 w-full">
         {category && (
           <div className="inline-block bg-red-600 text-white px-3 py-1 text-sm font-bold mb-3">
             {category}
