@@ -5,7 +5,8 @@ export default async function Hero() {
   const posts = await getAllPosts()
   return (
     <>
-      <div className="w-full max-w-screen-xl px-4 py-6">
+      {/* <div className="w-full max-w-screen-xl px-4 py-6"> */}
+      <div className='w-full max-w-screen-xl'>
 
         <section className="container mx-auto mb-10 ">
           <h2 className="text-xl font-bold mb-4">Main Stories</h2>
@@ -35,7 +36,10 @@ export default async function Hero() {
             </div>
           </div>
         </section>
-        <section className="container mx-auto">
+      </div>
+      <div className='w-full max-w-screen-xl'>
+
+        <section className="container mx-auto mb-10">
           <h2 className="text-xl font-bold mb-4">Main Stories</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-2 ">
             {[...Array(4)].map((_, i) => (
@@ -52,6 +56,7 @@ export default async function Hero() {
           </div>
         </section>
       </div>
+      {/* </div> */}
     </>
   )
 }
