@@ -1,7 +1,8 @@
+import React from 'react'
 
 export default function Item(props : {title: string, content: string, banner: string, Category: string}) {
     return (
-        <div className="cursor-pointer h-[200px] w-[200px] flex flex-col gap-2 p-2">
+        <div className="cursor-pointer md:h-[200px] md:w-[200px] lg:h-full lg:w-full flex flex-col gap-2 p-2">
             <img
                 className="rounded-sm"
                 src={props.banner}

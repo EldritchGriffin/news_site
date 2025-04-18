@@ -19,3 +19,23 @@ body {
 .items-scroll::-webkit-scrollbar {
   display: none;
 }
+.dropdown {
+  padding: 0px;
+  margin: 0;
+}
+
+.dropdown-content {
+  opacity:0;
+  height:0;
+  overflow:hidden;
+  transform: translateY(-10%);
+}
+
+
+.dropdown:hover .dropdown-content{
+  opacity:1;
+  height: 300px;
+  overflow:none;
+  position: absolute;
+  transform: translateY(0);
+} 

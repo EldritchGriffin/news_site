@@ -1,10 +1,10 @@
 'use client'
-import { useState } from "react";
-import Item from "./navbar-components/item";
 import { TiArrowSortedDown } from "react-icons/ti";
+import { FiSearch } from "react-icons/fi";
+import NavItems from "./navbar-components/NavItems";
+
 
 export default function FullNavbar () {
-        const [showNational, setShowNational] = useState<number>(-1);
         const ListItems : ListItem[] = [
             {
                 name : "National",
@@ -117,52 +117,41 @@ export default function FullNavbar () {
                   alt="Logo"
                 />
             </div>
-            <section className="w-full text-white h-full bg-[#d42a23]">
-                <nav className="">
-                        <ul className="flex max-w-[990px] justify-center items-center">
-                            {/* <li className="text-md">Home</li> */}
+            <section className="w-full text-white h-[50px] bg-[#d42a23]">
+                <nav className="flex justify-center h-full items-center">
+                        <div className="flex w-full gap-8 items-center justify-center h-full">
                             {
                                 ListItems && (
-                                ListItems.map( (item: ListItem, itemIndex: number) => {
-                                    return (
-                                        <div key={itemIndex}>
-                                            <li key={itemIndex} className="flex cursor-pointer text-md content-center"
-                                                onClick={()=> {
-                                                    if (showNational === itemIndex)
-                                                        setShowNational(-1);
-                                                    else
-                                                        setShowNational(itemIndex);
-                                                    }}>
-                                                    <p>
-                                                        {item.name}
-                                                    </p>
-                                                    <div className="text-sm flex items-center">
-                                                        <TiArrowSortedDown />
-                                                    </div>
+                                    ListItems.map((item: ListItem, itemIndex: number) => {
+                                        return (
+                                          <div
+                                            key={itemIndex}
+                                            className="relative dropdown p-2 h-full items-center justify-center">
+                                            <button className="flex gap-2 cursor-pointer text-md h-full items-center">
+                                              <p>{item.name}</p>
+                                              <div className="text-sm flex items-center">
+                                                <TiArrowSortedDown />
+                                              </div>
+                                            </button>
+                                            <ul className="dropdown-content flex transition w-screen h-full duration-300 absolute">
+                                              {data.map((element: Item, index: number) => (
+                                                <li key={index} className="bg-[#f7f7f7] w-full h-full">
+                                                  <NavItems
+                                                    title={element.title}
+                                                    content={element.content}
+                                                    banner={element.banner}
+                                                    Category={element.Category}
+                                                  />
                                                 </li>
-                                                {/* {showNational == itemIndex && 
-                                                <ul className="z-33 overflow-x-auto flex items-scroll">
-                                                    {true && data.map((element: Item, index: number)=> {
-                                                        return (
-                                                            <li key={index} className="bg-[#f7f7f7]">
-                                                                <Item   title={element.title}
-                                                                        content={element.content}
-                                                                        banner={element.banner}
-                                                                        Category={element.Category}>
-                                                                </Item>
-                                                            </li>
-                                                        )
-                                                    })}
-                                                </ul>
-                                            } */}
-                                        </div>
-                                        )
-                                    })
-                                )
-                            }
-                            {/* <li className="text-md" >Photos</li>
-                            <li className="text-md" >Videos</li> */}
-                        </ul>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        );
+                                    }))}
+                        </div>
+                        <button  className="font-extrabold text-xl">
+                            <FiSearch/>
+                        </button>
                 </nav>
             </section>
         </header>
