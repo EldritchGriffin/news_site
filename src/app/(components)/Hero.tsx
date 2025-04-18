@@ -1,5 +1,6 @@
 import React from 'react'
 import CardPost from './cardPost'
+import CardPostChin from './cardPostChin'
 import { getAllPosts } from '../(handlers)/requestHandlers'
 export default async function Hero() {
   const posts = await getAllPosts()
@@ -40,13 +41,13 @@ export default async function Hero() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-2 ">
             {[...Array(4)].map((_, i) => (
               <article key={i} className="relative h-[301px]">
-                <CardPost
+                <CardPostChin
                   title={posts.data[0].title}
                   imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
                   category={posts.data[0].category}
                   author={posts.data[0].author}
                   date={posts.data[0].publishedAt}
-                ></CardPost>
+                ></CardPostChin>
               </article>
             ))}
           </div>
