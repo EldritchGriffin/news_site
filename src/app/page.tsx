@@ -2,7 +2,7 @@ import React from 'react'
 import Markdown from 'react-markdown'
 import { getAllPosts } from './(handlers)/requestHandlers'
 import Image from 'next/image'
-import  Hero  from "./components/Hero"
+import  Hero  from "./(components)/Hero"
 import CardPost from './(components)/cardPost'
 
 export default async function page() {
