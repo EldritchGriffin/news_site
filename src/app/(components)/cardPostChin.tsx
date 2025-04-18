@@ -13,8 +13,8 @@ interface CardPostProps {
 
 function Clicked(documentId: string) {
   return () => {
-    // Handle click event, e.g., navigate to the article page
-    console.log(`Clicked on document with ID: ${documentId}`);
+    //change the route to the article page
+    window.location.href = `/article/${documentId}`;
   };
 }
 
