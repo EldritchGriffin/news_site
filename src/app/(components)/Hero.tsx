@@ -41,7 +41,7 @@ export default async function Hero() {
 
         <section className="container mx-auto mb-10">
           <h2 className="text-xl font-bold mb-4">Main Stories</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 ">
+          <div className="grid mt-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2 ">
             {[...Array(4)].map((_, i) => (
               <article key={i} className="relative h-[301px]">
                 <CardPost
