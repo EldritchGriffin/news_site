@@ -1,9 +1,7 @@
-import Image from "next/image";
 import Footer from "./footer/page";
 import React from 'react'
 import Markdown from 'react-markdown'
 import { getAllPosts } from './(handlers)/requestHandlers'
-import Image from 'next/image'
 import  Hero  from "./(components)/Hero"
 import CardPost from './(components)/cardPost'
 import { getAllFromCategory } from './(handlers)/requestHandlers'
