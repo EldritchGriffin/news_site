@@ -10,11 +10,8 @@ export default async function page() {
   const sports = await getAllFromCategory("politics")
   console.log(sports)
   return (
-    <main className="bg-white text-gray-900 flex flex-col items-center min-h-screen w-full">
+    <main className="bg-white text-gray-900 flex flex-col items-center w-full">
       <Hero />
-      <footer className=" w-full flex flex-col">
-        <Footer />
-      </footer>
     </main>
   )
 }
