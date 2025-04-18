@@ -81,6 +81,39 @@ export default function Navbar() {
             publishedAt : new Date("025-04-17T22:41:24.066Z"),
             Category : "National",
             banner : "/protest.jpg"
+        },
+        {
+            id : 1,
+            documentId : "",
+            title : "title 1",
+            content : "this is the content of the page .",
+            createdAt : new Date("2025-04-16T20:38:52"),
+            updatedAt : new Date("2025-04-17T22:41:24"),
+            publishedAt : new Date("025-04-17T22:41:24"),
+            Category : "National",
+            banner : "/protest.jpg"
+        },
+        {
+            id : 2,
+            documentId : "",
+            title : "title 2",
+            content : "this is the content of the page .",
+            createdAt : new Date("2025-04-16T20:38:52.530Z"),
+            updatedAt : new Date("2025-04-17T22:41:24.059Z"),
+            publishedAt : new Date("025-04-17T22:41:24.066Z"),
+            Category : "National",
+            banner : "/protest.jpg"
+        },
+        {
+            id : 3,
+            documentId : "",
+            title : "title 3",
+            content : "this is the content of the page .",
+            createdAt : new Date("2025-04-16T20:38:52.530Z"),
+            updatedAt : new Date("2025-04-17T22:41:24.059Z"),
+            publishedAt : new Date("025-04-17T22:41:24.066Z"),
+            Category : "National",
+            banner : "/protest.jpg"
         }
     ]
     return (
@@ -151,10 +184,10 @@ export default function Navbar() {
                                                             </div>
                                                         </li>
                                                         {showNational == itemIndex && 
-                                                        <ul className="border  border-red-600 flex items-scroll">
+                                                        <ul className="border overflow-x-auto border-red-600 flex items-scroll">
                                                             {true && data.map((element: Item, index: number)=> {
                                                                 return (
-                                                                    <li key={index} className="bg-[#f7f7f7] w-full">
+                                                                    <li key={index} className="bg-[#f7f7f7]">
                                                                         <Item   title={element.title}
                                                                                 content={element.content}
                                                                                 banner={element.banner}
