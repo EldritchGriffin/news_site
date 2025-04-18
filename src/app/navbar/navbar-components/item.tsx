@@ -1,34 +1,18 @@
-import Image from "next/image";
 
-export default function Item() {
-    // const data : Item[] = [
-    //     {
-    //         id : 1,
-    //         documentId : "",
-    //         title : "title 1",
-    //         content : ,
-    //         createdAt : Date,
-    //         updatedAt : Date,
-    //         publishedAt : Date,
-    //         Category : string,
-    //         banner : string
-    //     }
-    // ]
+export default function Item(props : {title: string, content: string, banner: string, Category: string}) {
     return (
         <div className="cursor-pointer flex flex-col gap-2 p-2">
-            <Image
+            <img
                 className="rounded-sm"
-                src='/protest.jpg'
-                width={335}
-                height={170}
-                alt="article"
+                src={props.banner}
+                alt={props.title}
             />
             <p className="bg-black p-1 text-white w-fit text-sm">
-                National
+                {props.Category}
             </p>
             <section>
                 <p className="word-wrap  text-sm">
-                    this is a title .
+                    {props.title}
                 </p>
             </section>
         </div>

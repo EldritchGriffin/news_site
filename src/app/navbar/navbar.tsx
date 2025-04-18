@@ -9,60 +9,82 @@ import { RiTwitterXFill } from "react-icons/ri";
 import { FaGooglePlusG } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import Item from "./navbar-components/item";
+import { TiArrowSortedDown } from "react-icons/ti";
 
-// const data = [
-//       {
-//         "id": 11,
-//         "documentId": "qs05e8su1l083dycwjdvpvia",
-//         "title": "The release of Letraset sheets containing ",
-//         "content": "/protest.jpg",
-//         "createdAt": "2025-04-16T20:38:52.530Z",
-//         "updatedAt": "2025-04-17T22:41:24.059Z",
-//         "publishedAt": "2025-04-17T22:41:24.066Z",
-//         "Category": "politics",
-//         "author": "mahmoud darwich",
-//         "banner": {
-//           "id": 2,
-//           "documentId": "spls4zhbuhu7filow5xhnq1y",
-//           "name": "blm.jpeg",
-//           "alternativeText": null,
-//           "caption": null,
-//           "width": 275,
-//           "height": 183,
-//           "formats": {
-//             "thumbnail": {
-//               "name": "thumbnail_blm.jpeg",
-//               "hash": "thumbnail_blm_f9eb901ce8",
-//               "ext": ".jpeg",
-//               "mime": "image/jpeg",
-//               "path": null,
-//               "width": 234,
-//               "height": 156,
-//               "size": 14.98,
-//               "sizeInBytes": 14975,
-//               "url": "/uploads/thumbnail_blm_f9eb901ce8.jpeg"
-//             }
-//           },
-//           "hash": "blm_f9eb901ce8",
-//           "ext": ".jpeg",
-//           "mime": "image/jpeg",
-//           "size": 18.04,
-//           "url": "/uploads/blm_f9eb901ce8.jpeg",
-//           "previewUrl": null,
-//           "provider": "local",
-//           "provider_metadata": null,
-//           "createdAt": "2025-04-17T22:41:19.585Z",
-//           "updatedAt": "2025-04-17T22:41:19.585Z",
-//           "publishedAt": "2025-04-17T22:41:19.586Z"
-//         }
-//       }
-//     ]
+
+
+interface ListItem {
+    name : string,
+    value : number
+}
 
 export default function Navbar() {
 
     const [ShowList, SetShowList] = useState(false);
+    const [showNational, setShowNational] = useState<number>(-1);
+    const ListItems : ListItem[] = [
+        {
+            name : "National",
+            value : 0
+        },
+        {
+            name : "World",
+            value : 1
+        },
+        {
+            name : "Business",
+            value : 2
+        },
+        {
+            name : "Entertainment",
+            value : 3
+        },
+        {
+            name : "LifeStyle",
+            value : 4
+        },
+        {
+            name : "Sport",
+            value : 5
+        }
+    ]
+    const data : Item[] = [
+        {
+            id : 1,
+            documentId : "",
+            title : "title 1",
+            content : "this is the content of the page .",
+            createdAt : new Date("2025-04-16T20:38:52"),
+            updatedAt : new Date("2025-04-17T22:41:24"),
+            publishedAt : new Date("025-04-17T22:41:24"),
+            Category : "National",
+            banner : "/protest.jpg"
+        },
+        {
+            id : 2,
+            documentId : "",
+            title : "title 2",
+            content : "this is the content of the page .",
+            createdAt : new Date("2025-04-16T20:38:52.530Z"),
+            updatedAt : new Date("2025-04-17T22:41:24.059Z"),
+            publishedAt : new Date("025-04-17T22:41:24.066Z"),
+            Category : "National",
+            banner : "/protest.jpg"
+        },
+        {
+            id : 3,
+            documentId : "",
+            title : "title 3",
+            content : "this is the content of the page .",
+            createdAt : new Date("2025-04-16T20:38:52.530Z"),
+            updatedAt : new Date("2025-04-17T22:41:24.059Z"),
+            publishedAt : new Date("025-04-17T22:41:24.066Z"),
+            Category : "National",
+            banner : "/protest.jpg"
+        }
+    ]
     return (
-        <header className="w-full h-full flex flex-col">
+        <header className="w-full h-full flex flex-col scroll-auto">
             {!ShowList ?
                 (
                     <>
@@ -75,7 +97,7 @@ export default function Navbar() {
                                 />
                         </div>
                         <div className="w-full bg-red-500">
-                            <button className="text-white flex justify-center px-[4px] py-[12px]"
+                            <button className="text-white flex justify-center px-[4px] py-[12px] cursor-pointer"
                                 onClick={() => SetShowList(true)}>
                                 <LuMenu size={30}/>
                             </button>
@@ -83,9 +105,9 @@ export default function Navbar() {
                     </>
                 ) :
                 (
-                    <section className="">
-                        <div className="">
-                            <button className="flex justify-center align-items-center bg-black cursor-pointer text-white gap-1"
+                    <section className="w-full h-full py-8">
+                        <div className="py-5 px-5">
+                            <button className="flex justify-center align-items-center px-5 text-sm py-1 rounded-sm bg-[#212529] cursor-pointer text-white gap-1"
                                 onClick={() => SetShowList(false)}>
                                 <p>Close</p>
                                 <FaLongArrowAltRight size={15} />
@@ -93,14 +115,15 @@ export default function Navbar() {
                         </div>
                         <div className="p-4 flex flex-col gap-3">
                             <Image
-                              src="/mobile-logo.png"
-                              width={152}
-                              height={31}
-                              alt="Logo"
+                                className="pb-1"
+                                src="/mobile-logo.png"
+                                width={152}
+                                height={31}
+                                alt="Logo"
                             />
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 w-full">
                                 <input placeholder="Search"
-                                    className="border text-gray-500 border-gray-500 rounded-sm p-2">
+                                    className="border w-full text-gray-500 border-gray-500 rounded-sm p-2">
                                 </input>
                                 <button className="bg-white text-green-500 border-1 border-green-500 rounded-sm p-2">
                                     Search
@@ -108,27 +131,61 @@ export default function Navbar() {
                             </div>
                             <nav>
                                 <ul>
-                                    <li></li>
-                                    <li className="bg-[#f7f7f7]">
-                                        <Item></Item>
-                                    </li>
-                                    <li>TEST</li>
-                                    <li>TEST</li>
-                                    <li>TEST</li>
+                                    <li className=" bg-[#f7f7f7] p-2 text-md mb-2 pl-2" >Home</li>
+                                    {
+                                        ListItems && (
+                                        ListItems.map( (item: ListItem, itemIndex: number) => {
+                                            return (
+                                                <>
+                                                    <li className="flex cursor-pointer gap-2 bg-[#f7f7f7] text-md w-full p-2 mb-2 pl-2 content-center" onClick={()=> {
+                                                        if (showNational === itemIndex)
+                                                            setShowNational(-1);
+                                                        else
+                                                            setShowNational(itemIndex);
+                                                        }}>
+                                                            <p>
+                                                                {item.name}
+                                                            </p>
+                                                            <div className="text-sm flex items-center">
+                                                                <TiArrowSortedDown />
+                                                            </div>
+                                                        </li>
+                                                        {showNational == itemIndex && 
+                                                        <ul className="border  border-red-600 flex items-scroll">
+                                                            {true && data.map((element: Item, index: number)=> {
+                                                                return (
+                                                                    <li key={index} className="bg-[#f7f7f7] w-full">
+                                                                        <Item   title={element.title}
+                                                                                content={element.content}
+                                                                                banner={element.banner}
+                                                                                Category={element.Category}>
+                                                                        </Item>
+                                                                    </li>
+                                                                )
+                                                            })}
+                                                        </ul>
+                                                    }
+                                                </>
+                                                )
+                                            })
+                                        )
+                                    }
+                                    <li className=" bg-[#f7f7f7] w-full p-2 text-md mb-2 pl-2" >Blog</li>
+                                    <li className=" bg-[#f7f7f7] w-full p-2 text-md mb-2 pl-2" >Contact us</li>
                                 </ul>
                             </nav>
                             <div className="flex gap-2 w-fit">
-                                <a className="bg-black rounded-sm p-3 text-white">
-                                    <FaFacebookF size={20}/>
+                                <a className="bg-black rounded-lg px-2.5 content-center  py-2.5 text-white">
+                                    <FaFacebookF size={16}/>
                                 </a>
-                                <a className="bg-black rounded-sm p-3 text-white">
-                                    <RiTwitterXFill size={20}/>
+                                <a className="bg-black rounded-lg px-2.5 content-center py-2.5 text-white">
+                                    <RiTwitterXFill size={16}/>
                                 </a>
-                                <a className="bg-black rounded-sm p-3 text-white">
+                                <a className="bg-black rounded-lg px-2.5 content-center  py-2.5 text-white">
                                     <FaGooglePlusG size={20}/>
                                 </a>
-                                <a className="bg-black rounded-sm p-3 text-white">
-                                    <FaInstagram size={20}/>
+                                <a className="bg-black rounded-lg px-2.5 content-center  py-2.5 text-white">
+                                    <FaInstagram size={16}/>
                                 </a>
                             </div>
                         </div>

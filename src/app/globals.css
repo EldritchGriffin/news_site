@@ -8,3 +8,14 @@
 body {
   font-family: 'Libre Baskerville', serif;
 }
+
+.items-scroll {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling : touch;
+}
+
+.items-scroll::-webkit-scrollbar {
+  display: none;
+}

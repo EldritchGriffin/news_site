@@ -3,7 +3,7 @@ import Navbar from './navbar/navbar'
 
 export default function page() {
   return (
-    <div className='border-2'>
+    <div className='h-full'>
       <Navbar></Navbar>
     </div>
   )
