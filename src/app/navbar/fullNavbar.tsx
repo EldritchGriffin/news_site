@@ -126,14 +126,14 @@ export default function FullNavbar () {
                                         return (
                                           <div
                                             key={itemIndex}
-                                            className="relative dropdown p-2 h-full items-center justify-center">
+                                            className="dropdown p-2 h-full items-center justify-center">
                                             <button className="flex gap-2 cursor-pointer text-md h-full items-center">
                                               <p>{item.name}</p>
                                               <div className="text-sm flex items-center">
                                                 <TiArrowSortedDown />
                                               </div>
                                             </button>
-                                            <ul className="dropdown-content flex transition w-screen h-full duration-300 absolute">
+                                            <ul className="dropdown-content flex transition w-screen h-full duration-300 left-0 absolute">
                                               {data.map((element: Item, index: number) => (
                                                 <li key={index} className="bg-[#f7f7f7] w-full h-full">
                                                   <NavItems
