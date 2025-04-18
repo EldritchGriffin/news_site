@@ -5,12 +5,12 @@ export default async function Hero() {
   const posts = await getAllPosts()
   return (
     <>
-      <div className="w-full max-w-screen-xl">
+      <div className="w-full max-w-screen-xl px-4 py-6">
 
-        <section className="container mx-auto mb-10">
+        <section className="container mx-auto mb-10 ">
           <h2 className="text-xl font-bold mb-4">Main Stories</h2>
-          <div className="flex flex-col lg:flex-row gap-2 bb ">
-            <article className="lg:w-[60%] relative h-[450px]   text-white ">
+          <div className="flex flex-col lg:flex-row gap-2  gap-y-10">
+            <article className="lg:w-[60%] relative h-[450px] text-white ">
               <CardPost
                 title={posts.data[0].title}
                 imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
