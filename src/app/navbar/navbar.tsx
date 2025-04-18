@@ -4,19 +4,10 @@ import Image from "next/image";
 import { useState } from "react";
 import { LuMenu } from "react-icons/lu";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { RiTwitterXFill } from "react-icons/ri";
-import { FaGooglePlusG } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa6";
 import Item from "./navbar-components/item";
 import { TiArrowSortedDown } from "react-icons/ti";
+import Media from "./navbar-components/media";
 
-
-
-interface ListItem {
-    name : string,
-    value : number
-}
 
 export default function Navbar() {
 
@@ -130,7 +121,7 @@ export default function Navbar() {
                                 />
                         </div>
                         <div className="w-full bg-red-500">
-                            <button className="text-white flex justify-center px-[4px] py-[12px] cursor-pointer"
+                            <button className="text-white flex justify-center pl-2 px-[4px] py-[12px] cursor-pointer"
                                 onClick={() => SetShowList(true)}>
                                 <LuMenu size={30}/>
                             </button>
@@ -138,7 +129,7 @@ export default function Navbar() {
                     </>
                 ) :
                 (
-                    <section className="w-full h-full py-8">
+                    <section className="w-full md:w-[700px] h-full py-8">
                         <div className="py-5 px-5">
                             <button className="flex justify-center align-items-center px-5 text-sm py-1 rounded-sm bg-[#212529] cursor-pointer text-white gap-1"
                                 onClick={() => SetShowList(false)}>
@@ -164,27 +155,28 @@ export default function Navbar() {
                             </div>
                             <nav>
                                 <ul>
-                                    <li className=" bg-[#f7f7f7] p-2 text-md mb-2 pl-2" >Home</li>
+                                    <li  className=" bg-[#f7f7f7] p-3 text-md mb-1 pl-2" >Home</li>
                                     {
                                         ListItems && (
                                         ListItems.map( (item: ListItem, itemIndex: number) => {
                                             return (
-                                                <>
-                                                    <li className="flex cursor-pointer gap-2 bg-[#f7f7f7] text-md w-full p-2 mb-2 pl-2 content-center" onClick={()=> {
-                                                        if (showNational === itemIndex)
-                                                            setShowNational(-1);
-                                                        else
-                                                            setShowNational(itemIndex);
-                                                        }}>
-                                                            <p>
-                                                                {item.name}
-                                                            </p>
-                                                            <div className="text-sm flex items-center">
-                                                                <TiArrowSortedDown />
-                                                            </div>
+                                                <div key={itemIndex}>
+                                                    <li key={itemIndex} className="flex cursor-pointer gap-2 mb-1 bg-[#f7f7f7] text-md w-full p-3 pl-2 content-center"
+                                                        onClick={()=> {
+                                                            if (showNational === itemIndex)
+                                                                setShowNational(-1);
+                                                            else
+                                                                setShowNational(itemIndex);
+                                                            }}>
+                                                        <p>
+                                                            {item.name}
+                                                        </p>
+                                                        <div className="text-sm flex items-center">
+                                                            <TiArrowSortedDown />
+                                                        </div>
                                                         </li>
                                                         {showNational == itemIndex && 
-                                                        <ul className="border overflow-x-auto border-red-600 flex items-scroll">
+                                                        <ul className="overflow-x-auto flex items-scroll">
                                                             {true && data.map((element: Item, index: number)=> {
                                                                 return (
                                                                     <li key={index} className="bg-[#f7f7f7]">
@@ -198,29 +190,16 @@ export default function Navbar() {
                                                             })}
                                                         </ul>
                                                     }
-                                                </>
+                                                </div>
                                                 )
                                             })
                                         )
                                     }
-                                    <li className=" bg-[#f7f7f7] w-full p-2 text-md mb-2 pl-2" >Blog</li>
-                                    <li className=" bg-[#f7f7f7] w-full p-2 text-md mb-2 pl-2" >Contact us</li>
+                                    <li className=" bg-[#f7f7f7] w-full p-3 text-md mb-1 pl-2" >Blog</li>
+                                    <li className=" bg-[#f7f7f7] w-full p-3 text-md mb-1 pl-2" >Contact us</li>
                                 </ul>
                             </nav>
-                            <div className="flex gap-2 w-fit">
-                                <a className="bg-black rounded-lg px-2.5 content-center  py-2.5 text-white">
-                                    <FaFacebookF size={16}/>
-                                </a>
-                                <a className="bg-black rounded-lg px-2.5 content-center py-2.5 text-white">
-                                    <RiTwitterXFill size={16}/>
-                                </a>
-                                <a className="bg-black rounded-lg px-2.5 content-center  py-2.5 text-white">
-                                    <FaGooglePlusG size={20}/>
-                                </a>
-                                <a className="bg-black rounded-lg px-2.5 content-center  py-2.5 text-white">
-                                    <FaInstagram size={16}/>
-                                </a>
-                            </div>
+                            <Media/>
                         </div>
                     </section>
                 )
