@@ -14,7 +14,7 @@ export default async function Hero() {
               <CardPost
                 title={posts.data[0].title}
                 imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
-                category={posts.data[0].Category}
+                category={posts.data[0].category}
                 author={posts.data[0].author}
                 date={posts.data[0].publishedAt}
               ></CardPost>
@@ -26,7 +26,7 @@ export default async function Hero() {
                   <CardPost
                     title={posts.data[0].title}
                     imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
-                    category={posts.data[0].Category}
+                    category={posts.data[0].category}
                     author={posts.data[0].author}
                     date={posts.data[0].publishedAt}
                   ></CardPost>
@@ -43,7 +43,7 @@ export default async function Hero() {
                 <CardPost
                   title={posts.data[0].title}
                   imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
-                  category={posts.data[0].Category}
+                  category={posts.data[0].category}
                   author={posts.data[0].author}
                   date={posts.data[0].publishedAt}
                 ></CardPost>
