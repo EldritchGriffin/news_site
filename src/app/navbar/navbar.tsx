@@ -7,68 +7,90 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import Item from "./navbar-components/item";
 import { TiArrowSortedDown } from "react-icons/ti";
 import Media from "./navbar-components/media";
-
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
     const [ShowList, SetShowList] = useState(false);
     const [showNational, setShowNational] = useState<number>(-1);
+    const [path, setPath] = useState<string>("no path");
     const sidebarRef = useRef<HTMLDivElement>(null);
+    const pathname = usePathname();
 
-useEffect(() => {
-  function handleClickOutside(event: MouseEvent) {
-    if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
-      SetShowList(false);
-    }
-  }
+    useEffect(()=> {
+      const currentPath = pathname.split('/');
+      if (currentPath.length > 0)
+        setPath(currentPath[0]);
+    });
 
-  if (ShowList) {
-    document.addEventListener("mousedown", handleClickOutside);
-  }
-
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, [ShowList]);
+    useEffect(() => {
+      function handleClickOutside(event: MouseEvent) {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+          SetShowList(false);
+        }
+      }
+      if (ShowList) {
+        document.addEventListener("mousedown", handleClickOutside);
+      }
+    
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ShowList]);
     const ListItems : ListItem[] = [
         {
             name : "Portada",
             value : 0,
-            isDropDown : true
+            isDropDown : true,
+            trueName : "Portada"
+            ,
         },
         {
             name : "Política",
             value : 1,
-            isDropDown : true
+            isDropDown : true,
+            trueName : "Politica"
+
         },
         {
             name : "Economía",
             value : 2,
-            isDropDown : true
+            isDropDown : true,
+            trueName : "Economia"
+
         },
         {
             name : "Internacional",
             value : 3,
-            isDropDown : true
+            isDropDown : true,
+            trueName : "Internacional"
+
         },
         {
             name : "Cultura y Ciencia",
             value : 4,
-            isDropDown : true
+            isDropDown : true,
+            trueName : "Cultura y Ciencia"
+
         },
         {
             name : "Deportes",
             value : 5,
-            isDropDown : true
+            isDropDown : true,
+            trueName : "Deportes"
+
         },
         {
             name : "Entrevistas",
             value : 6,
-            isDropDown : true
+            isDropDown : true,
+            trueName : "Entrevistas"
+
         },
         {
             name : "vídeo",
             value : 7,
-            isDropDown : false
+            isDropDown : false,
+            trueName : "video"
         }
     ]
     const data : Item[] = [
@@ -145,7 +167,7 @@ useEffect(() => {
         <div className="w-full bg-[#222222] flex justify-center py-3">
           <Image src="/logo-trans.png" width={288} height={58} alt="Logo" />
         </div>
-        <div className="w-full bg-red-500">
+        <div className="w-full bg-[#d42a23]">
           <button
             className="text-white flex justify-center pl-2 px-[4px] py-[12px] cursor-pointer"
             onClick={() => SetShowList(true)}
@@ -188,7 +210,7 @@ useEffect(() => {
                   {ListItems.map((item: ListItem, itemIndex: number) => (
                     <div key={itemIndex}>
                       <li
-                        className="flex cursor-pointer gap-2 mb-1 bg-[#f7f7f7] text-md w-full p-3 pl-2 content-center"
+                        className={`flex cursor-pointer gap-2 mb-1 ${path == item.trueName ? 'bg-[#d42a23]' : 'bg-[#f7f7f7]' }  text-md w-full p-3 pl-2 content-center`}
                         onClick={() =>
                           setShowNational(
                             showNational === itemIndex ? -1 : itemIndex

@@ -13,7 +13,7 @@ export default function FullNavMedia() {
   return (
     <div className='w-full max-w-screen-xl'>
     <div className='container mx-auto'>
-        <div className='flex bg-[#222222] w-full text-sm justify-between text-white'>
+        <div className='flex bg-[#222222] w-full text-sm justify-between items-center text-white'>
             <div className='flex gap-2'>
                 <a className='cursor-pointer'>Contact us</a>
                 <a className='cursor-pointer'>Blog</a>

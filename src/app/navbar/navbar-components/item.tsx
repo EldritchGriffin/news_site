@@ -12,7 +12,7 @@ export default function Item(props : {title: string, content: string, banner: st
                 {props.Category}
             </p>
             <section>
-                <p className="word-wrap  text-sm">
+                <p className="word-wrap text-[#5d5d5d] text-sm">
                     {props.title}
                 </p>
             </section>

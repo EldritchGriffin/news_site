@@ -1,5 +1,6 @@
 interface ListItem {
     name : string,
     value : number,
-    isDropDown : boolean
+    isDropDown : boolean,
+    trueName : string
 }

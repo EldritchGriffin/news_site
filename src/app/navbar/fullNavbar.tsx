@@ -3,49 +3,66 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import { FiSearch } from "react-icons/fi";
 import NavItems from "./navbar-components/NavItems";
 import FullNavMedia from "./navbar-components/FullNavMedia";
+import { useState } from "react";
 
 
 export default function FullNavbar () {
+        const [showListItems, setShowListItems] = useState(true);
         const ListItems : ListItem[] = [
             {
                 name : "Portada",
                 value : 0,
-                isDropDown : true
+                isDropDown : true,
+                trueName : "Portada"
+                ,
             },
             {
                 name : "Política",
                 value : 1,
-                isDropDown : true
+                isDropDown : true,
+                trueName : "Politica"
+    
             },
             {
                 name : "Economía",
                 value : 2,
-                isDropDown : true
+                isDropDown : true,
+                trueName : "Economia"
+    
             },
             {
                 name : "Internacional",
                 value : 3,
-                isDropDown : true
+                isDropDown : true,
+                trueName : "Internacional"
+    
             },
             {
                 name : "Cultura y Ciencia",
                 value : 4,
-                isDropDown : true
+                isDropDown : true,
+                trueName : "Cultura y Ciencia"
+    
             },
             {
                 name : "Deportes",
                 value : 5,
-                isDropDown : true
+                isDropDown : true,
+                trueName : "Deportes"
+    
             },
             {
                 name : "Entrevistas",
                 value : 6,
-                isDropDown : true
+                isDropDown : true,
+                trueName : "Entrevistas"
+    
             },
             {
                 name : "vídeo",
                 value : 7,
-                isDropDown : false
+                isDropDown : false,
+                trueName : "video"
             }
         ]
         const data : Item[] = [
@@ -155,7 +172,7 @@ export default function FullNavbar () {
             <div className='w-full bg-[#d42a23]'>
             <section className="container mx-auto max-w-screen-xl ">
                 <nav className="flex text-white justify-between h-[50px]">
-                        <div className="flex gap-8 shadow-2xl">
+                        {showListItems ? <div className="flex gap-8 shadow-2xl">
                             {
                                 ListItems && (
                                     ListItems.map((item: ListItem, itemIndex: number) => {
@@ -185,7 +202,15 @@ export default function FullNavbar () {
                                         );
                                     }))}
                         </div>
-                        <button  className="font-extrabold text-xl">
+                            :
+                            <input type="text" name="Search" 
+                                    placeholder="Search..." 
+                                    className="w-full h-full border-b-1 border-black focus:outline-none"/> 
+                        }
+                        <button className="font-extrabold text-xl cursor-pointer"
+                            onClick={() => {
+                                setShowListItems(!showListItems);
+                            }}>
                             <FiSearch/>
                         </button>
                 </nav>
