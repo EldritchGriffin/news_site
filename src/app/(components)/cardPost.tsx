@@ -42,7 +42,7 @@ const CardPost: React.FC<CardPostProps> = ({
           </div>          
         )}
         {date && (
-          <div className="flex items-center text-white/80 text-sm">
+          <div className="flex items-center text-white/80 text-sm mb-7">
             <span className="font-medium">{new Date(date).toLocaleDateString()}</span>
           </div>
         )}

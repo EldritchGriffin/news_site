@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { styleText } from '../(utilities)/helperFunctions';
 
@@ -5,8 +6,16 @@ interface CardPostProps {
   title: string;
   imageUrl: string;
   category: string;
+  documentId: string;
   author?: string;
   date?: string;
+}
+
+function Clicked(documentId: string) {
+  return () => {
+    //change the route to the article page
+    window.location.href = `/article/${documentId}`;
+  };
 }
 
 const CardPostChin: React.FC<CardPostProps> = ({ 
@@ -14,10 +23,12 @@ const CardPostChin: React.FC<CardPostProps> = ({
   imageUrl, 
   category, 
   author, 
-  date 
+  date,
+  documentId
 }) => {
   return (
-    <div className="w-full overflow-hidden shadow-md">
+    <div onClick={Clicked(documentId)} 
+    className="w-full overflow-hidden shadow-md">
       {/* Image Container with Category Label */}
       <div className="relative">
         <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />

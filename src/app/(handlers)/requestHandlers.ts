@@ -18,9 +18,9 @@ const api = axios.create({
         throw error;
     }
   };
-export const getPostById = async (id: string) => {
+export const getPostByDocumentId = async (documentId: string) => {
     try {
-        const response = await api.get(`/api/posts/${id}?populate=*`);
+        const response = await api.get(`/api/posts/${documentId}?populate=*`);
         return response.data;
     } catch (error) {
         console.error("Error fetching post:", error);
