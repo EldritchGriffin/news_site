@@ -2,14 +2,13 @@ import React from 'react'
 
 export default function NavItems(props : {title: string, content: string, banner: string, Category: string}) {
   return (
-      <div className="cursor-pointer h-full w-full flex flex-col gap-2 p-2">
+      <div className="cursor-pointer h-full w-[450] flex flex-col gap-2 p-2 ">
             <img
-                className="rounded-sm"
+                className="h-[180px] w-full object-cover "
                 src={props.banner}
                 alt={props.title}
-                width={600}
-            />
-            <p className="bg-black p-2 text-white w-fit rounded-sm text-sm h-full">
+                />
+            <p className="bg-black p-2 text-white w-fit rounded-sm text-sm ">
                 {props.Category}
             </p>
             <section>

@@ -3,11 +3,9 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import { FiSearch } from "react-icons/fi";
 import NavItems from "./navbar-components/NavItems";
 import FullNavMedia from "./navbar-components/FullNavMedia";
-import { useState } from "react";
 
 
 export default function FullNavbar () {
-        const [showListItems, setShowListItems] = useState(false);
         const ListItems : ListItem[] = [
             {
                 name : "Portada",
@@ -154,10 +152,10 @@ export default function FullNavbar () {
                   alt="Logo"
                 />
             </div>
-            <div className='w-full h-full bg-[#d42a23]'>
-            <section className="container mx-auto max-w-screen-xl">
-                 <nav className="flex text-white justify-between h-[50px]">
-                        {!showListItems ? <div className="flex gap-8 shadow-2xl">
+            <div className='w-full bg-[#d42a23]'>
+            <section className="container mx-auto max-w-screen-xl ">
+                <nav className="flex text-white justify-between h-[50px]">
+                        <div className="flex gap-8 shadow-2xl">
                             {
                                 ListItems && (
                                     ListItems.map((item: ListItem, itemIndex: number) => {
@@ -187,12 +185,7 @@ export default function FullNavbar () {
                                         );
                                     }))}
                         </div>
-                        : <div className="w-full h-full">
-                            <input className="w-full h-full border-none focus:outline-0" type="text" name="searchbar" placeholder="Search"/>
-                        </div> 
-                        }
-                        <button  className="font-extrabold text-xl cursor-pointer"
-                            onClick={() => setShowListItems(!showListItems)}>
+                        <button  className="font-extrabold text-xl">
                             <FiSearch/>
                         </button>
                 </nav>
