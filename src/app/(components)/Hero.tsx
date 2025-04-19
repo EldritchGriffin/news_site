@@ -1,17 +1,31 @@
 import React from 'react'
 import CardPost from './cardPost'
 import CardPostChin from './cardPostChin'
-import { getAllPosts } from '../(handlers)/requestHandlers'
+import { getAllFromCategory, getAllPosts } from '../(handlers)/requestHandlers'
+import Tabs from './tabs'
+import Sidebar from './sidebar'
+import Trending from './trending'
+
 export default async function Hero() {
   const posts = await getAllPosts()
   console.log(posts);
+
+
+export default async function Hero() {
+  const posts = await getAllPosts()
+  const sportsData = await getAllFromCategory('sports')
+  const worldData = await getAllFromCategory('world')
+  const lifestyleData = await getAllFromCategory('lifestyle')
+  const businessData = await getAllFromCategory('business')
+
   return (
     <>
-      <div className="w-full max-w-screen-xl px-4 py-6">
+      {/* <div className="w-full max-w-screen-xl px-4 py-6"> */}
+      <div className='w-full max-w-screen-xl'>
 
         <section className="container mx-auto mb-10 ">
           <h2 className="text-xl font-bold mb-4">Main Stories</h2>
-          <div className="flex flex-col lg:flex-row gap-2  gap-y-10">
+          <div className="flex flex-col lg:flex-row gap-2 gap-y-10">
             <article className="lg:w-[60%] relative h-[450px] text-white ">
               <CardPost
                 title={posts.data[0].title}
@@ -55,6 +69,15 @@ export default async function Hero() {
           </div>
         </section>
       </div>
+      <Tabs
+        sportsData={sportsData}
+        worldData={worldData}
+        lifestyleData={lifestyleData}
+        businessData={businessData}
+      />
+      <Sidebar/>
+      <Trending/>
+      {/* </div> */}
     </>
   )
 }

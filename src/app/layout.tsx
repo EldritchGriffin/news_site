@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/app/footer/page";
+import CompleteNavbar from "./navbar/CompleteNavbar";
 
 
 export const metadata: Metadata = {
@@ -16,15 +17,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com"/>
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
-          <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
       </head>
-      <body 
-      className="flex flex-col min-h-screen"
+      <body
+        className={`w-full h-full`}
       >
-       <main className="flex-grow">{children}</main>
-      <Footer />
+        <CompleteNavbar />
+        {children}
+        <Footer />
+
       </body>
     </html>
   );

@@ -16,6 +16,8 @@ const CardPost: React.FC<CardPostProps> = ({
   author, 
   date 
 }) => {
+
+
   return (
     <div className="relative w-full h-full shadow-md overflow-hidden group">
       {/* Add hover zoom effect */}

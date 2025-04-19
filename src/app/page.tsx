@@ -1,5 +1,9 @@
+
 import Footer from "./footer/page";
 import React from 'react'
+// import Navbar from './navbar/navbar'
+import FullNavbar from './navbar/fullNavbar'
+import CompleteNavbar from './navbar/CompleteNavbar'
 import Markdown from 'react-markdown'
 import { getAllPosts } from './(handlers)/requestHandlers'
 import  Hero  from "./(components)/Hero"
