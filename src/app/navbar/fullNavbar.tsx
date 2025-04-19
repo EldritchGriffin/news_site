@@ -10,36 +10,44 @@ export default function FullNavbar () {
         const [showListItems, setShowListItems] = useState(false);
         const ListItems : ListItem[] = [
             {
-                name : "National",
-                value : 0
+                name : "Portada",
+                value : 0,
+                isDropDown : true
             },
             {
-                name : "World",
-                value : 1
+                name : "Política",
+                value : 1,
+                isDropDown : true
             },
             {
-                name : "Business",
-                value : 2
+                name : "Economía",
+                value : 2,
+                isDropDown : true
             },
             {
-                name : "Entertainment",
-                value : 3
+                name : "Internacional",
+                value : 3,
+                isDropDown : true
             },
             {
-                name : "LifeStyle",
-                value : 4
+                name : "Cultura y Ciencia",
+                value : 4,
+                isDropDown : true
             },
             {
-                name : "Sport",
-                value : 5
+                name : "Deportes",
+                value : 5,
+                isDropDown : true
             },
             {
-                name : "Photos",
-                value : 6
+                name : "Entrevistas",
+                value : 6,
+                isDropDown : true
             },
             {
-                name : "Videos",
-                value : 6
+                name : "vídeo",
+                value : 7,
+                isDropDown : false
             }
         ]
         const data : Item[] = [
@@ -146,7 +154,7 @@ export default function FullNavbar () {
                   alt="Logo"
                 />
             </div>
-            <div className='w-full bg-[#d42a23]'>
+            <div className='w-full h-full bg-[#d42a23]'>
             <section className="container mx-auto max-w-screen-xl">
                  <nav className="flex text-white justify-between h-[50px]">
                         {!showListItems ? <div className="flex gap-8 shadow-2xl">
@@ -159,11 +167,11 @@ export default function FullNavbar () {
                                             className="dropdown p-2 h-full items-center justify-center">
                                             <a className="flex gap-2 cursor-pointer text-md h-full items-center">
                                               <p className="text-sm">{item.name}</p>
-                                              <div className="text-sm flex items-center">
+                                              {item.isDropDown && <div className="text-sm flex items-center">
                                                 <TiArrowSortedDown />
-                                              </div>
+                                              </div>}
                                             </a>
-                                            <ul className="dropdown-content flex transition w-screen h-full z-50 duration-300 left-0 absolute">
+                                            {item.isDropDown && <ul className="dropdown-content flex transition w-screen h-full z-50 duration-300 left-0 absolute">
                                               {data.map((element: Item, index: number) => (
                                                 <li key={index} className="bg-[#f7f7f7] w-full h-full">
                                                   <NavItems
@@ -174,7 +182,7 @@ export default function FullNavbar () {
                                                   />
                                                 </li>
                                               ))}
-                                            </ul>
+                                            </ul>}
                                           </div>
                                         );
                                     }))}

@@ -2,11 +2,12 @@ import React from 'react'
 
 export default function NavItems(props : {title: string, content: string, banner: string, Category: string}) {
   return (
-      <div className="cursor-pointer h-[200px] w-[400px] flex flex-col gap-2 p-2">
+      <div className="cursor-pointer h-full w-full flex flex-col gap-2 p-2">
             <img
                 className="rounded-sm"
                 src={props.banner}
                 alt={props.title}
+                width={600}
             />
             <p className="bg-black p-2 text-white w-fit rounded-sm text-sm h-full">
                 {props.Category}

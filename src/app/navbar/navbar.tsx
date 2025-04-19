@@ -10,8 +10,6 @@ import Media from "./navbar-components/media";
 
 
 export default function Navbar() {
-
-
     const [ShowList, SetShowList] = useState(false);
     const [showNational, setShowNational] = useState<number>(-1);
     const sidebarRef = useRef<HTMLDivElement>(null);
@@ -33,28 +31,44 @@ useEffect(() => {
 }, [ShowList]);
     const ListItems : ListItem[] = [
         {
-            name : "National",
-            value : 0
+            name : "Portada",
+            value : 0,
+            isDropDown : true
         },
         {
-            name : "World",
-            value : 1
+            name : "Política",
+            value : 1,
+            isDropDown : true
         },
         {
-            name : "Business",
-            value : 2
+            name : "Economía",
+            value : 2,
+            isDropDown : true
         },
         {
-            name : "Entertainment",
-            value : 3
+            name : "Internacional",
+            value : 3,
+            isDropDown : true
         },
         {
-            name : "LifeStyle",
-            value : 4
+            name : "Cultura y Ciencia",
+            value : 4,
+            isDropDown : true
         },
         {
-            name : "Sport",
-            value : 5
+            name : "Deportes",
+            value : 5,
+            isDropDown : true
+        },
+        {
+            name : "Entrevistas",
+            value : 6,
+            isDropDown : true
+        },
+        {
+            name : "vídeo",
+            value : 7,
+            isDropDown : false
         }
     ]
     const data : Item[] = [
@@ -142,7 +156,7 @@ useEffect(() => {
       </header>
       {ShowList && (
         <section className="fixed inset-0 backdrop-blur-sm z-50">
-          <div  ref={sidebarRef} className="max-w-[400px] h-full py-8 bg-white">
+          <div  ref={sidebarRef} className="max-w-[400px] overflow-y-auto h-full py-8 bg-white">
             <div className="py-5 px-5">
               <button
                 className="flex justify-center align-items-center px-5 text-sm py-1 rounded-sm bg-[#212529] cursor-pointer text-white gap-1"
@@ -171,7 +185,6 @@ useEffect(() => {
               </div>
               <nav>
                 <ul>
-                  <li className="bg-[#f7f7f7] p-3 text-md mb-1 pl-2">Home</li>
                   {ListItems.map((item: ListItem, itemIndex: number) => (
                     <div key={itemIndex}>
                       <li
@@ -183,11 +196,11 @@ useEffect(() => {
                         }
                       >
                         <p>{item.name}</p>
-                        <div className="text-sm flex items-center">
+                        {item.isDropDown && <div className="text-sm flex items-center">
                           <TiArrowSortedDown />
-                        </div>
+                        </div>}
                       </li>
-                      {showNational === itemIndex && (
+                      {(showNational === itemIndex && item.isDropDown) && (
                         <ul className="overflow-x-auto flex items-scroll">
                           {data.map((element: Item, index: number) => (
                             <li key={index} className="bg-[#f7f7f7]">
@@ -203,12 +216,6 @@ useEffect(() => {
                       )}
                     </div>
                   ))}
-                  <li className="bg-[#f7f7f7] w-full p-3 text-md mb-1 pl-2">
-                    Blog
-                  </li>
-                  <li className="bg-[#f7f7f7] w-full p-3 text-md mb-1 pl-2">
-                    Contact us
-                  </li>
                 </ul>
               </nav>
               <Media />
