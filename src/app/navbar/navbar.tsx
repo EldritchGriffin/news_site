@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef} from "react";
 import { LuMenu } from "react-icons/lu";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import Item from "./navbar-components/item";
@@ -15,13 +15,23 @@ export default function Navbar() {
 
     const [ShowList, SetShowList] = useState(false);
     const [showNational, setShowNational] = useState<number>(-1);
-    const navbarRef = useRef<HTMLDivElement>(null);
+    const sidebarRef = useRef<HTMLDivElement>(null);
 
-    const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      if (navbarRef.current && !navbarRef.current.contains(e.target as Node)) {
-        SetShowList(false); // Close the navbar
-      }
-    };
+useEffect(() => {
+  function handleClickOutside(event: MouseEvent) {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+      SetShowList(false);
+    }
+  }
+
+  if (ShowList) {
+    document.addEventListener("mousedown", handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [ShowList]);
     const ListItems : ListItem[] = [
         {
             name : "National",
@@ -133,7 +143,7 @@ export default function Navbar() {
       </header>
       {ShowList && (
         <section className="fixed inset-0 backdrop-blur-sm z-50">
-          <div className="max-w-[400px]  h-full py-8 bg-white">
+          <div  ref={sidebarRef} className="max-w-[400px] h-full py-8 bg-white">
             <div className="py-5 px-5">
               <button
                 className="flex justify-center align-items-center px-5 text-sm py-1 rounded-sm bg-[#212529] cursor-pointer text-white gap-1"
