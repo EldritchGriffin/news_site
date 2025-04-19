@@ -1,6 +1,6 @@
 // 'use client'
 
-import Bubbletext from "../../(components)/bubbletext";
+import Bubbletext from '@/app/(components)/bubble';
 import { FiChevronLeft } from 'react-icons/fi';
 import { FiChevronRight } from 'react-icons/fi';
 import { VscTriangleDown } from "react-icons/vsc";
