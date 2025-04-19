@@ -55,13 +55,13 @@ export default function Tabs({
               ))}
             </ul>
         </div>
-          <div className="grid mt-4 grid-cols-1 md:grid-cols-2 md:gap-y-12 xl:grid-cols-4 gap-2 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-y-12 xl:grid-cols-4 gap-2 mt-6">
             {filteredPosts.slice(0,4).map((post: any, i: number) => (
               <article key={i} className="relative">
                 <CardPostChin
                   title={post.title}
                   imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
-                  category={post.Category}
+                  category={post.category}
                   author={post.author}
                   date={post.publishedAt}
                   documentId={post.documentId}
