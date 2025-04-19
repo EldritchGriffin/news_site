@@ -37,7 +37,7 @@ export default function Tabs({
   return (
     <>
       <div className="w-full max-w-screen-xl ">
-        <section className="container mx-auto mb-20">
+        <section className="container mx-auto mb-20 mt-10">
           <div className="flex gap-6 flex-col lg:flex-row justify-between">
             <Bubbletext _text='Main Stories' _width='w-[140px]' />
             <ul className="flex gap-4 tabs justify-end ">

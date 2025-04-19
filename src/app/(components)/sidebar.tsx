@@ -5,7 +5,7 @@ export default function sidebar() {
   return (
     <>
     <div className='w-full max-w-screen-xl'>
-        <section className="container mx-auto ">
+        <section className="container mx-auto mb-10 ">
         <Bubbletext _text='Lifestyle' _width='w-[140px]' />
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6'>
 

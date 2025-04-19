@@ -56,6 +56,19 @@ export default async function Hero() {
       />
       <Sidebar/>
       <Trending/>
+      <Tabs
+        sportsData={sportsData}
+        worldData={worldData}
+        lifestyleData={lifestyleData}
+        businessData={businessData}
+      />
+      <Sidebar/>
+      <Tabs
+        sportsData={sportsData}
+        worldData={worldData}
+        lifestyleData={lifestyleData}
+        businessData={businessData}
+      />
       {/* </div> */}
     </>
   )

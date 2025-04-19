@@ -12,7 +12,7 @@ import { getAllFromCategory } from './(handlers)/requestHandlers'
 
 export default async function page() {
   return (
-    <main className="bg-white text-gray-900 flex flex-col items-center w-full">
+    <main className="bg-white text-gray-900 flex flex-col items-center w-full px-4">
       <Hero />
     </main>
   )

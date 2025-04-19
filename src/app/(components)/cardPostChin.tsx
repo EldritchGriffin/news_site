@@ -27,11 +27,17 @@ const CardPostChin: React.FC<CardPostProps> = ({
   documentId
 }) => {
   return (
-    <div onClick={Clicked(documentId)} 
-    className="w-full overflow-hidden shadow-md">
+    <div 
+      onClick={Clicked(documentId)} 
+      className="w-full overflow-hidden shadow-md group" // Added "group" class here
+    >
       {/* Image Container with Category Label */}
-      <div className="relative">
-        <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
+      <div className="relative overflow-hidden">
+        <img 
+          src={imageUrl} 
+          alt={title} 
+          className="w-full h-48 object-cover transform transition-transform duration-300 group-hover:scale-110" 
+        />
         {category && (
           <div className="absolute bottom-0 left-0 bg-red-600 text-white px-4 py-1 text-sm font-bold">
             {category}

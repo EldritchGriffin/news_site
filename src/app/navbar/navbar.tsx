@@ -7,12 +7,21 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import Item from "./navbar-components/item";
 import { TiArrowSortedDown } from "react-icons/ti";
 import Media from "./navbar-components/media";
+import { useRef } from "react";
 
 
 export default function Navbar() {
 
+
     const [ShowList, SetShowList] = useState(false);
     const [showNational, setShowNational] = useState<number>(-1);
+    const navbarRef = useRef<HTMLDivElement>(null);
+
+    const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (navbarRef.current && !navbarRef.current.contains(e.target as Node)) {
+        SetShowList(false); // Close the navbar
+      }
+    };
     const ListItems : ListItem[] = [
         {
             name : "National",
