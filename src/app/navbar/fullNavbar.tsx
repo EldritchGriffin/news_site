@@ -132,7 +132,7 @@ export default function FullNavbar () {
         ]
         
     return (
-        <header className="w-full max-w-screen flex flex-col">
+        <header className="flex flex-col">
             <div className="bg-[#222222] relative flex justify-center border-b-1 border-[#2c2c2c] py-3"> 
                 <FullNavMedia/>
             </div>
@@ -144,9 +144,10 @@ export default function FullNavbar () {
                   alt="Logo"
                 />
             </div>
-            <section className="w-full flex text-white justify-center h-[50px] bg-[#d42a23]">
-                <nav className="flex max-w-screen h-full">
-                        <div className="flex w-full gap-8 shadow-2xl">
+            <div className='w-full bg-[#d42a23]'>
+            <section className="container mx-auto max-w-screen-xl">
+                <nav className="flex text-white justify-between h-[50px]">
+                        <div className="flex gap-8 shadow-2xl">
                             {
                                 ListItems && (
                                     ListItems.map((item: ListItem, itemIndex: number) => {
@@ -181,6 +182,7 @@ export default function FullNavbar () {
                         </button>
                 </nav>
             </section>
+                </div>
         </header>
     )
 }
