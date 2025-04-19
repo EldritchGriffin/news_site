@@ -53,7 +53,7 @@ export default function Tabs({
                 </li>
               ))}
             </ul>
-          </div>
+        </div>
           <div className="grid mt-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
             {filteredPosts.slice(0,4).map((post: any, i: number) => (
               <article key={i} className="relative h-[221px]">

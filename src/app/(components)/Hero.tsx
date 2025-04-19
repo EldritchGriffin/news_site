@@ -2,6 +2,8 @@ import React from 'react'
 import CardPost from './cardPost'
 import { getAllFromCategory, getAllPosts } from '../(handlers)/requestHandlers'
 import Tabs from './tabs'
+import Sidebar from './sidebar'
+import Trending from './trending'
 
 export default async function Hero() {
   const posts = await getAllPosts()
@@ -50,7 +52,9 @@ export default async function Hero() {
         worldData={worldData}
         lifestyleData={lifestyleData}
         businessData={businessData}
-      />  
+      />
+      <Sidebar/>
+      <Trending/>
       {/* </div> */}
     </>
   )
