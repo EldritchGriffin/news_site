@@ -14,23 +14,3 @@ body {
   border : 1px solid red;
 }
 
-
-.pp {
-  color: white;
-  background-color: #222222;
-	position: relative;
-	padding: 10px;
-	font-size: 16px;
-  box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
-}
-
-.pp::before {
-  content: '';
-	position: absolute;
-	top: 100%;
-	left: 10px;
-	border: .75rem solid transparent;
-	border-bottom: none;
-  border-top-color:#222222;
-	filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
-}
