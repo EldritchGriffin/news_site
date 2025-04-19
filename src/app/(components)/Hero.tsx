@@ -8,11 +8,6 @@ import Trending from './trending'
 
 export default async function Hero() {
   const posts = await getAllPosts()
-  console.log(posts);
-
-
-export default async function Hero() {
-  const posts = await getAllPosts()
   const sportsData = await getAllFromCategory('sports')
   const worldData = await getAllFromCategory('world')
   const lifestyleData = await getAllFromCategory('lifestyle')
