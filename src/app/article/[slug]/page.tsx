@@ -12,7 +12,7 @@ export default async function Page({
     const post = await getPostByDocumentId(slug);
     return (
         <main className="bg-white text-gray-900 flex flex-col items-center w-full">
-            <div className='max-w-screen-xl w-full bg-amber-200 justify-center items-center flex flex-col'>
+            <div className='max-w-screen-xl w-full justify-center items-center flex flex-col'>
                 <div className='w-full h-[500px] my-10'>
                     <CardPost
                         title={post.data.title}
@@ -23,7 +23,7 @@ export default async function Page({
                     >
                     </CardPost>
                 </div>
-                <div className='bg-amber-500 w-[90%] prose lg:prose-xl'>
+                <div className='w-[90%] prose lg:prose-xl'>
                     <Markdown>
                         {post.data.content}
                     </Markdown>

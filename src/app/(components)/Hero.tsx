@@ -14,11 +14,11 @@ export default async function Hero() {
           <div className="flex flex-col lg:flex-row gap-2  gap-y-10">
             <article className="lg:w-[60%] relative h-[450px] text-white ">
               <CardPost
-                title={posts.data[1].title}
-                imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[1].banner.url}
-                category={posts.data[1].category}
-                author={posts.data[1].author}
-                date={posts.data[1].publishedAt}
+                title={posts.data[0].title}
+                imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
+                category={posts.data[0].category}
+                author={posts.data[0].author}
+                date={posts.data[0].publishedAt}
               ></CardPost>
             </article>
             {/* Secondary stories taking remaining 40% width */}
@@ -26,11 +26,11 @@ export default async function Hero() {
               {[1, 2, 3, 4].map((_, i) => (
                 <article key={i} className="  gap-y-2 relative h-[221px]">
                   <CardPost
-                    title={posts.data[1].title}
-                    imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[1].banner.url}
-                    category={posts.data[1].category}
-                    author={posts.data[1].author}
-                    date={posts.data[1].publishedAt}
+                    title={posts.data[0].title}
+                    imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
+                    category={posts.data[0].category}
+                    author={posts.data[0].author}
+                    date={posts.data[0].publishedAt}
                   ></CardPost>
                 </article>
               ))}
@@ -43,12 +43,12 @@ export default async function Hero() {
             {[...Array(4)].map((_, i) => (
               <article key={i} className="relative h-[301px]">
                 <CardPostChin
-                  title={posts.data[1].title}
-                  imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[1].banner.url}
-                  category={posts.data[1].category}
-                  documentId={posts.data[1].documentId}
-                  author={posts.data[1].author}
-                  date={posts.data[1].publishedAt}
+                  title={posts.data[0].title}
+                  imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
+                  category={posts.data[0].category}
+                  documentId={posts.data[0].documentId}
+                  author={posts.data[0].author}
+                  date={posts.data[0].publishedAt}
                 ></CardPostChin>
               </article>
             ))}
