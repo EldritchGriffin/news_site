@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import CardPost from './cardPost';
+import CardPostChin from './cardPostChin';
 
 export default function Tabs({
     sportsData,
@@ -57,12 +57,13 @@ export default function Tabs({
           <div className="grid mt-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
             {filteredPosts.slice(0,4).map((post: any, i: number) => (
               <article key={i} className="relative h-[221px]">
-                <CardPost
+                <CardPostChin
                   title={post.title}
                   imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
                   category={post.Category}
                   author={post.author}
                   date={post.publishedAt}
+                  documentId={post.documentId}
                 />
               </article>
             ))}
