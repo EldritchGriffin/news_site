@@ -2,6 +2,7 @@
 import { TiArrowSortedDown } from "react-icons/ti";
 import { FiSearch } from "react-icons/fi";
 import NavItems from "./navbar-components/NavItems";
+import FullNavMedia from "./navbar-components/FullNavMedia";
 
 
 export default function FullNavbar () {
@@ -109,6 +110,7 @@ export default function FullNavbar () {
         ]
     return (
         <header className="w-full flex flex-col">
+            <FullNavMedia/>
             <div className="w-full bg-black flex justify-center py-3">
                 <img
                   src="/logo-trans.png"
@@ -119,7 +121,7 @@ export default function FullNavbar () {
             </div>
             <section className="w-full text-white h-[50px] bg-[#d42a23]">
                 <nav className="flex justify-center h-full items-center">
-                        <div className="flex w-full gap-8 items-center justify-center h-full">
+                        <div className="flex w-full gap-8 items-center justify-center shadow-2xl">
                             {
                                 ListItems && (
                                     ListItems.map((item: ListItem, itemIndex: number) => {
