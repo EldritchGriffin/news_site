@@ -5,6 +5,7 @@ import { getAllFromCategory, getAllPosts } from '../(handlers)/requestHandlers'
 import Tabs from './tabs'
 import Sidebar from './sidebar'
 import Trending from './trending'
+import Bubbletext from './bubble'
 
 export default async function Hero() {
   const posts = await getAllPosts()
@@ -18,9 +19,9 @@ export default async function Hero() {
       {/* <div className="w-full max-w-screen-xl px-4 py-6"> */}
       <div className='w-full max-w-screen-xl'>
 
-        <section className="container mx-auto mb-10 ">
-          <h2 className="text-xl font-bold mb-4">Main Stories</h2>
-          <div className="flex flex-col lg:flex-row gap-2 gap-y-10">
+        <section className="container mx-auto mb-10 mt-10 ">
+          <Bubbletext _text='Main Stories' _width='w-[140px]' />
+          <div className="flex flex-col lg:flex-row gap-2 gap-y-10 mt-6">
             <article className="lg:w-[60%] relative h-[450px] text-white ">
               <CardPost
                 title={posts.data[0].title}

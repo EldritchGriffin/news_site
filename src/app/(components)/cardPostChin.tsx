@@ -42,7 +42,7 @@ const CardPostChin: React.FC<CardPostProps> = ({
       {/* Content Below Image */}
       <div className="p-4 bg-white">
         <h2 className="text-gray-900 text-lg font-medium mb-2">
-          {title}
+          {styleText(title)}
         </h2>
         {(author || date) && (
           <div className="flex items-center text-gray-600 text-sm">

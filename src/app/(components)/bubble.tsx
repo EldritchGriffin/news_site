@@ -27,7 +27,7 @@ type Props = {
 export default function Bubbletext({ _text, _width }: Props) {
   // alert(`w-[${_width}] border-2`);
   return (
-    <div className={`pp w-[${_width}] leading-[19.2px] font-normal text-[16px] text-center border-2`}>
+    <div className={`pp ${_width} leading-[19.2px] font-normal text-[16px] text-center `}>
           {_text}
     </div>
   );
