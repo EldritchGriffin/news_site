@@ -20,10 +20,13 @@ export default function RootLayout({
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
           <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
       </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full h-full`}
+      >
+        {children}
       <body 
       className="flex flex-col min-h-screen bg-white text-gray-900 ">
        {children}
-      
       </body>
     </html>
   );

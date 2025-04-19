@@ -1,6 +1,9 @@
 
 import Footer from "./footer/page";
 import React from 'react'
+// import Navbar from './navbar/navbar'
+import FullNavbar from './navbar/fullNavbar'
+import CompleteNavbar from './navbar/CompleteNavbar'
 import Markdown from 'react-markdown'
 import { getAllPosts } from './(handlers)/requestHandlers'
 import  Hero  from "./(components)/Hero"
@@ -11,6 +14,9 @@ export default async function page() {
   const sports = await getAllFromCategory("politics")
   console.log(sports)
   return (
+    <div className='h-full'>
+      <CompleteNavbar/>
+    </div>
     <main className="bg-white text-gray-900 flex flex-col items-center w-full">
       <Hero />
     <div className="w-full bg-[#212121] flex flex-col items-center">
