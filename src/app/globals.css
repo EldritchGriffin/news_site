@@ -31,15 +31,6 @@ body {
   transform: translateY(-10%);
 }
 
-.dropdown-content::-webkit-scrollbar {
-  display: none; /* Hides the scrollbar */
-}
-
-.dropdown-content {
-  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
-  scrollbar-width: none;     /* For Firefox */
-}
-
 .dropdown:hover .dropdown-content{
   opacity:1;
   height: 300px;

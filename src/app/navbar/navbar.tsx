@@ -123,8 +123,8 @@ export default function Navbar() {
         </div>
       </header>
       {ShowList && (
-        <section className="fixed inset-0  backdrop-blur-sm z-50">
-          <div className="max-w-[400px] h-full py-8 bg-white">
+        <section className="fixed inset-0 backdrop-blur-sm z-50">
+          <div className="max-w-[400px]  h-full py-8 bg-white">
             <div className="py-5 px-5">
               <button
                 className="flex justify-center align-items-center px-5 text-sm py-1 rounded-sm bg-[#212529] cursor-pointer text-white gap-1"

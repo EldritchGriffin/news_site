@@ -144,9 +144,9 @@ export default function FullNavbar () {
                   alt="Logo"
                 />
             </div>
-            <section className="w-full flex justify-center text-white h-[50px] bg-[#d42a23]">
-                <nav className="flex justify-between w-[1000px] h-full">
-                        <div className="flex w-full gap-8 items-center justify-center shadow-2xl">
+            <section className="w-full flex text-white justify-center h-[50px] bg-[#d42a23]">
+                <nav className="flex w-[1000px] h-full">
+                        <div className="flex w-full gap-8 shadow-2xl">
                             {
                                 ListItems && (
                                     ListItems.map((item: ListItem, itemIndex: number) => {
