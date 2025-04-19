@@ -132,8 +132,8 @@ export default function FullNavbar () {
         ]
         
     return (
-        <header className="w-full flex flex-col">
-            <div className="bg-[#222222] w-full flex justify-center py-3"> 
+        <header className="w-full max-w-screen flex flex-col">
+            <div className="bg-[#222222] relative flex justify-center border-b-1 border-[#2c2c2c] py-3"> 
                 <FullNavMedia/>
             </div>
             <div className="w-full bg-[#222222] flex justify-center py-3">
@@ -145,7 +145,7 @@ export default function FullNavbar () {
                 />
             </div>
             <section className="w-full flex text-white justify-center h-[50px] bg-[#d42a23]">
-                <nav className="flex w-[1000px] h-full">
+                <nav className="flex max-w-screen h-full">
                         <div className="flex w-full gap-8 shadow-2xl">
                             {
                                 ListItems && (

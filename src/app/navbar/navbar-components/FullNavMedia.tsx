@@ -11,17 +11,17 @@ export default function FullNavMedia() {
         year: 'numeric'
       });
   return (
-    <div className='flex bg-[#222222] text-sm w-[1000px] text-white justify-between'>
-        <div className='flex gap-2'>
-            <a>Contact us</a>
-            <a>Blog</a>
-        </div>
-        <div>
-            <p>{formattedDate}</p>
-        </div>
-        <div className="flex gap-2 w-fit">
-            <Media/>
-        </div>
-    </div>
+    // <div className='flex bg-[#222222] w-full text-sm justify-center border-red-500 border-1 text-white'>
+    //     <div className='flex gap-2'>
+    //         <a>Contact us</a>
+    //         <a>Blog</a>
+    //     </div>
+    //     <div>
+    //         <p>{formattedDate}</p>
+    //     </div>
+    //     <div className="flex gap-2 w-fit">
+    //         <Media/>
+    //     </div>
+    // </div>
   )
 }
