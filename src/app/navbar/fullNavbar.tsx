@@ -180,7 +180,7 @@ export default function FullNavbar () {
                                           <div
                                             key={itemIndex}
                                             className="dropdown p-2 h-full items-center justify-center">
-                                            <a className="flex gap-2 cursor-pointer text-md h-full items-center">
+                                            <a className="flex gap-2 cursor-pointer hover:text-black text-md h-full items-center">
                                               <p className="text-sm">{item.name}</p>
                                               {item.isDropDown && <div className="text-sm flex items-center">
                                                 <TiArrowSortedDown />

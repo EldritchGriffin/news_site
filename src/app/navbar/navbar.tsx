@@ -91,7 +91,7 @@ export default function Navbar() {
             name : "vídeo",
             value : 7,
             isDropDown : false,
-            trueName : "video"
+            trueName : "videos"
         }
     ]
     const data : Item[] = [
@@ -211,7 +211,7 @@ export default function Navbar() {
                   {ListItems.map((item: ListItem, itemIndex: number) => (
                     <div key={itemIndex}>
                       <li
-                        className={`flex cursor-pointer gap-2 mb-1 ${path == item.trueName ? 'bg-[#d42a23]' : 'bg-[#f7f7f7]' }  text-md w-full p-3 pl-2 content-center`}
+                        className={`flex cursor-pointer gap-2 mb-1 ${path == item.trueName ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7]' }  text-sm w-full p-3 pl-2 content-center`}
                         onClick={() =>
                           setShowNational(
                             showNational === itemIndex ? -1 : itemIndex
