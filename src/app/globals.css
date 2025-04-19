@@ -27,15 +27,24 @@ body {
 .dropdown-content {
   opacity:0;
   height:0;
-  overflow:hidden;
+  overflow :hidden;
   transform: translateY(-10%);
 }
 
+.dropdown-content::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+
+.dropdown-content {
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+  scrollbar-width: none;     /* For Firefox */
+}
 
 .dropdown:hover .dropdown-content{
   opacity:1;
   height: 300px;
-  overflow:none;
+  overflow-x: auto;
+  overflow-y: hidden;
   position: absolute;
   transform: translateY(0);
 } 
@@ -51,4 +60,8 @@ body {
   border: #171717 1px solid;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+}
+
+@theme {
+  --breakpoint-nav : 900px; 
 }

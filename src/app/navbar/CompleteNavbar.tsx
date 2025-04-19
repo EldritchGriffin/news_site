@@ -5,10 +5,10 @@ import FullNavbar from './fullNavbar'
 export default function CompleteNavbar() {
   return (
     <>
-    <div className="hidden md:block h-full">
+    <div className="hidden nav:block h-full">
         <FullNavbar />
       </div>
-      <div className="block md:hidden h-full">
+      <div className="block nav:hidden h-full">
         <Navbar />
       </div>
     </>

@@ -75,7 +75,7 @@ export default function FullNavbar () {
                 banner : "/protest.jpg"
             },
             {
-                id : 1,
+                id : 4,
                 documentId : "",
                 title : "title 1",
                 content : "this is the content of the page .",
@@ -86,7 +86,7 @@ export default function FullNavbar () {
                 banner : "/protest.jpg"
             },
             {
-                id : 2,
+                id : 5,
                 documentId : "",
                 title : "title 2",
                 content : "this is the content of the page .",
@@ -97,7 +97,29 @@ export default function FullNavbar () {
                 banner : "/protest.jpg"
             },
             {
-                id : 3,
+                id : 6,
+                documentId : "",
+                title : "title 3",
+                content : "this is the content of the page .",
+                createdAt : new Date("2025-04-16T20:38:52.530Z"),
+                updatedAt : new Date("2025-04-17T22:41:24.059Z"),
+                publishedAt : new Date("025-04-17T22:41:24.066Z"),
+                Category : "National",
+                banner : "/protest.jpg"
+            },
+            {
+                id : 7,
+                documentId : "",
+                title : "title 2",
+                content : "this is the content of the page .",
+                createdAt : new Date("2025-04-16T20:38:52.530Z"),
+                updatedAt : new Date("2025-04-17T22:41:24.059Z"),
+                publishedAt : new Date("025-04-17T22:41:24.066Z"),
+                Category : "National",
+                banner : "/protest.jpg"
+            },
+            {
+                id : 8,
                 documentId : "",
                 title : "title 3",
                 content : "this is the content of the page .",
@@ -111,7 +133,9 @@ export default function FullNavbar () {
         
     return (
         <header className="w-full flex flex-col">
-            <FullNavMedia/>
+            <div className="bg-[#222222] w-full flex justify-center py-3"> 
+                <FullNavMedia/>
+            </div>
             <div className="w-full bg-[#222222] flex justify-center py-3">
                 <img
                   src="/logo-trans.png"
@@ -121,7 +145,7 @@ export default function FullNavbar () {
                 />
             </div>
             <section className="w-full flex justify-center text-white h-[50px] bg-[#d42a23]">
-                <nav className="flex justify-center w-[1000px] h-full items-center">
+                <nav className="flex justify-between w-[1000px] h-full">
                         <div className="flex w-full gap-8 items-center justify-center shadow-2xl">
                             {
                                 ListItems && (
