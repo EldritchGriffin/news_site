@@ -16,8 +16,9 @@ export default function Footer() {
     const Aboutmap = ["Blogs" ,"Live", "Conatct Us", "Privacy Policy", "Terms And Conditions"];
     const [inputtext, SetInputtext] = useState(0);
   return (
-    <div className="bg-[#212121] p-[15px] w-full " >
-    <div className="md:grid md:grid-cols-2 md:gap-4 md:border-b-2 md:border-b-[#363636] md:pb-6 lg:grid-cols-4">
+    <div className="bg-[#212121] p-[15px]" >
+    
+    <div className="md:grid md:grid-cols-2 md:gap-4 md:border-b-2 md:border-b-[#363636] md:pb-6 lg:grid-cols-4 max-w-screen-xl mx-auto">
         <div className=''>
             <h5 className='font-[Baskerville] text-white text-[20px] font-medium leading-[24px] pb-[10px] mb-0 border-b border-[#363636]  box-border'>
             Categories

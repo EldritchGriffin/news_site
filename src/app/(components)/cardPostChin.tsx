@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { styleText } from '../(utilities)/helperFunctions';
 
@@ -5,8 +6,16 @@ interface CardPostProps {
   title: string;
   imageUrl: string;
   category: string;
+  documentId: string;
   author?: string;
   date?: string;
+}
+
+function Clicked(documentId: string) {
+  return () => {
+    //change the route to the article page
+    window.location.href = `/article/${documentId}`;
+  };
 }
 
 const CardPostChin: React.FC<CardPostProps> = ({ 
@@ -14,13 +23,21 @@ const CardPostChin: React.FC<CardPostProps> = ({
   imageUrl, 
   category, 
   author, 
-  date 
+  date,
+  documentId
 }) => {
   return (
-    <div className="w-full overflow-hidden shadow-md">
+    <div 
+      onClick={Clicked(documentId)} 
+      className="w-full overflow-hidden shadow-md group" // Added "group" class here
+    >
       {/* Image Container with Category Label */}
-      <div className="relative">
-        <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
+      <div className="relative overflow-hidden">
+        <img 
+          src={imageUrl} 
+          alt={title} 
+          className="w-full h-48 object-cover transform transition-transform duration-300 group-hover:scale-110" 
+        />
         {category && (
           <div className="absolute bottom-0 left-0 bg-red-600 text-white px-4 py-1 text-sm font-bold">
             {category}
@@ -31,7 +48,7 @@ const CardPostChin: React.FC<CardPostProps> = ({
       {/* Content Below Image */}
       <div className="p-4 bg-white">
         <h2 className="text-gray-900 text-lg font-medium mb-2">
-          {title}
+          {styleText(title)}
         </h2>
         {(author || date) && (
           <div className="flex items-center text-gray-600 text-sm">

@@ -16,6 +16,8 @@ const CardPost: React.FC<CardPostProps> = ({
   author, 
   date 
 }) => {
+
+
   return (
     <div className="relative w-full h-full shadow-md overflow-hidden group">
       {/* Add hover zoom effect */}
@@ -40,7 +42,7 @@ const CardPost: React.FC<CardPostProps> = ({
           </div>          
         )}
         {date && (
-          <div className="flex items-center text-white/80 text-sm">
+          <div className="flex items-center text-white/80 text-sm mb-7">
             <span className="font-medium">{new Date(date).toLocaleDateString()}</span>
           </div>
         )}

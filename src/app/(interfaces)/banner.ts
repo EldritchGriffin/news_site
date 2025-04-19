@@ -1,0 +1,3 @@
+interface Banner {
+    url : string
+}
