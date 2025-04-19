@@ -7,7 +7,6 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import Item from "./navbar-components/item";
 import { TiArrowSortedDown } from "react-icons/ti";
 import Media from "./navbar-components/media";
-import { useRef } from "react";
 
 
 export default function Navbar() {
