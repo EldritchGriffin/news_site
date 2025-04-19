@@ -19,7 +19,8 @@ export default function Navbar() {
     useEffect(()=> {
       const currentPath = pathname.split('/');
       if (currentPath.length > 0)
-        setPath(currentPath[0]);
+        setPath(currentPath[1]);
+      console.log(` Got the path : h h${currentPath[1]}h current path ${pathname}`);
     });
 
     useEffect(() => {
