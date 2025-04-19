@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/app/footer/page";
+import CompleteNavbar from "./navbar/CompleteNavbar";
 
 
 export const metadata: Metadata = {
@@ -16,17 +17,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com"/>
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
-          <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full h-full`}
+        className={`w-full h-full`}
       >
+        <CompleteNavbar />
         {children}
-      <body 
-      className="flex flex-col min-h-screen bg-white text-gray-900 ">
-       {children}
+        <Footer />
+
       </body>
     </html>
   );

@@ -14,16 +14,8 @@ export default async function page() {
   const sports = await getAllFromCategory("politics")
   console.log(sports)
   return (
-    <div className='h-full'>
-      <CompleteNavbar/>
-    </div>
     <main className="bg-white text-gray-900 flex flex-col items-center w-full">
       <Hero />
-    <div className="w-full bg-[#212121] flex flex-col items-center">
-      <div className="w-full max-w-screen-xl">
-      <Footer />
-      </div>
-    </div>
     </main>
   )
 }

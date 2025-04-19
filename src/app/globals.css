@@ -50,7 +50,9 @@
 }
 
 @theme {
-  --breakpoint-nav : 900px; 
+  --breakpoint-nav : 900px;
+}
+ 
 body {
   font-family: 'Libre Baskerville' , serif;
   overflow-y: auto;
