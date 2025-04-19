@@ -160,7 +160,7 @@ export default function FullNavbar () {
                                                 <TiArrowSortedDown />
                                               </div>
                                             </a>
-                                            <ul className="dropdown-content flex transition w-screen h-full duration-300 left-0 absolute">
+                                            <ul className="dropdown-content flex transition w-screen h-full z-50 duration-300 left-0 absolute">
                                               {data.map((element: Item, index: number) => (
                                                 <li key={index} className="bg-[#f7f7f7] w-full h-full">
                                                   <NavItems
