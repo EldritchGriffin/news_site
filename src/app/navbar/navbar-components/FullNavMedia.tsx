@@ -11,7 +11,7 @@ export default function FullNavMedia() {
         year: 'numeric'
       });
   return (
-    <div className='flex bg-black text-white justify-between'>
+    <div className='flex bg-[#222222] text-white justify-between'>
         <div className='flex gap-2'>
             <p>Contact us</p>
             <p>Blog</p>

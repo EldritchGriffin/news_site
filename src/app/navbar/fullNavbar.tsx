@@ -108,10 +108,11 @@ export default function FullNavbar () {
                 banner : "/protest.jpg"
             }
         ]
+        
     return (
         <header className="w-full flex flex-col">
             <FullNavMedia/>
-            <div className="w-full bg-black flex justify-center py-3">
+            <div className="w-full bg-[#222222] flex justify-center py-3">
                 <img
                   src="/logo-trans.png"
                   width={288}
@@ -119,8 +120,8 @@ export default function FullNavbar () {
                   alt="Logo"
                 />
             </div>
-            <section className="w-full text-white h-[50px] bg-[#d42a23]">
-                <nav className="flex justify-center h-full items-center">
+            <section className="w-full flex justify-center text-white h-[50px] bg-[#d42a23]">
+                <nav className="flex justify-center w-[1000px] h-full items-center">
                         <div className="flex w-full gap-8 items-center justify-center shadow-2xl">
                             {
                                 ListItems && (
@@ -129,12 +130,12 @@ export default function FullNavbar () {
                                           <div
                                             key={itemIndex}
                                             className="dropdown p-2 h-full items-center justify-center">
-                                            <button className="flex gap-2 cursor-pointer text-md h-full items-center">
-                                              <p>{item.name}</p>
+                                            <a className="flex gap-2 cursor-pointer text-md h-full items-center">
+                                              <p className="text-sm">{item.name}</p>
                                               <div className="text-sm flex items-center">
                                                 <TiArrowSortedDown />
                                               </div>
-                                            </button>
+                                            </a>
                                             <ul className="dropdown-content flex transition w-screen h-full duration-300 left-0 absolute">
                                               {data.map((element: Item, index: number) => (
                                                 <li key={index} className="bg-[#f7f7f7] w-full h-full">

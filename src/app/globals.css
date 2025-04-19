@@ -39,3 +39,16 @@ body {
   position: absolute;
   transform: translateY(0);
 } 
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  border: #171717 1px solid;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
