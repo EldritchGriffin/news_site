@@ -39,17 +39,12 @@ export default  function Page({ params, }: { params: Promise<{ id: string }> }) 
 
   useEffect(()=> {
     const currentPath = pathname.split('/');
-    console.log("ffadfdsds   :",currentPath);
     if (currentPath.length > 0)
       {
         setPath(currentPath[1]);
         setId(decodeSpaces(currentPath[2]));
       }
-    console.log(` ${currentPath[1]}  |  ${pathname}`);
   },[]);
-
-  const searchParams = useSearchParams();
-  console.log(searchParams);
   return(
     <main className=" flex flex-col  w-full  max-w-screen-xl justify-center px-10 py-6  mx-auto">
       <Breadcrumb />

@@ -20,7 +20,7 @@ export default function Breadcrumbs() {
     const result = Postslist.find(( thatone ) => thatone === segment);
     return (
       <li key={index} className="flex items-center gap-1">
-        {!result ?  (
+        {!isLast && !result ?  (
           <Link href={href} className="text-red-600 hover:underline capitalize">
              <span className="">{segment}</span>
           </Link>
