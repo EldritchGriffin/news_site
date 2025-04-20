@@ -10,10 +10,12 @@ import SwiperPosts from './swiperpost'
 
 export default async function Hero() {
   const posts = await getAllPosts()
-  const sportsData = await getAllFromCategory('sports')
-  const worldData = await getAllFromCategory('world')
-  const lifestyleData = await getAllFromCategory('lifestyle')
-  const businessData = await getAllFromCategory('business')
+  const politicaData = await getAllFromCategory('Política')
+  const economiaData = await getAllFromCategory('Economía')
+  const internacionalData = await getAllFromCategory('Internacional')
+  const culturaYCienciaData = await getAllFromCategory('Cultura y Ciencia')
+  const deportesData = await getAllFromCategory('Deportes')
+  const entrevistasData = await getAllFromCategory('Entrevistas')
 
   return (
     <>
@@ -44,25 +46,25 @@ export default async function Hero() {
         </section>
       </div>
       <Tabs
-        sportsData={sportsData}
-        worldData={worldData}
-        lifestyleData={lifestyleData}
-        businessData={businessData}
+        politicaData={politicaData}
+        economiaData={economiaData}
+        internacionalData={internacionalData}
+        culturaYCienciaData={culturaYCienciaData}
       />
       <Sidebar/>
       <Trending/>
       <Tabs
-        sportsData={sportsData}
-        worldData={worldData}
-        lifestyleData={lifestyleData}
-        businessData={businessData}
+        politicaData={politicaData}
+        economiaData={economiaData}
+        internacionalData={internacionalData}
+        culturaYCienciaData={culturaYCienciaData}
       />
       <Sidebar/>
       <Tabs
-        sportsData={sportsData}
-        worldData={worldData}
-        lifestyleData={lifestyleData}
-        businessData={businessData}
+        politicaData={politicaData}
+        economiaData={economiaData}
+        internacionalData={internacionalData}
+        culturaYCienciaData={culturaYCienciaData}
       />
       {/* </div> */}
     </>
