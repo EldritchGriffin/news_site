@@ -135,7 +135,7 @@ export default function Navbar({
               </button>
             </div>
             <div className="p-4 flex flex-col gap-3">
-              <Link href={'/'}>
+              <Link href={'/'} onClick={() => SetShowList(false)}>
               <Image
                 className="cursor-pointer pb-1"
                 src="/mobile-logo.png"
@@ -160,10 +160,15 @@ export default function Navbar({
                       <li
                         className={`flex cursor-pointer gap-2 mb-1 ${path == item.trueName ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7] text-black' } text-sm w-full p-3 pl-2 content-center`}
                         onClick={() =>
-                          setShowNational(
-                            showNational === itemIndex ? -1 : itemIndex
-                          )
+                        {
+                          if (item.isDropDown) {  
+                            setShowNational(showNational === itemIndex ? -1 : itemIndex)
+                        } else {
+                          setShowNational(-1);
+                          SetShowList(false);
                         }
+                      }
+                    }
                       > 
                       <div className="flex justify-between w-full">
                             <div className="flex">
