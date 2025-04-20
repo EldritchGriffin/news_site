@@ -49,12 +49,56 @@ export const getLatestPosts = async (limit = 5) => {
     }
   };
 
+export const getLatestPostsPaged = async (limit = 5, page = 1) => {
+    try {
+      const response = await api.get(`/api/posts`, {
+        params: {
+          'sort': 'publishedAt:desc',
+          'pagination[page]': page,
+          'pagination[pageSize]': limit,  
+          'populate': '*'
+        }
+      });
+      
+      return {
+        data: response.data.data,
+        meta: response.data.meta.pagination
+      };
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  }
+
   export const getLatestPostsFromCategory = async (category: string, limit = 5) => {
     console.log("fl handler kayna lTEST :", category);
 
     try {
       const response = await api.get(`/api/posts?filters[category][$eq]=${category}&sort=publishedAt:desc&pagination[limit]=${limit}&populate=*`);
       return response.data;
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  }
+
+  export const getLatestPostsFromCategoryPaged = async (category: string, limit = 5, page = 1) => {
+    console.log("fl handler kayna lTEST :", category);
+    try {
+      const response = await api.get(`/api/posts`, {
+        params: {
+          'filters[category][$eq]': category,
+          'sort': 'publishedAt:desc',
+          'pagination[page]': page,
+          'pagination[pageSize]': limit,  // Changed from pagination[limit]
+          'populate': '*'
+        }
+      });
+      
+      return {
+        data: response.data.data,
+        meta: response.data.meta.pagination
+      };
     } catch (error) {
       console.error('Error fetching latest posts:', error);
       throw error;
