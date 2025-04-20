@@ -38,6 +38,7 @@ export default function SwiperPosts({ posts }: { posts: Post[] }) {
       swiperRef.current.navigation.update();  // update
     }
   }, []);
+  console.log(posts);
 
   return (
     <div className="relative h-full">

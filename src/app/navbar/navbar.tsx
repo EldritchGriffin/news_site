@@ -14,158 +14,113 @@ function decodeSpaces(str: string) {
   return str.replace(/%20/g, ' ');
 }
 
-export default function Navbar() {
+
+interface NavbarProps {
+  politicaData: Item[];
+  economiaData: Item[];
+  internacionalData: Item[];
+  culturaYCienciaData: Item[];
+  deportesData: Item[];
+  entrevistasData: Item[];
+}
+
+export default function Navbar({
+  politicaData,
+  economiaData,
+  internacionalData,
+  culturaYCienciaData,
+  deportesData,
+  entrevistasData,
+}: NavbarProps) {
     const [ShowList, SetShowList] = useState(false);
     const [showNational, setShowNational] = useState<number>(-1);
     const [path, setPath] = useState<string>("no path");
     const sidebarRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
 
-    useEffect(()=> {
-      const currentPath = pathname.split('/');
-      if (currentPath.length > 0)
-        setPath(decodeSpaces(currentPath[1]));
-      console.log(` Got the path : h h${currentPath[1]}h current path ${pathname}`);
-    });
+    // useEffect(()=> {
+    //   const currentPath = pathname.split('/');
+    //   if (currentPath.length > 0)
+    //     setPath(decodeSpaces(currentPath[1]));
+    //   console.log(` Got the path : h h${currentPath[1]}h current path ${pathname}`);
+    // });
 
-    useEffect(() => {
-      function handleClickOutside(event: MouseEvent) {
-        if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
-          SetShowList(false);
-        }
-      }
-      if (ShowList) {
-        document.addEventListener("mousedown", handleClickOutside);
-      }
+    // useEffect(() => {
+    //   function handleClickOutside(event: MouseEvent) {
+    //     if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+    //       SetShowList(false);
+    //     }
+    //   }
+    //   if (ShowList) {
+    //     document.addEventListener("mousedown", handleClickOutside);
+    //   }
     
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ShowList]);
+    //   return () => {
+    //     document.removeEventListener("mousedown", handleClickOutside);
+    //   };
+    // }, [ShowList]);
     const ListItems : ListItem[] = [
-        {
-            name : "Portada",
-            value : 0,
-            isDropDown : true,
-            trueName : ""
-            ,
-        },
-        {
-            name : "Política",
-            value : 1,
-            isDropDown : true,
-            trueName : "Politica"
+      {
+          name : "Portada",
+          value : 0,
+          isDropDown : true,
+          trueName : "",
+          items : []
+      },
+      {
+          name : "Política",
+          value : 1,
+          isDropDown : true,
+          trueName : "Politica",
+          items : politicaData
 
-        },
-        {
-            name : "Economía",
-            value : 2,
-            isDropDown : true,
-            trueName : "Economia"
+      },
+      {
+          name : "Economía",
+          value : 2,
+          isDropDown : true,
+          trueName : "Economia",
+          items : economiaData
 
-        },
-        {
-            name : "Internacional",
-            value : 3,
-            isDropDown : true,
-            trueName : "Internacional"
+      },
+      {
+          name : "Internacional",
+          value : 3,
+          isDropDown : true,
+          trueName : "Internacional",
+          items : internacionalData
 
-        },
-        {
-            name : "Cultura y Ciencia",
-            value : 4,
-            isDropDown : true,
-            trueName : "Cultura y Ciencia"
+      },
+      {
+          name : "Cultura y Ciencia",
+          value : 4,
+          isDropDown : true,
+          trueName : "Cultura y Ciencia",
+          items : culturaYCienciaData 
+      },
+      {
+          name : "Deportes",
+          value : 5,
+          isDropDown : true,
+          trueName : "Deportes",
+          items : deportesData
 
-        },
-        {
-            name : "Deportes",
-            value : 5,
-            isDropDown : true,
-            trueName : "Deportes"
+      },
+      {
+          name : "Entrevistas",
+          value : 6,
+          isDropDown : true,
+          trueName : "Entrevistas",
+          items : entrevistasData
 
-        },
-        {
-            name : "Entrevistas",
-            value : 6,
-            isDropDown : true,
-            trueName : "Entrevistas"
-
-        },
-        {
-            name : "vídeo",
-            value : 7,
-            isDropDown : false,
-            trueName : "videos"
-        }
-    ]
-    const data : Item[] = [
-        {
-            id : 1,
-            documentId : "bsela",
-            title : "title 1",
-            content : "this is the content of the page .",
-            createdAt : new Date("2025-04-16T20:38:52"),
-            updatedAt : new Date("2025-04-17T22:41:24"),
-            publishedAt : new Date("025-04-17T22:41:24"),
-            Category : "National",
-            banner : "/protest.jpg"
-        },
-        {
-            id : 2,
-            documentId : "bsela",
-            title : "title 2",
-            content : "this is the content of the page .",
-            createdAt : new Date("2025-04-16T20:38:52.530Z"),
-            updatedAt : new Date("2025-04-17T22:41:24.059Z"),
-            publishedAt : new Date("025-04-17T22:41:24.066Z"),
-            Category : "National",
-            banner : "/protest.jpg"
-        },
-        {
-            id : 3,
-            documentId : "bsela",
-            title : "title 3",
-            content : "this is the content of the page .",
-            createdAt : new Date("2025-04-16T20:38:52.530Z"),
-            updatedAt : new Date("2025-04-17T22:41:24.059Z"),
-            publishedAt : new Date("025-04-17T22:41:24.066Z"),
-            Category : "National",
-            banner : "/protest.jpg"
-        },
-        {
-            id : 1,
-            documentId : "bsela",
-            title : "title 1",
-            content : "this is the content of the page .",
-            createdAt : new Date("2025-04-16T20:38:52"),
-            updatedAt : new Date("2025-04-17T22:41:24"),
-            publishedAt : new Date("025-04-17T22:41:24"),
-            Category : "National",
-            banner : "/protest.jpg"
-        },
-        {
-            id : 2,
-            documentId : "bsela",
-            title : "title 2",
-            content : "this is the content of the page .",
-            createdAt : new Date("2025-04-16T20:38:52.530Z"),
-            updatedAt : new Date("2025-04-17T22:41:24.059Z"),
-            publishedAt : new Date("025-04-17T22:41:24.066Z"),
-            Category : "National",
-            banner : "/protest.jpg"
-        },
-        {
-            id : 3,
-            documentId : "bsela",
-            title : "title 3",
-            content : "this is the content of the page .",
-            createdAt : new Date("2025-04-16T20:38:52.530Z"),
-            updatedAt : new Date("2025-04-17T22:4`1:24.059Z"),
-            publishedAt : new Date("025-04-17T22:41:24.066Z"),
-            Category : "National",
-            banner : "/protest.jpg"
-        }
+      },
+      {
+          name : "vídeo",
+          value : 7,
+          isDropDown : false,
+          trueName : "video",
+          items : []
+      }
     ]
     return (
         <>
@@ -234,20 +189,20 @@ export default function Navbar() {
                                 <TiArrowSortedDown />
                             </div>}
                           </div>
-                        <Link className="text-black self-end" href={`/${item.trueName}`}>
+                        <Link className="text-black self-end" href={`/categories/${item.trueName}`}>
                           <FaLongArrowAltRight size={15} />
                         </Link>
                       </div>
                       </li>
                       {(showNational === itemIndex && item.isDropDown) && (
                         <ul className="overflow-x-auto flex items-scroll">
-                          {data.map((element: Item, index: number) => (
+                          {item.items && item.items.map((element: Item, index: number) => (
                             <Link key={index} href={`/article/${element.documentId}`}>
                               <li className="bg-[#f7f7f7]">
                                 <Item
                                   title={element.title}
                                   content={element.content}
-                                  banner={element.banner}
+                                  banner={process.env.NEXT_PUBLIC_STRAPI_URL + element.banner.url}
                                   Category={element.Category}
                                   />
                               </li>

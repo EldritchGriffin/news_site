@@ -1,16 +1,15 @@
-'use client'
 import React from 'react'
-import Navbar from './navbar'
-import FullNavbar from './fullNavbar'
+import FullNavbarWrapper from './fullnavbarwrapper'
+import NavbarWrapper from './navbarWrapper'
 
 export default function CompleteNavbar() {
   return (
     <>
     <div className="hidden nav:block h-full">
-        <FullNavbar />
+        <FullNavbarWrapper />
       </div>
       <div className="block nav:hidden h-full">
-        <Navbar />
+        <NavbarWrapper />
       </div>
     </>
   )

@@ -1,4 +1,13 @@
 
+interface Banner {
+    id : number,
+    url : string,
+    alternativeText : string,
+    caption : string,
+    width : number,
+    height : number
+}
+
 interface Item {
     id : number,
     documentId : string,
@@ -8,5 +17,5 @@ interface Item {
     updatedAt : Date,
     publishedAt : Date,
     Category : string,
-    banner : string
+    banner : Banner
 }

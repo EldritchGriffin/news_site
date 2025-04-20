@@ -7,155 +7,89 @@ import { useState } from "react";
 import Link from 'next/link';
 
 
-export default function FullNavbar () {
+interface FullNavbarProps {
+    politicaData: Item[];
+    economiaData: Item[];
+    internacionalData: Item[];
+    culturaYCienciaData: Item[];
+    deportesData: Item[];
+    entrevistasData: Item[];
+}
+
+export default function FullNavbar ({
+    politicaData,
+    economiaData,
+    internacionalData,
+    culturaYCienciaData,
+    deportesData,
+    entrevistasData,
+}: FullNavbarProps) {
         const [showListItems, setShowListItems] = useState(true);
+
         const ListItems : ListItem[] = [
             {
                 name : "Portada",
                 value : 0,
                 isDropDown : true,
-                trueName : ""
-                ,
+                trueName : "",
+                items : []
             },
             {
                 name : "Política",
                 value : 1,
                 isDropDown : true,
-                trueName : "Politica"
+                trueName : "Politica",
+                items : politicaData
     
             },
             {
                 name : "Economía",
                 value : 2,
                 isDropDown : true,
-                trueName : "Economia"
+                trueName : "Economia",
+                items : economiaData
     
             },
             {
                 name : "Internacional",
                 value : 3,
                 isDropDown : true,
-                trueName : "Internacional"
+                trueName : "Internacional",
+                items : internacionalData
     
             },
             {
                 name : "Cultura y Ciencia",
                 value : 4,
                 isDropDown : true,
-                trueName : "Cultura y Ciencia"
-    
+                trueName : "Cultura y Ciencia",
+                items : culturaYCienciaData 
             },
             {
                 name : "Deportes",
                 value : 5,
                 isDropDown : true,
-                trueName : "Deportes"
+                trueName : "Deportes",
+                items : deportesData
     
             },
             {
                 name : "Entrevistas",
                 value : 6,
                 isDropDown : true,
-                trueName : "Entrevistas"
+                trueName : "Entrevistas",
+                items : entrevistasData
     
             },
             {
                 name : "vídeo",
                 value : 7,
                 isDropDown : false,
-                trueName : "video"
+                trueName : "video",
+                items : []
             }
         ]
-        const data : Item[] = [
-            {
-                id : 1,
-                documentId : "bsela",
-                title : "title 1",
-                content : "this is the content of the page .",
-                createdAt : new Date("2025-04-16T20:38:52"),
-                updatedAt : new Date("2025-04-17T22:41:24"),
-                publishedAt : new Date("025-04-17T22:41:24"),
-                Category : "National",
-                banner : "/protest.jpg"
-            },
-            {
-                id : 2,
-                documentId : "bsela",
-                title : "title 2",
-                content : "this is the content of the page .",
-                createdAt : new Date("2025-04-16T20:38:52.530Z"),
-                updatedAt : new Date("2025-04-17T22:41:24.059Z"),
-                publishedAt : new Date("025-04-17T22:41:24.066Z"),
-                Category : "National",
-                banner : "/protest.jpg"
-            },
-            {
-                id : 3,
-                documentId : "bsela",
-                title : "title 3",
-                content : "this is the content of the page .",
-                createdAt : new Date("2025-04-16T20:38:52.530Z"),
-                updatedAt : new Date("2025-04-17T22:41:24.059Z"),
-                publishedAt : new Date("025-04-17T22:41:24.066Z"),
-                Category : "National",
-                banner : "/protest.jpg"
-            },
-            {
-                id : 4,
-                documentId : "bsela",
-                title : "title 1",
-                content : "this is the content of the page .",
-                createdAt : new Date("2025-04-16T20:38:52"),
-                updatedAt : new Date("2025-04-17T22:41:24"),
-                publishedAt : new Date("025-04-17T22:41:24"),
-                Category : "National",
-                banner : "/protest.jpg"
-            },
-            {
-                id : 5,
-                documentId : "bsela",
-                title : "title 2",
-                content : "this is the content of the page .",
-                createdAt : new Date("2025-04-16T20:38:52.530Z"),
-                updatedAt : new Date("2025-04-17T22:41:24.059Z"),
-                publishedAt : new Date("025-04-17T22:41:24.066Z"),
-                Category : "National",
-                banner : "/protest.jpg"
-            },
-            {
-                id : 6,
-                documentId : "bsela",
-                title : "title 3",
-                content : "this is the content of the page .",
-                createdAt : new Date("2025-04-16T20:38:52.530Z"),
-                updatedAt : new Date("2025-04-17T22:41:24.059Z"),
-                publishedAt : new Date("025-04-17T22:41:24.066Z"),
-                Category : "National",
-                banner : "/protest.jpg"
-            },
-            {
-                id : 7,
-                documentId : "bsela",
-                title : "title 2",
-                content : "this is the content of the page .",
-                createdAt : new Date("2025-04-16T20:38:52.530Z"),
-                updatedAt : new Date("2025-04-17T22:41:24.059Z"),
-                publishedAt : new Date("025-04-17T22:41:24.066Z"),
-                Category : "National",
-                banner : "/protest.jpg"
-            },
-            {
-                id : 8,
-                documentId : "bsela",
-                title : "title 3",
-                content : "this is the content of the page .",
-                createdAt : new Date("2025-04-16T20:38:52.530Z"),
-                updatedAt : new Date("2025-04-17T22:41:24.059Z"),
-                publishedAt : new Date("025-04-17T22:41:24.066Z"),
-                Category : "National",
-                banner : "/protest.jpg"
-            }
-        ]
+
         
     return (
         <header className="flex flex-col">
@@ -184,20 +118,21 @@ export default function FullNavbar () {
                                           <div
                                             key={itemIndex}
                                             className="dropdown p-2 h-full items-center justify-center">
-                                            <Link className="flex gap-2 cursor-pointer hover:text-black text-md h-full items-center" href={`/${item.trueName}`}>
+                                            <Link className="flex gap-2 cursor-pointer hover:text-black text-md h-full items-center"
+                                            href={`/categories/${item.trueName}`}>
                                               <p className="text-sm">{item.name}</p>
                                               {item.isDropDown && <div className="text-sm flex items-center">
                                                 <TiArrowSortedDown />
                                               </div>}
                                             </Link>
                                             {item.isDropDown && <ul className="dropdown-content flex transition w-screen h-full z-50 duration-300 left-0 absolute bb">
-                                              {data.map((element: Item, index: number) => (
+                                              {item.items && (item.items.length > 0) && item.items.map((element: Item, index: number) => (
                                                 <Link key={index} href={`/article/${element.documentId}`}>
                                                     <li className="bg-[#f7f7f7] w-full h-full ">
                                                       <NavItems
                                                         title={element.title}
                                                         content={element.content}
-                                                        banner={element.banner}
+                                                        banner={process.env.NEXT_PUBLIC_STRAPI_URL + element.banner.url}
                                                         Category={element.Category}
                                                         />
                                                     </li>

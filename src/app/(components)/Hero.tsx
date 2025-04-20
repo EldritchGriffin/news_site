@@ -1,6 +1,5 @@
 import React from 'react'
 import CardPost from './cardPost'
-import CardPostChin from './cardPostChin'
 import { getAllFromCategory, getAllPosts } from '../(handlers)/requestHandlers'
 import Tabs from './tabs'
 import Sidebar from './sidebar'
@@ -32,7 +31,11 @@ export default async function Hero() {
                 <article key={i} className="  gap-y-2 relative h-[221px]">
                   <CardPost
                     title={posts.data[0].title}
-                    imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
+                     imageUrl =  {process.env.NEXT_PUBLIC_STRAPI_URL && posts?.data?.[0]?.banner?.url
+                    ? process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url
+                    : "/fallback-image.jpg"} // use a fallback image or handle gracefully
+                  
+                    // imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
                     category={posts.data[0].category}
                     author={posts.data[0].author}
                     date={posts.data[0].publishedAt}

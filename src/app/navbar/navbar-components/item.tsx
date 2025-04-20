@@ -1,3 +1,4 @@
+import { styleText } from '@/app/(utilities)/helperFunctions'
 import React from 'react'
 
 export default function Item(props : {title: string, content: string, banner: string, Category: string}) {
@@ -13,7 +14,7 @@ export default function Item(props : {title: string, content: string, banner: st
             </p>
             <section>
                 <p className="word-wrap text-[#5d5d5d] text-sm">
-                    {props.title}
+                    {styleText(props.title)}
                 </p>
             </section>
         </div>
