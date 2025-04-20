@@ -10,11 +10,24 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { RiTwitterXLine } from "react-icons/ri";
 import { useState } from 'react';
 
+function isValidEmail(email: string) {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+}
+
+function subscriveservicce(Email:string, SetEmailvalid:any){
+    if (isValidEmail(Email))
+        SetEmailvalid(1);
+    else
+        SetEmailvalid(0);
+}
 
 export default function Footer() {
     const Categoriesmap = ["National" , "World", "Business", "LifeStyle", "Photo", "Videos"];
     const Aboutmap = ["Blogs" ,"Live", "Conatct Us", "Privacy Policy", "Terms And Conditions"];
     const [inputtext, SetInputtext] = useState(0);
+    const [Email, SetEmail] = useState("");
+    const [Emailvalid, SetEmailvalid] = useState(0);
   return (
     <div className="bg-[#212121] p-[15px]" >
     
@@ -83,9 +96,13 @@ export default function Footer() {
             <h5 className="border-b border-[#363636] text-[#ffffff]  font-[Baskervville] text-[20px] font-medium leading-[24px] mb-[15px] mt-0 ml-0 mr-0 py-[10px] md:pt-[0px]" >Newsletter Subscibe</h5>
         <div className="flex flex-col border-b border-[#363636] mb-3 md:border-b-0" >
             <div className="mb-3" >
-                <input type="text" className='w-full h-[38px] focus:outline-none bg-white py-1 pl-2  text-[16px] font-[Baskervville] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]' style={{border: (inputtext == 1 ? `1px solid #86b7fe` : 'none')}} placeholder='Enter your Email' onFocus={()=>SetInputtext(1)} onBlur={()=>SetInputtext(0)}/>
-            </div>
-            <button className='mb-3 text-white bg-[#d42a23] text-[16px] font-[Baskervville] font-normal py-[6px] px-[12px] '>Subscribe</button>
+        <input
+            type="email"
+            value={Email}
+            onChange={(e) => SetEmail(e.target.value)}
+            className={`w-full h-[38px] focus:outline-none bg-white py-1 pl-2 text-[16px] font-[Baskervville] ${Emailvalid ? 'focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]' : 'focus:shadow-[0_0_0_0.25rem_rgba(220,53,69,.25)]' }`} style={{border: inputtext === 1 ? '1px solid #86b7fe' : 'none', }} placeholder="Enter your Email" onFocus={() => SetInputtext(1)} onBlur={() => SetInputtext(0)}/>
+        </div>
+            <button className='mb-3 text-white bg-[#d42a23] text-[16px] font-[Baskervville] font-normal py-[6px] px-[12px]' onClick={() => (subscriveservicce(Email, SetEmailvalid))}>Subscribe</button>
         </div>
         </div>
         </div>
