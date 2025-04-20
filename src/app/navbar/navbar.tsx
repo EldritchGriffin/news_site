@@ -185,7 +185,7 @@ export default function Navbar() {
         </div>
       </header>
       {ShowList && (
-        <section className="fixed inset-0 backdrop-blur-sm z-50">
+        <section className="fixed inset-0 backdrop-blur-sm z-50 animate-slideIn">
           <div  ref={sidebarRef} className="max-w-[400px] overflow-y-auto h-full py-8 bg-white">
             <div className="py-5 px-5">
               <button
