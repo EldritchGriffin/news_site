@@ -21,11 +21,11 @@ export default function NavItems(props : {title: string, content: string, banner
             className="w-[450px] "
             >
             <SwiperSlide>
-              <div className="w-[450px]">
+              <div className="flex flex-col gap-1 w-[450px]">
                 <img src={props.banner} alt="Banner" className="w-full h-32 object-cover " />
-                <h2 className="text-lg font-bold">{styleText(props.title)}</h2>
-                <p className="text-sm text-gray-600">{styleText(props.content)}</p>
-                <span className="text-xs text-gray-500">{props.Category}</span>
+                <span className="text-xs p-2 text-white bg-[#d42a23] w-fit rounded-sm">{props.Category}</span>
+                <h2 className="text-lg text-black font-bold">{styleText(props.title)}</h2>
+                <p className="text-sm text-black">{styleText(props.content)}</p>
               </div>
             </SwiperSlide>
         </Swiper>

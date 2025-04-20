@@ -38,27 +38,10 @@ export default function Navbar({
     const sidebarRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
 
-    // useEffect(()=> {
-    //   const currentPath = pathname.split('/');
-    //   if (currentPath.length > 0)
-    //     setPath(decodeSpaces(currentPath[1]));
-    //   console.log(` Got the path : h h${currentPath[1]}h current path ${pathname}`);
-    // });
-
-    // useEffect(() => {
-    //   function handleClickOutside(event: MouseEvent) {
-    //     if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
-    //       SetShowList(false);
-    //     }
-    //   }
-    //   if (ShowList) {
-    //     document.addEventListener("mousedown", handleClickOutside);
-    //   }
-    
-    //   return () => {
-    //     document.removeEventListener("mousedown", handleClickOutside);
-    //   };
-    // }, [ShowList]);
+    // const currentPath = pathname.split('/');
+    // const pathName = currentPath[1];
+    // const pathNameDecoded = decodeSpaces(pathName);
+    // setPath(pathNameDecoded);
     const ListItems : ListItem[] = [
       {
           name : "Portada",
@@ -203,7 +186,7 @@ export default function Navbar({
                                   title={element.title}
                                   content={element.content}
                                   banner={process.env.NEXT_PUBLIC_STRAPI_URL + element.banner.url}
-                                  Category={element.Category}
+                                  Category={element.category}
                                   />
                               </li>
                             </Link>
