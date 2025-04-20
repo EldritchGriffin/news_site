@@ -9,6 +9,7 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import Media from "./navbar-components/media";
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
 
 function decodeSpaces(str: string) {
   return str.replace(/%20/g, ' ');
@@ -37,6 +38,7 @@ export default function Navbar({
     const [path, setPath] = useState<string>("no path");
     const sidebarRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
+    const router = useRouter();
 
     // const currentPath = pathname.split('/');
     // const pathName = currentPath[1];
@@ -127,7 +129,7 @@ export default function Navbar({
           <div  ref={sidebarRef} className="max-w-[400px] overflow-y-auto h-full py-8 bg-white">
             <div className="py-5 px-5">
               <button
-                className="flex justify-center align-items-center px-5 text-sm py-1 rounded-sm bg-[#212529] cursor-pointer text-white gap-1"
+                className="flex justify-center align-items-center px-5 text-sm py-1  bg-[#212529] cursor-pointer text-white gap-1"
                 onClick={() => SetShowList(false)}
               >
                 <p>Close</p>
@@ -147,9 +149,9 @@ export default function Navbar({
               <div className="flex gap-2 w-full">
                 <input
                   placeholder="Search"
-                  className="border w-full text-gray-500 border-gray-500 rounded-sm p-2"
+                  className="border w-full text-gray-500 border-gray-500  p-2"
                 />
-                <button className="bg-white text-green-500 border-1 border-green-500 rounded-sm p-2">
+                <button className="bg-white text-green-500 border-1 border-green-500  p-2">
                   Search
                 </button>
               </div>
@@ -166,6 +168,7 @@ export default function Navbar({
                         } else {
                           setShowNational(-1);
                           SetShowList(false);
+                          router.push(`/${item.trueName}`);
                         }
                       }
                     }

@@ -3,14 +3,13 @@ import React from 'react'
 
 export default function Item(props : {title: string, content: string, banner: string, Category: string}) {
     return (
-        <div className="cursor-pointer md:w-[200px] h-full lg:w-full flex flex-col gap-2 p-2">
+        <div className="cursor-pointer md:w-[200px] h-full lg:w-full flex flex-col gap-2 p-4">
             <img
-                className="rounded-sm"
+                className="self-center"
                 src={props.banner}
                 alt={props.title}
-                width={150}
             />
-            <p className="bg-[#d42a23] p-1 rounded-sm text-white w-fit text-sm">
+            <p className="bg-[#d42a23] p-1 text-white w-fit text-xs">
                 {props.Category}
             </p>
             <section>
