@@ -7,6 +7,7 @@ import Sidebar from './sidebar'
 import Trending from './trending'
 import Bubbletext from './bubble'
 import SwiperPosts from './swiperpost'
+import Shortcategory from './shortcategory'
 
 export default async function Hero() {
   const posts = await getAllPosts()
@@ -53,12 +54,12 @@ export default async function Hero() {
       />
       <Sidebar/>
       <Trending/>
-      <Tabs
-        politicaData={politicaData}
-        economiaData={economiaData}
-        internacionalData={internacionalData}
-        culturaYCienciaData={culturaYCienciaData}
-      />
+      <div className='w-full max-w-screen-xl'>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+      <Shortcategory categoryData={deportesData} />
+      <Shortcategory categoryData={deportesData} />
+        </div>
+      </div>
       <Sidebar/>
       <Tabs
         politicaData={politicaData}
