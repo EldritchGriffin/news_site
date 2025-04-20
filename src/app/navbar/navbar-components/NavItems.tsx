@@ -22,7 +22,7 @@ export default function NavItems(props : {title: string, content: string, banner
             >
             <SwiperSlide>
               <div className="flex flex-col gap-1 w-[450px]">
-                <img src={props.banner} alt="Banner" className="w-full h-32 object-cover " />
+                <img src={props.banner} alt="Banner" className="w-full h-32 object-cover pb-2 " />
                 <span className="text-xs p-2 text-white bg-[#d42a23] w-fit rounded-sm">{props.Category}</span>
                 <h2 className="text-lg text-black font-bold">{styleText(props.title)}</h2>
                 <p className="text-sm text-black">{styleText(props.content)}</p>

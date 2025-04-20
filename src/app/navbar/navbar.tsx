@@ -46,7 +46,7 @@ export default function Navbar({
       {
           name : "Portada",
           value : 0,
-          isDropDown : true,
+          isDropDown : false,
           trueName : "",
           items : []
       },
@@ -172,7 +172,7 @@ export default function Navbar({
                                 <TiArrowSortedDown />
                             </div>}
                           </div>
-                        <Link className="text-black self-end" href={`/categories/${item.trueName}`}>
+                        <Link className="text-black self-end" href={`${item.trueName != "" ? "/categories/" : "/"}${item.trueName}`} onClick={() => SetShowList(false)}>
                           <FaLongArrowAltRight size={15} />
                         </Link>
                       </div>
@@ -180,7 +180,7 @@ export default function Navbar({
                       {(showNational === itemIndex && item.isDropDown) && (
                         <ul className="overflow-x-auto flex items-scroll">
                           {item.items && item.items.map((element: Item, index: number) => (
-                            <Link key={index} href={`/article/${element.documentId}`}>
+                            <Link key={index} href={`/article/${element.documentId}`} onClick={() => SetShowList(false)}>
                               <li className="bg-[#f7f7f7]">
                                 <Item
                                   title={element.title}
