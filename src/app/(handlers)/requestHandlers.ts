@@ -37,3 +37,23 @@ export const getAllFromCategory = async (category: string) => {
         throw error;
     }
 }
+
+export const getLatestPosts = async (limit = 5) => {
+    try {
+      const response = await api.get(`/api/posts?sort=publishedAt:desc&pagination[limit]=${limit}&populate=*`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  };
+
+  export const getLatestPostsFromCategory = async (category: string, limit = 5) => {
+    try {
+      const response = await api.get(`/api/posts?filters[category][$eq]=${category}&sort=publishedAt:desc&pagination[limit]=${limit}&populate=*`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  }
