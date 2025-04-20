@@ -1,21 +1,35 @@
 import React from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 export default function NavItems(props : {title: string, content: string, banner: string, Category: string}) {
   return (
-      <div className="cursor-pointer h-full w-[450] flex flex-col gap-4 p-2 ">
-            <img
-                className="h-[180px] w-full object-cover "
-                src={props.banner}
-                alt={props.title}
-                />
-            <p className="bg-black p-1 text-white w-fit rounded-sm text-sm ">
-                {props.Category}
-            </p>
-            <section>
-                <p className="word-wrap text-[#5d5d5d] text-sm w-full h-full">
-                    {props.title}
-                </p>
-            </section>
+
+
+      <div className="cursor-pointer p-2 ">
+        <Swiper
+            slidesPerView={4}
+            spaceBetween={30}
+            pagination={{
+                clickable: true,
+            }}
+            modules={[Pagination]}
+            className="w-[450px] "
+            >
+            <SwiperSlide>
+              <div className="w-[450px]">
+                <img src={props.banner} alt="Banner" className="w-full h-32 object-cover " />
+                <h2 className="text-lg font-bold">{props.title}</h2>
+                <p className="text-sm text-gray-600">{props.content}</p>
+                <span className="text-xs text-gray-500">{props.Category}</span>
+              </div>
+            </SwiperSlide>
+        </Swiper>
     </div>
   )
 }
