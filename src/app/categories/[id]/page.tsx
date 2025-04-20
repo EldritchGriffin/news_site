@@ -1,11 +1,13 @@
-// 'use client'
+'use client'
 
 import Bubbletext from '@/app/(components)/bubble';
 import { FiChevronLeft } from 'react-icons/fi';
 import { FiChevronRight } from 'react-icons/fi';
 import { VscTriangleDown } from "react-icons/vsc";
 import { TfiReload } from "react-icons/tfi";
-
+import { usePathname, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react';
+import Breadcrumb from '@/app/(components)/breadcrumb';
 
 function Populattagss() {
   return (
@@ -25,20 +27,32 @@ function Populattagss() {
   )
 }
 
+function decodeSpaces(str: string) {
+  return str.replace(/%20/g, ' ');
+}
 
-export default async function Page({ params, }: { params: Promise<{ id: string }> }) {
+export default  function Page({ params, }: { params: Promise<{ id: string }> }) {
+  const [path, setPath] = useState<string>("");
+  const [id, setId] = useState<string>("");
   const Postslist = ["" , "", "", "", "", "", ""];
+  const pathname = usePathname();
 
-  const { id } = await params;
+  useEffect(()=> {
+    const currentPath = pathname.split('/');
+    console.log("ffadfdsds   :",currentPath);
+    if (currentPath.length > 0)
+      {
+        setPath(currentPath[1]);
+        setId(decodeSpaces(currentPath[2]));
+      }
+    console.log(` ${currentPath[1]}  |  ${pathname}`);
+  },[]);
+
+  const searchParams = useSearchParams();
+  console.log(searchParams);
   return(
     <main className=" flex flex-col  w-full  max-w-screen-xl justify-center px-10 py-6  mx-auto">
-      <div className="flex gap-1 text-[16px] font-normal text-[#6c757d] mb-5">
-            <ol className="flex flex-row gap-2">
-                  <li className="text-[#d42a23]">Home</li>
-                  <li className="">/</li>
-                  <li className="">{id}</li>
-            </ol>
-      </div>
+      <Breadcrumb />
       <div className="relative  w-full flex justify-between mb-5">
               <div className="mb-2">
                 <Bubbletext _text={id} _width={"135px"}/>
