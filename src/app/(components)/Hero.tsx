@@ -67,7 +67,6 @@ export default async function Hero() {
        categoryData={deportesData}
         nbPost={2}
         />
-     
         </div>
       </div>
       <Sidebar/>

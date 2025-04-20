@@ -4,7 +4,7 @@ import Bubbletext from './bubble'
 export default function sidebar() {
   return (
     <>
-    <div className='w-full max-w-screen-xl'>
+    <div className='w-full max-w-screen-xl flex flex-col items-center'>
         <section className="container mx-auto mb-10 ">
         <Bubbletext _text='Lifestyle' _width='w-[140px]' />
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6'>
@@ -27,6 +27,9 @@ export default function sidebar() {
           </div>
         </div>
       </section>
+      <div className="bg-gray-300 h-28 w-[700px] flex items-center justify-center bb px-12 ">
+            <span className="text-sm text-gray-700">Ad Placeholder</span>
+        </div>
     </div>
     </>
   )
