@@ -6,6 +6,10 @@
   --foreground: #171717;
 }
 
+img {
+  -webkit-user-drag: none;
+}
+
 .items-scroll {
   display: flex;
   overflow-x: auto;

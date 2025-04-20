@@ -8,6 +8,11 @@ import Item from "./navbar-components/item";
 import { TiArrowSortedDown } from "react-icons/ti";
 import Media from "./navbar-components/media";
 import { usePathname } from 'next/navigation'
+import Link from 'next/link';
+
+function decodeSpaces(str: string) {
+  return str.replace(/%20/g, ' ');
+}
 
 export default function Navbar() {
     const [ShowList, SetShowList] = useState(false);
@@ -19,7 +24,7 @@ export default function Navbar() {
     useEffect(()=> {
       const currentPath = pathname.split('/');
       if (currentPath.length > 0)
-        setPath(currentPath[1]);
+        setPath(decodeSpaces(currentPath[1]));
       console.log(` Got the path : h h${currentPath[1]}h current path ${pathname}`);
     });
 
@@ -42,7 +47,7 @@ export default function Navbar() {
             name : "Portada",
             value : 0,
             isDropDown : true,
-            trueName : "Portada"
+            trueName : ""
             ,
         },
         {
@@ -166,7 +171,9 @@ export default function Navbar() {
         <>
          <header className="w-full h-full flex flex-col scroll-auto">
         <div className="w-full bg-[#222222] flex justify-center py-3">
-          <Image src="/logo-trans.png" width={288} height={58} alt="Logo" />
+          <Link href='/'>
+            <Image className="cursor-pointer" src="/logo-trans.png" width={288} height={58} alt="Logo" />
+          </Link>
         </div>
         <div className="w-full bg-[#d42a23]">
           <button
@@ -190,13 +197,15 @@ export default function Navbar() {
               </button>
             </div>
             <div className="p-4 flex flex-col gap-3">
+              <Link href={'/'}>
               <Image
-                className="pb-1"
+                className="cursor-pointer pb-1"
                 src="/mobile-logo.png"
                 width={152}
                 height={31}
                 alt="Logo"
               />
+              </Link>
               <div className="flex gap-2 w-full">
                 <input
                   placeholder="Search"
@@ -211,17 +220,24 @@ export default function Navbar() {
                   {ListItems.map((item: ListItem, itemIndex: number) => (
                     <div key={itemIndex}>
                       <li
-                        className={`flex cursor-pointer gap-2 mb-1 ${path == item.trueName ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7]' }  text-sm w-full p-3 pl-2 content-center`}
+                        className={`flex cursor-pointer gap-2 mb-1 ${path == item.trueName ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7] text-black' } text-sm w-full p-3 pl-2 content-center`}
                         onClick={() =>
                           setShowNational(
                             showNational === itemIndex ? -1 : itemIndex
                           )
                         }
-                      >
-                        <p>{item.name}</p>
-                        {item.isDropDown && <div className="text-sm flex items-center">
-                          <TiArrowSortedDown />
-                        </div>}
+                      > 
+                      <div className="flex justify-between w-full">
+                          <div className="flex">
+                            <p>{item.name}</p>
+                            {item.isDropDown && <div className="text-sm flex items-center">
+                              <TiArrowSortedDown />
+                          </div>}
+                        </div>
+                        <Link className="text-black self-end" href={`/${item.trueName}`}>
+                          <FaLongArrowAltRight size={15} />
+                        </Link>
+                      </div>
                       </li>
                       {(showNational === itemIndex && item.isDropDown) && (
                         <ul className="overflow-x-auto flex items-scroll">
