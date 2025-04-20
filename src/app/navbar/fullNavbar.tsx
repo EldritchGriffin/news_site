@@ -69,7 +69,7 @@ export default function FullNavbar () {
         const data : Item[] = [
             {
                 id : 1,
-                documentId : "",
+                documentId : "bsela",
                 title : "title 1",
                 content : "this is the content of the page .",
                 createdAt : new Date("2025-04-16T20:38:52"),
@@ -80,7 +80,7 @@ export default function FullNavbar () {
             },
             {
                 id : 2,
-                documentId : "",
+                documentId : "bsela",
                 title : "title 2",
                 content : "this is the content of the page .",
                 createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -91,7 +91,7 @@ export default function FullNavbar () {
             },
             {
                 id : 3,
-                documentId : "",
+                documentId : "bsela",
                 title : "title 3",
                 content : "this is the content of the page .",
                 createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -102,7 +102,7 @@ export default function FullNavbar () {
             },
             {
                 id : 4,
-                documentId : "",
+                documentId : "bsela",
                 title : "title 1",
                 content : "this is the content of the page .",
                 createdAt : new Date("2025-04-16T20:38:52"),
@@ -113,7 +113,7 @@ export default function FullNavbar () {
             },
             {
                 id : 5,
-                documentId : "",
+                documentId : "bsela",
                 title : "title 2",
                 content : "this is the content of the page .",
                 createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -124,7 +124,7 @@ export default function FullNavbar () {
             },
             {
                 id : 6,
-                documentId : "",
+                documentId : "bsela",
                 title : "title 3",
                 content : "this is the content of the page .",
                 createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -135,7 +135,7 @@ export default function FullNavbar () {
             },
             {
                 id : 7,
-                documentId : "",
+                documentId : "bsela",
                 title : "title 2",
                 content : "this is the content of the page .",
                 createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -146,7 +146,7 @@ export default function FullNavbar () {
             },
             {
                 id : 8,
-                documentId : "",
+                documentId : "bsela",
                 title : "title 3",
                 content : "this is the content of the page .",
                 createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -192,14 +192,16 @@ export default function FullNavbar () {
                                             </a>
                                             {item.isDropDown && <ul className="dropdown-content flex transition w-screen h-full z-50 duration-300 left-0 absolute">
                                               {data.map((element: Item, index: number) => (
-                                                <li key={index} className="bg-[#f7f7f7] w-full h-full">
-                                                  <NavItems
-                                                    title={element.title}
-                                                    content={element.content}
-                                                    banner={element.banner}
-                                                    Category={element.Category}
-                                                  />
-                                                </li>
+                                                <Link key={index} href={`/article/${element.documentId}`}>
+                                                    <li className="bg-[#f7f7f7] w-full h-full">
+                                                      <NavItems
+                                                        title={element.title}
+                                                        content={element.content}
+                                                        banner={element.banner}
+                                                        Category={element.Category}
+                                                        />
+                                                    </li>
+                                                </Link>
                                               ))}
                                             </ul>}
                                           </div>
