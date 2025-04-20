@@ -2,7 +2,7 @@ import React from 'react'
 import Bubbletext from './bubble'
 import CardPostChin from './cardPostChin';
 
-export default function shortcategory({ categoryData }: { categoryData: any}) {
+export default function shortcategory({ categoryData, nbPost }: { categoryData: any, nbPost?: number }) {
 
   return (
     <>
@@ -12,8 +12,8 @@ export default function shortcategory({ categoryData }: { categoryData: any}) {
           <button className="text-sm text-gray-500 text-end hover:text-gray-800">
             View All
             </button>
-        <div className='grid grid-cols-1 md:grid-cols-2 md:gap-y-12 gap-2 mt-6'>
-            {categoryData.data.slice(0, 2).map((post: any, i: number) => (
+            {nbPost && nbPost == 2 ? <div className='grid grid-cols-1 md:grid-cols-2 md:gap-y-12 gap-2 mt-6'>
+                {categoryData.data.slice(0, nbPost).map((post: any, i: number) => (
             <article key={i} className='relative'>
                 <CardPostChin
                 title={post.title}
@@ -25,7 +25,20 @@ export default function shortcategory({ categoryData }: { categoryData: any}) {
                 />
             </article>
             ))}
-        </div>
+            </div> : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-y-12 gap-2 mt-6'>
+            {categoryData.data.map((post: any, i: number) => (
+            <article key={i} className='relative'>
+                <CardPostChin
+                title={post.title}
+                imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
+                category={post.category}
+                documentId={post.documentId}
+                author={post.author}
+                date={post.publishedAt}
+                />
+            </article>
+            ))}
+            </div>}
         </div>
       </section>
     </>

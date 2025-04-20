@@ -59,17 +59,24 @@ export default async function Hero() {
       <Trending/>
       <div className='w-full max-w-screen-xl'>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-      <Shortcategory categoryData={deportesData} />
-      <Shortcategory categoryData={deportesData} />
+      <Shortcategory
+       categoryData={deportesData}
+        nbPost={2}
+        />
+      <Shortcategory
+       categoryData={deportesData}
+        nbPost={2}
+        />
+     
         </div>
       </div>
       <Sidebar/>
-      <Tabs
-        politicaData={politicaData}
-        economiaData={economiaData}
-        internacionalData={internacionalData}
-        culturaYCienciaData={culturaYCienciaData}
-      />
+      <div className='w-full max-w-screen-xl'>
+      <Shortcategory
+       categoryData={deportesData}
+        nbPost={4}
+        />
+      </div>
       {/* </div> */}
     </>
   )
