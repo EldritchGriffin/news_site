@@ -29,6 +29,7 @@ export const getPostByDocumentId = async (documentId: string) => {
 }
 
 export const getAllFromCategory = async (category: string) => {
+    console.log("fl handler kayna :", category);
     try {
         const response = await api.get(`/api/posts?filters[category][$eq]=${category}&populate=*`);
         return response.data;
@@ -49,6 +50,8 @@ export const getLatestPosts = async (limit = 5) => {
   };
 
   export const getLatestPostsFromCategory = async (category: string, limit = 5) => {
+    console.log("fl handler kayna lTEST :", category);
+
     try {
       const response = await api.get(`/api/posts?filters[category][$eq]=${category}&sort=publishedAt:desc&pagination[limit]=${limit}&populate=*`);
       return response.data;
