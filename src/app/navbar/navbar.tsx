@@ -102,7 +102,7 @@ export default function Navbar() {
     const data : Item[] = [
         {
             id : 1,
-            documentId : "",
+            documentId : "bsela",
             title : "title 1",
             content : "this is the content of the page .",
             createdAt : new Date("2025-04-16T20:38:52"),
@@ -113,7 +113,7 @@ export default function Navbar() {
         },
         {
             id : 2,
-            documentId : "",
+            documentId : "bsela",
             title : "title 2",
             content : "this is the content of the page .",
             createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -124,7 +124,7 @@ export default function Navbar() {
         },
         {
             id : 3,
-            documentId : "",
+            documentId : "bsela",
             title : "title 3",
             content : "this is the content of the page .",
             createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -135,7 +135,7 @@ export default function Navbar() {
         },
         {
             id : 1,
-            documentId : "",
+            documentId : "bsela",
             title : "title 1",
             content : "this is the content of the page .",
             createdAt : new Date("2025-04-16T20:38:52"),
@@ -146,7 +146,7 @@ export default function Navbar() {
         },
         {
             id : 2,
-            documentId : "",
+            documentId : "bsela",
             title : "title 2",
             content : "this is the content of the page .",
             createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -157,7 +157,7 @@ export default function Navbar() {
         },
         {
             id : 3,
-            documentId : "",
+            documentId : "bsela",
             title : "title 3",
             content : "this is the content of the page .",
             createdAt : new Date("2025-04-16T20:38:52.530Z"),
@@ -185,7 +185,7 @@ export default function Navbar() {
         </div>
       </header>
       {ShowList && (
-        <section className="fixed inset-0 backdrop-blur-sm z-50 animate-slideIn">
+        <section className="fixed inset-0 backdrop-blur-sm z-50">
           <div  ref={sidebarRef} className="max-w-[400px] overflow-y-auto h-full py-8 bg-white">
             <div className="py-5 px-5">
               <button
@@ -242,14 +242,16 @@ export default function Navbar() {
                       {(showNational === itemIndex && item.isDropDown) && (
                         <ul className="overflow-x-auto flex items-scroll">
                           {data.map((element: Item, index: number) => (
-                            <li key={index} className="bg-[#f7f7f7]">
-                              <Item
-                                title={element.title}
-                                content={element.content}
-                                banner={element.banner}
-                                Category={element.Category}
-                              />
-                            </li>
+                            <Link key={index} href={`/article/${element.documentId}`}>
+                              <li className="bg-[#f7f7f7]">
+                                <Item
+                                  title={element.title}
+                                  content={element.content}
+                                  banner={element.banner}
+                                  Category={element.Category}
+                                  />
+                              </li>
+                            </Link>
                           ))}
                         </ul>
                       )}
