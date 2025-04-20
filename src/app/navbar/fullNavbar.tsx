@@ -14,7 +14,7 @@ export default function FullNavbar () {
                 name : "Portada",
                 value : 0,
                 isDropDown : true,
-                trueName : "Portada"
+                trueName : ""
                 ,
             },
             {
@@ -184,12 +184,12 @@ export default function FullNavbar () {
                                           <div
                                             key={itemIndex}
                                             className="dropdown p-2 h-full items-center justify-center">
-                                            <a className="flex gap-2 cursor-pointer hover:text-black text-md h-full items-center">
+                                            <Link className="flex gap-2 cursor-pointer hover:text-black text-md h-full items-center" href={`/${item.trueName}`}>
                                               <p className="text-sm">{item.name}</p>
                                               {item.isDropDown && <div className="text-sm flex items-center">
                                                 <TiArrowSortedDown />
                                               </div>}
-                                            </a>
+                                            </Link>
                                             {item.isDropDown && <ul className="dropdown-content flex transition w-screen h-full z-50 duration-300 left-0 absolute bb">
                                               {data.map((element: Item, index: number) => (
                                                 <Link key={index} href={`/article/${element.documentId}`}>

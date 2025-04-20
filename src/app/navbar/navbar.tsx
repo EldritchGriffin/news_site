@@ -228,12 +228,12 @@ export default function Navbar() {
                         }
                       > 
                       <div className="flex justify-between w-full">
-                          <div className="flex">
-                            <p>{item.name}</p>
-                            {item.isDropDown && <div className="text-sm flex items-center">
-                              <TiArrowSortedDown />
-                          </div>}
-                        </div>
+                            <div className="flex">
+                              <p>{item.name}</p>
+                              {item.isDropDown && <div className="text-sm flex items-center">
+                                <TiArrowSortedDown />
+                            </div>}
+                          </div>
                         <Link className="text-black self-end" href={`/${item.trueName}`}>
                           <FaLongArrowAltRight size={15} />
                         </Link>
