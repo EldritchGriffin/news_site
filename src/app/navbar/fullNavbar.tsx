@@ -4,6 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import NavItems from "./navbar-components/NavItems";
 import FullNavMedia from "./navbar-components/FullNavMedia";
 import { useState } from "react";
+import Link from 'next/link';
 
 
 export default function FullNavbar () {
@@ -162,12 +163,15 @@ export default function FullNavbar () {
                 <FullNavMedia/>
             </div>
             <div className="w-full bg-[#222222] flex justify-center py-3">
-                <img
-                  src="/logo-trans.png"
-                  width={288}
-                  height={58}
-                  alt="Logo"
-                />
+                <Link href={'/'}>
+                    <img
+                        className="cursor-pointer"
+                      src="/logo-trans.png"
+                      width={288}
+                      height={58}
+                      alt="Logo"
+                    />
+                </Link>
             </div>
             <div className='w-full bg-[#d42a23]'>
             <section className="container mx-auto max-w-screen-xl ">
@@ -205,6 +209,7 @@ export default function FullNavbar () {
                             :
                             <input type="text" name="Search" 
                                     placeholder="Search..." 
+                                    autoFocus
                                     className="w-full h-full border-b-1 border-black focus:outline-none"/> 
                         }
                         <button className="font-extrabold text-xl cursor-pointer"
