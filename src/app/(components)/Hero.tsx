@@ -6,13 +6,16 @@ import Sidebar from './sidebar'
 import Trending from './trending'
 import Bubbletext from './bubble'
 import SwiperPosts from './swiperpost'
+import Shortcategory from './shortcategory'
 
 export default async function Hero() {
   const posts = await getAllPosts()
-  const sportsData = await getAllFromCategory('sports')
-  const worldData = await getAllFromCategory('world')
-  const lifestyleData = await getAllFromCategory('lifestyle')
-  const businessData = await getAllFromCategory('business')
+  const politicaData = await getAllFromCategory('Política')
+  const economiaData = await getAllFromCategory('Economía')
+  const internacionalData = await getAllFromCategory('Internacional')
+  const culturaYCienciaData = await getAllFromCategory('Cultura y Ciencia')
+  const deportesData = await getAllFromCategory('Deportes')
+  const entrevistasData = await getAllFromCategory('Entrevistas')
 
   return (
     <>
@@ -47,25 +50,25 @@ export default async function Hero() {
         </section>
       </div>
       <Tabs
-        sportsData={sportsData}
-        worldData={worldData}
-        lifestyleData={lifestyleData}
-        businessData={businessData}
+        politicaData={politicaData}
+        economiaData={economiaData}
+        internacionalData={internacionalData}
+        culturaYCienciaData={culturaYCienciaData}
       />
       <Sidebar/>
       <Trending/>
-      <Tabs
-        sportsData={sportsData}
-        worldData={worldData}
-        lifestyleData={lifestyleData}
-        businessData={businessData}
-      />
+      <div className='w-full max-w-screen-xl'>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+      <Shortcategory categoryData={deportesData} />
+      <Shortcategory categoryData={deportesData} />
+        </div>
+      </div>
       <Sidebar/>
       <Tabs
-        sportsData={sportsData}
-        worldData={worldData}
-        lifestyleData={lifestyleData}
-        businessData={businessData}
+        politicaData={politicaData}
+        economiaData={economiaData}
+        internacionalData={internacionalData}
+        culturaYCienciaData={culturaYCienciaData}
       />
       {/* </div> */}
     </>

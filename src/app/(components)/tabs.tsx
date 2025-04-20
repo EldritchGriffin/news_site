@@ -4,31 +4,31 @@ import CardPostChin from './cardPostChin';
 import Bubbletext from './bubble';
 
 export default function Tabs({
-    sportsData,
-    worldData,
-  lifestyleData,
-  businessData,
+    politicaData,
+    economiaData,
+  internacionalData,
+  culturaYCienciaData,
 }: {
-    sportsData: any;
-    worldData: any;
-  lifestyleData: any;
-  businessData: any;
+    politicaData: any;
+    economiaData: any;
+  internacionalData: any;
+  culturaYCienciaData: any;
 }) {
-  const [activeTab, setActiveTab] = useState('sports');
+  const [activeTab, setActiveTab] = useState('Política');
 
 
 
   // Ensure category data exists and has a `data` property
   const filteredPosts = (() => {
     switch (activeTab) {
-      case 'sports':
-        return sportsData?.data || [];
-      case 'world':
-        return worldData?.data || [];
-      case 'lifestyle':
-        return lifestyleData?.data || [];
-      case 'business':
-        return businessData?.data || [];
+      case 'Política':
+        return politicaData?.data || [];
+      case 'Economía':
+        return economiaData?.data || [];
+      case 'Internacional':
+        return internacionalData?.data || [];
+      case 'Cultura y Ciencia':
+        return culturaYCienciaData?.data || [];
       default:
         return [];
     }
@@ -41,7 +41,7 @@ export default function Tabs({
           <div className="flex gap-6 flex-col lg:flex-row justify-between">
             <Bubbletext _text='Main Stories' _width='w-[140px]' />
             <ul className="flex gap-4 tabs justify-end ">
-              {['sports', 'world', 'Lifestyle', 'Business'].map((tab) => (
+              {['Política', 'Economía', 'Internacional', 'Cultura y Ciencia'].map((tab) => (
                 <li key={tab}>
                   <button
                     className={`text-sm ${
