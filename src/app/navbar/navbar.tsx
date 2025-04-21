@@ -11,6 +11,12 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 function decodeSpaces(str: string) {
   return str.replace(/%20/g, ' ');
 }
@@ -160,7 +166,7 @@ export default function Navbar({
                   {ListItems.map((item: ListItem, itemIndex: number) => (
                     <div key={itemIndex}>
                       <li
-                        className={`flex cursor-pointer gap-2 mb-1 ${path == item.trueName ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7] text-black' } text-sm w-full p-3 pl-2 content-center`}
+                        className={`flex cursor-pointer gap-2 mb-1 ${path == item.name ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7] text-black' } text-sm w-full p-3 pl-2 content-center`}
                         onClick={() =>
                         {
                           if (item.isDropDown) {  
@@ -168,7 +174,7 @@ export default function Navbar({
                         } else {
                           setShowNational(-1);
                           SetShowList(false);
-                          router.push(`/${item.trueName}`);
+                          router.push(`/${item.name}`);
                         }
                       }
                     }
@@ -180,14 +186,26 @@ export default function Navbar({
                                 <TiArrowSortedDown />
                             </div>}
                           </div>
-                        <Link className="text-black self-end" href={`${(item.trueName != "" && item.trueName !== "video") ? "/categories/" : "/"}${item.trueName}`} onClick={() => SetShowList(false)}>
+                        <Link className="text-black self-end" href={`${(item.trueName != "" && item.trueName !== "video") ? "/categories/" : "/"}${item.name}`} onClick={() => SetShowList(false)}>
                           <FaLongArrowAltRight size={15} />
                         </Link>
                       </div>
                       </li>
                       {(showNational === itemIndex && item.isDropDown) && (
                         <ul className="overflow-x-auto flex items-scroll ">
+                          <Swiper
+                                                    modules={[Navigation]}
+                                                    slidesPerView={2} 
+                                                    spaceBetween={2} 
+                                                    loop={true} 
+                                                    navigation={{
+                                                        prevEl: `.prev-${itemIndex}`, 
+                                                        nextEl: `.next-${itemIndex}`, 
+                                                    }}
+                                                    className="w-full h-full"
+                                                    >
                           {item.items && item.items.map((element: Item, index: number) => (
+                          <SwiperSlide key={index} className="w-full h-full ">
                             <Link key={index} href={`/article/${element.documentId}`} onClick={() => SetShowList(false)}>
                               <li className="bg-[#f7f7f7] h-full ">
                                 <Item
@@ -198,7 +216,9 @@ export default function Navbar({
                                   />
                               </li>
                             </Link>
+                            </SwiperSlide>
                           ))}
+                          </Swiper>
                         </ul>
                       )}
                     </div>
