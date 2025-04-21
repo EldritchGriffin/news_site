@@ -186,10 +186,10 @@ export default function Navbar({
                       </div>
                       </li>
                       {(showNational === itemIndex && item.isDropDown) && (
-                        <ul className="overflow-x-auto flex items-scroll">
+                        <ul className="overflow-x-auto flex items-scroll ">
                           {item.items && item.items.map((element: Item, index: number) => (
                             <Link key={index} href={`/article/${element.documentId}`} onClick={() => SetShowList(false)}>
-                              <li className="bg-[#f7f7f7]">
+                              <li className="bg-[#f7f7f7] h-full ">
                                 <Item
                                   title={element.title}
                                   content={element.content}

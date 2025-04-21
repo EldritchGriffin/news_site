@@ -3,20 +3,13 @@ import React from 'react'
 
 export default function Item(props : {title: string, content: string, banner: string, Category: string}) {
     return (
-        <div className="cursor-pointer md:w-[200px] h-full lg:w-full flex flex-col gap-2 p-4">
-            <img
-                className="self-center"
-                src={props.banner}
-                alt={props.title}
-            />
-            <p className="bg-[#d42a23] p-1 text-white w-fit text-xs">
-                {props.Category}
-            </p>
-            <section>
-                <p className="word-wrap text-[#5d5d5d] text-sm">
-                    {styleText(props.title)}
-                </p>
-            </section>
+        <div className="cursor-pointer w-[180px] ">
+            <div className="flex flex-col gap-1  p-2 ">
+                <img src={props.banner} alt="Banner" className="w-full h-32 object-cover pb-2 " />
+                <span className="text-xs p-2 text-white bg-[#d42a23] w-fit">{props.Category}</span>
+                <h2 className="text-lg text-black font-bold">{styleText(props.title)}</h2>
+                <p className="text-sm text-black">{styleText(props.content)}</p>
+            </div>
         </div>
     )
 }
