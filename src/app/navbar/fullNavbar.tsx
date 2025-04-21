@@ -6,6 +6,12 @@ import FullNavMedia from "./navbar-components/FullNavMedia";
 import { useState } from "react";
 import Link from 'next/link';
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 
 interface FullNavbarProps {
     politicaData: Item[];
@@ -125,20 +131,52 @@ export default function FullNavbar ({
                                                 <TiArrowSortedDown />
                                               </div>}
                                             </Link>
-                                            {item.isDropDown && <ul className="dropdown-content flex transition bg-[#f7f7f7]  w-screen h-full z-50 duration-300 left-0 absolute">
-                                              {item.items && (item.items.length > 0) && item.items.map((element: Item, index: number) => (
-                                                <Link key={index} href={`/article/${element.documentId}`}>
-                                                    <li className="bg-[#f7f7f7] w-full h-full ">
-                                                      <NavItems
-                                                        title={element.title}
-                                                        content={element.content}
-                                                        banner={process.env.NEXT_PUBLIC_STRAPI_URL + element.banner.url}
-                                                        Category={element.category}
-                                                        />
-                                                    </li>
-                                                </Link>
-                                              ))}
-                                            </ul>}
+                                            {item.isDropDown && (
+                                                <ul className="dropdown-content flex transition bg-[#f7f7f7] w-screen h-full z-50 duration-300 left-0 absolute pr-2">
+                                                    <Swiper
+                                                    modules={[Navigation]}
+                                                    slidesPerView={4} 
+                                                    spaceBetween={20} 
+                                                    loop={true} 
+                                                    navigation={{
+                                                        prevEl: `.prev-${itemIndex}`, 
+                                                        nextEl: `.next-${itemIndex}`, 
+                                                    }}
+                                                    className="w-full h-full"
+                                                    >
+                                                    {item.items &&
+                                                        item.items.length > 0 &&
+                                                        item.items.map((element: Item, index: number) => (
+                                                        <SwiperSlide key={index} className="w-full h-full ">
+                                                            <Link href={`/article/${element.documentId}`}>
+                                                            <li className="bg-[#f7f7f7] w-full h-full ">
+                                                                <NavItems
+                                                                title={element.title}
+                                                                content={element.content}
+                                                                banner={
+                                                                    process.env.NEXT_PUBLIC_STRAPI_URL + element.banner.url
+                                                                }
+                                                                Category={element.category}
+                                                                />
+                                                            </li>
+                                                            </Link>
+                                                        </SwiperSlide>
+                                                        ))}
+                                                    </Swiper>
+                                                    <div className="absolute bottom-2 left-4 flex gap-2 z-10">
+                                                    <button
+                                                        className={`prev-${itemIndex} bg-white/10 cursor-pointer text-black border border-gray-600 p-2 transition`}
+                                                    >
+                                                        <ChevronLeft className="w-4 h-4" />
+                                                    </button>
+                                                    <button
+                                                        className={`next-${itemIndex} bg-white/10 cursor-pointer text-black border border-gray-600 p-2 transition`}
+                                                    >
+                                                        <ChevronRight className="w-4 h-4" />
+                                                    </button>
+                                                    </div>
+                                                </ul>
+                                                )}
                                           </div>
                                         );
                                     }))}
