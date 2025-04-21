@@ -1,4 +1,4 @@
-
+'use client'
 import Bubbletext from '@/app/(components)/bubble';
 import { VscTriangleDown } from "react-icons/vsc";
 import { TfiReload } from "react-icons/tfi";
@@ -8,7 +8,11 @@ import SwiperPosts from '@/app/(components)/swiperpost';
 import CardPost from '@/app/(components)/cardPost';
 import { getLatestPostsFromCategory } from '@/app/(handlers)/requestHandlers';
 import { getAllFromCategory } from '@/app/(handlers)/requestHandlers';
-import Categoriepostswithreload from '@/app/(components)/categoriepostswithreload';
+import { useEffect, useState } from 'react';
+import { GET } from '@/app/api/strapi/[...path]/route';
+import { request } from 'http';
+import axios from 'axios';
+
 
 
 function Populattagss() {
@@ -29,61 +33,64 @@ function Populattagss() {
   )
 }
 
-function decodeSpaces(str: string) {
-  return str.replace(/%20/g, ' ');
-}
+export default   function Page({ params, }: { params: Promise<{ id: string }> }) {
 
-export default  async function Page({ params, }: { params: Promise<{ id: string }> }) {
-  const pathname = await params
-  const cate = decodeURIComponent(pathname.id)
-  const current_categotie = await getAllFromCategory(cate)
-          const LatesstContent = await getLatestPostsFromCategory(cate)
-  // const [current_categotie,setCurrent_categotie] = useState<any>("");
-  // const [categoriecontent,setCategoriecontent] = useState<any>("");
-  // const [LatesstContent,setLatesstContent] = useState<any>("");
-  console.log(current_categotie)
-  console.log("hado homa latest posts :", LatesstContent);
-  // console.log("hada hwa l content) :", Content);
-  // console.log("hado homa :", categoriecontent);
+  const [current_categotie,setCurrent_categotie] = useState<any>("");
+  const [categoriecontent,setCategoriecontent] = useState<any>("");
+  const [LatesstContent,setLatesstContent] = useState<any>("");
+  const [postspaginationcount, setPostspaginationcount] = useState<number>(1);
   
-  // const [path, setPath] = useState<string>("");
-  // const [id, setId] = useState<string>("");
-  // const [Content, setContent] = useState<any>();
+  const reloadcontent = async () => {
+    console.log(postspaginationcount);
+    setPostspaginationcount((prev) => prev + 1);
+  };
   
-  const reloadcontent = async () => {             
-    console.log("salam sava");
-  }
-  
-  const Postslist = ["" , "", "", "", "", "", ""];
-  // const pathname = usePathname();
-  
-  // useEffect(() => {
-  //   async function hoho() {
-  //     setCurrent_categotie ( cate)
-  //     console.log("a moulay l categoryu ? :", cate);
-  //   }
-  //   hoho();
-  // }, [current_categotie]);
-  // useEffect(() => {
+  useEffect(() => {
     
-  //   async function hoho() {
+    const fetchallData = async () => {
+      try {
+        const pathname = await params
+        setCurrent_categotie(pathname.id);
+        const res = await axios.get(`/api/strapi/posts?filters[category][$eq]=${decodeURIComponent(current_categotie)}&populate=*`);
+        setLatesstContent(res.data);
+        
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
+    const fetchlatestData = async () => {
+      try {
+        const pathname = await params
+        setCurrent_categotie(pathname.id);
+        
+        
+        
+        const res = await axios.get(`/api/strapi/posts`,{params:
+          {
+            'filters[category][$eq]': decodeURIComponent(current_categotie),
+            'sort': 'publishedAt:desc',
+            'pagination[page]': postspaginationcount,
+            'pagination[pageSize]': 5, 
+            'populate': '*'
+          }});
+          setCategoriecontent((prev: any) => ({
+            ...res.data,
+            data: [...(prev?.data || []), ...(res.data?.data || [])],
+          }));
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
+    fetchallData();
+    fetchlatestData();
+  }, [current_categotie, postspaginationcount]);
 
-  //      console.log("a sidi ache hada ? :", current_categotie);
-  //      if (current_categotie)
-  //       {
-  //         setCategoriecontent ( koko)
-  //         setLatesstContent ( lolo)
-  //       }
-  //   }
-  //   hoho();
-  // }, [current_categotie]);
-  // console.log("this is the content of the page :", Content);
   return(
     <main className=" flex flex-col  w-full  max-w-screen-xl justify-center px-10 py-6  mx-auto">
       <Breadcrumb />
       <div className="relative  w-full flex justify-between mb-5">
               <div className="mb-2">
-                <Bubbletext _text={cate} _width={"135px"}/>
+                <Bubbletext _text={decodeURIComponent(current_categotie)} _width={"135px"}/>
               </div>
       </div>
 
@@ -100,22 +107,22 @@ export default  async function Page({ params, }: { params: Promise<{ id: string 
       </div>
       <div className="lg:flex lg:flex-row lg:justify-between lg:w-full  lg:gap-10">
 
-      {/* <div className="lg:w-full">
+      <div className="lg:w-full">
 
           <div className="w-full flex flex-col gap-[24px]  my-[30px] md:grid md:grid-cols-2 lg:mt-0 ">
             {(
-              Postslist.map((el, index)=>(
+              categoriecontent?.data?.map((post: any, index: number)=>(
                 <div key={index} className="w-full h-[300px] md:w-[100%] bg-pink-400">
-                 {current_categotie?.data?.length > 0 && (
+                 {categoriecontent?.data?.length > 0 && (
                     <CardPost
-                      title={current_categotie.data[0]?.title || "Untitled"}
+                      title={categoriecontent.data[0]?.title || "Untitled"}
                       imageUrl={
                         process.env.NEXT_PUBLIC_STRAPI_URL +
-                        (current_categotie.data[0]?.banner?.url || "/default-image.jpg")
+                        categoriecontent.data[0].banner.url 
                       }
-                      category={current_categotie.data[0]?.category || "Uncategorized"}
-                      author={current_categotie.data[0]?.author || "Unknown Author"}
-                      date={current_categotie.data[0]?.publishedAt || "Unknown Date"}
+                      category={categoriecontent.data[0]?.category || "Uncategorized"}
+                      author={categoriecontent.data[0]?.author || "Unknown Author"}
+                      date={categoriecontent.data[0]?.publishedAt || "Unknown Date"}
                     />
                   )}
                 </div>
@@ -123,11 +130,8 @@ export default  async function Page({ params, }: { params: Promise<{ id: string 
             )}
           </div>
 
-          <button className="bg-black text-white px-3 py-2 flex flex-row font-[Baskerville] gap-2 w-fit items-center"  ><TfiReload /> Load more</button>
-      </div> */}
-
-      <Categoriepostswithreload current_categotie={current_categotie} /> 
-
+          <button className="bg-black text-white px-3 py-2 flex flex-row font-[Baskerville] gap-2 w-fit items-center" onClick={reloadcontent} ><TfiReload /> Load more</button>
+      </div>
 
       <div className=" lg:w-[200px]">
         <div className="font-[Baskerville] text-[20px]"> Popular Tags</div>

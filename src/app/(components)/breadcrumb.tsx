@@ -22,10 +22,10 @@ export default function Breadcrumbs() {
       <li key={index} className="flex items-center gap-1">
         {!isLast && !result ?  (
           <Link href={href} className="text-red-600 hover:underline capitalize">
-             <span className="">{segment}</span>
+             <span className="">{decodeURIComponent(segment)}</span>
           </Link>
         ) : (
-          <span className="text-gray-600 font-semibold capitalize">{segment}</span>
+          <span className="text-gray-600 font-semibold capitalize">{decodeURIComponent(segment)}</span>
         )}
         {!isLast && <span className="text-gray-400 px-1">/</span>}
       </li>

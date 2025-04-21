@@ -53,15 +53,16 @@ export default function SwiperPosts({ posts }: { posts: Post[] }) {
         }}
         className="h-full"
       >
-        {posts.map((post, index) => (
+        {posts?.map((post, index) => (
           <SwiperSlide key={index}>
             <CardPost
               title={post.title}
-              imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
+              imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post?.banner?.url}
               category={post.category}
               author={post.author}
               date={post.publishedAt}
             />
+          
           </SwiperSlide>
         ))}
       </Swiper>
