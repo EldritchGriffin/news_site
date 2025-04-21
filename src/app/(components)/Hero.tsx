@@ -20,7 +20,7 @@ export default async function Hero() {
   return (
     <>
       {/* <div className="w-full max-w-screen-xl px-4 py-6"> */}
-      <div className='w-full max-w-screen-xl'>
+      <div className='w-full max-w-screen-xl '>
 
         <section className="container mx-auto mb-10 mt-10 ">
           <Bubbletext _text='Main Stories' _width='w-[140px]' />

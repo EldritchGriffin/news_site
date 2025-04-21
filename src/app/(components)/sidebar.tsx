@@ -27,7 +27,7 @@ export default function sidebar() {
           </div>
         </div>
       </section>
-      <div className="bg-gray-300 h-28 w-[700px] flex items-center justify-center px-12 ">
+      <div className="bg-gray-300 h-28 w-full md:w-[700px] flex items-center justify-center px-12 ">
             <span className="text-sm text-gray-700">Ad Placeholder</span>
         </div>
     </div>
