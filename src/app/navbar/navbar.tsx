@@ -180,7 +180,7 @@ export default function Navbar({
                                 <TiArrowSortedDown />
                             </div>}
                           </div>
-                        <Link className="text-black self-end" href={`${item.trueName != "" ? "/categories/" : "/"}${item.trueName}`} onClick={() => SetShowList(false)}>
+                        <Link className="text-black self-end" href={`${(item.trueName != "" && item.trueName !== "video") ? "/categories/" : "/"}${item.trueName}`} onClick={() => SetShowList(false)}>
                           <FaLongArrowAltRight size={15} />
                         </Link>
                       </div>
