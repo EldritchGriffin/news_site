@@ -54,6 +54,10 @@ img {
   -webkit-backdrop-filter: blur(5px);
 }
 
+button{
+  cursor: pointer;
+}
+
 @theme {
   --breakpoint-nav : 900px;
 }
