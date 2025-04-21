@@ -94,7 +94,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
               </div>
       </div>
 
-      <div className="w-full bg-pink-500 h-96 mb-14">
+      <div className="w-full h-96 mb-14">
         <SwiperPosts posts={LatesstContent?.data} />
       </div>
 
@@ -112,7 +112,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
           <div className="w-full flex flex-col gap-[24px]  my-[30px] md:grid md:grid-cols-2 lg:mt-0 ">
             {(
               categoriecontent?.data?.map((post: any, index: number)=>(
-                <div key={index} className="w-full h-[300px] md:w-[100%] bg-pink-400">
+                <div key={index} className="w-full h-[300px] md:w-[100%] ">
                  {categoriecontent?.data?.length > 0 && (
                     <CardPost
                       title={categoriecontent.data[0]?.title || "Untitled"}
