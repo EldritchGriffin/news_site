@@ -174,7 +174,7 @@ export default function Navbar({
                         } else {
                           setShowNational(-1);
                           SetShowList(false);
-                          router.push(`/${item.name}`);
+                          router.push(`/${item.trueName}`);
                         }
                       }
                     }
@@ -186,7 +186,10 @@ export default function Navbar({
                                 <TiArrowSortedDown />
                             </div>}
                           </div>
-                        <Link className="text-black self-end" href={`${(item.trueName != "" && item.name !== "vídeo") ? "/categories/" : "/"}${item.trueName}`} onClick={() => SetShowList(false)}>
+                        <Link className="text-black self-end" 
+                              href={`${(item.trueName != "" && item.name !== "vídeo") ? "/categories/" : "/"}${item.trueName}`}
+                                     onClick={() => {SetShowList(false);
+                                console.log("name is : ", item.trueName,  " | ", item.name , " | " , (item.trueName != "" && item.name !== "vídeo") ? "/categories/" : "/", item.trueName)}}>
                           <FaLongArrowAltRight size={15} />
                         </Link>
                       </div>
