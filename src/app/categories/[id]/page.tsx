@@ -33,21 +33,44 @@ function Populattagss() {
   )
 }
 
+interface Banner {
+  id : number,
+  url : string,
+  alternativeText : string,
+  caption : string,
+  width : number,
+  height : number
+}
+
+interface Item {
+  id : number,
+  documentId : string,
+  title : string,
+  content : string,
+  createdAt : Date,
+  updatedAt : Date,
+  publishedAt : Date,
+  category : string,
+  banner : Banner
+}
+
 export default   function Page({ params, }: { params: Promise<{ id: string }> }) {
 
   const [current_categotie,setCurrent_categotie] = useState<any>("");
   const [categoriecontent,setCategoriecontent] = useState<any>("");
-  const [LatesstContent,setLatesstContent] = useState<any>("");
+  const [LatesstContent,setLatesstContent] = useState<Item>();
   const [postspaginationcount, setPostspaginationcount] = useState<number>(1);
   
   const reloadcontent = async () => {
     console.log(postspaginationcount);
     setPostspaginationcount((prev) => prev + 1);
   };
+  console.log('*=========*',LatesstContent);
   
   useEffect(() => {
     
     const fetchallData = async () => {
+      if (!current_categotie) return;
       try {
         const pathname = await params
         setCurrent_categotie(pathname.id);
