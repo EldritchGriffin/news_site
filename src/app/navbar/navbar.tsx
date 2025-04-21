@@ -62,7 +62,7 @@ export default function Navbar({
           name : "Política",
           value : 1,
           isDropDown : true,
-          trueName : "Politica",
+          trueName : "Política",
           items : politicaData
 
       },
@@ -70,7 +70,7 @@ export default function Navbar({
           name : "Economía",
           value : 2,
           isDropDown : true,
-          trueName : "Economia",
+          trueName : "Economía",
           items : economiaData
 
       },
@@ -109,7 +109,7 @@ export default function Navbar({
           name : "vídeo",
           value : 7,
           isDropDown : false,
-          trueName : "video",
+          trueName : "vídeo",
           items : []
       }
     ]
@@ -186,7 +186,7 @@ export default function Navbar({
                                 <TiArrowSortedDown />
                             </div>}
                           </div>
-                        <Link className="text-black self-end" href={`${(item.trueName != "" && item.trueName !== "video") ? "/categories/" : "/"}${item.name}`} onClick={() => SetShowList(false)}>
+                        <Link className="text-black self-end" href={`${(item.trueName != "" && item.name !== "vídeo") ? "/categories/" : "/"}${item.trueName}`} onClick={() => SetShowList(false)}>
                           <FaLongArrowAltRight size={15} />
                         </Link>
                       </div>
