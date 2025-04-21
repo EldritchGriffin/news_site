@@ -107,7 +107,7 @@ export default function FullNavbar ({
                     />
                 </Link>
             </div>
-            <div className='w-full bg-[#d42a23]'>
+            <div className='w-full bg-[#d42a23] h-full' >
             <section className="container mx-auto max-w-screen-xl ">
                 <nav className="flex text-white justify-between h-[50px]">
                         {showListItems ? <div className="flex gap-8 shadow-2xl">
@@ -125,7 +125,7 @@ export default function FullNavbar ({
                                                 <TiArrowSortedDown />
                                               </div>}
                                             </Link>
-                                            {item.isDropDown && <ul className="dropdown-content flex transition bg-[#f7f7f7]  w-screen h-full z-50 duration-300 left-0 absolute bb">
+                                            {item.isDropDown && <ul className="dropdown-content flex transition bg-[#f7f7f7]  w-screen h-full z-50 duration-300 left-0 absolute">
                                               {item.items && (item.items.length > 0) && item.items.map((element: Item, index: number) => (
                                                 <Link key={index} href={`/article/${element.documentId}`}>
                                                     <li className="bg-[#f7f7f7] w-full h-full ">
