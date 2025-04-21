@@ -185,7 +185,7 @@ export default function FullNavbar ({
                             <input type="text" name="Search" 
                                     placeholder="Search..." 
                                     autoFocus
-                                    className="w-full h-full border-b-1 border-black focus:outline-none"/> 
+                                    className="w-full h-full border-b-2 border-black focus:outline-none"/> 
                         }
                         <button className="font-extrabold text-xl cursor-pointer"
                             onClick={() => {
