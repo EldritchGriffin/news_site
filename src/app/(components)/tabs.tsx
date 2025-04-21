@@ -7,12 +7,11 @@ export default function Tabs({
     politicaData,
     economiaData,
   internacionalData,
-  culturaYCienciaData,
+
 }: {
     politicaData: any;
     economiaData: any;
   internacionalData: any;
-  culturaYCienciaData: any;
 }) {
   const [activeTab, setActiveTab] = useState('Política');
 
@@ -28,7 +27,6 @@ export default function Tabs({
       case 'Internacional':
         return internacionalData?.data || [];
       case 'Cultura y Ciencia':
-        return culturaYCienciaData?.data || [];
       default:
         return [];
     }
@@ -41,7 +39,7 @@ export default function Tabs({
           <div className="flex gap-6 flex-col lg:flex-row justify-between">
             <Bubbletext _text='Main Stories' _width='w-[140px]' />
             <ul className="flex gap-4 tabs justify-end ">
-              {['Política', 'Economía', 'Internacional', 'Cultura y Ciencia'].map((tab) => (
+              {['Política', 'Economía', 'Internacional'].map((tab) => (
                 <li key={tab}>
                   <button
                     className={`text-sm ${

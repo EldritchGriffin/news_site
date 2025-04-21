@@ -9,7 +9,7 @@ export default function sidebar() {
         <Bubbletext _text='Lifestyle' _width='w-[140px]' />
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6'>
 
-        <article className="bg-white p-4 shadow">
+      <article className="bg-white  shadow">
           <p className="text-sm text-red-600 mb-1">Author / Dec 05, 2022</p>
           <p className="text-sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         </article>
@@ -27,7 +27,7 @@ export default function sidebar() {
           </div>
         </div>
       </section>
-      <div className="bg-gray-300 h-28 w-[700px] flex items-center justify-center bb px-12 ">
+      <div className="bg-gray-300 h-28 w-[700px] flex items-center justify-center px-12 ">
             <span className="text-sm text-gray-700">Ad Placeholder</span>
         </div>
     </div>

@@ -53,7 +53,6 @@ export default async function Hero() {
         politicaData={politicaData}
         economiaData={economiaData}
         internacionalData={internacionalData}
-        culturaYCienciaData={culturaYCienciaData}
       />
       <Sidebar/>
       <Trending/>
@@ -62,10 +61,12 @@ export default async function Hero() {
       <Shortcategory
        categoryData={deportesData}
         nbPost={2}
+        categoryName='Deportes'
         />
       <Shortcategory
        categoryData={deportesData}
         nbPost={2}
+        categoryName='Entrevistas'
         />
         </div>
       </div>
@@ -74,6 +75,7 @@ export default async function Hero() {
       <Shortcategory
        categoryData={deportesData}
         nbPost={4}
+        categoryName='Deportes'
         />
       </div>
       {/* </div> */}
