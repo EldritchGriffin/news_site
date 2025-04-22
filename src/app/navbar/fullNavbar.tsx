@@ -32,7 +32,7 @@ export default function FullNavbar ({
     entrevistasData,
 }: FullNavbarProps) {
         const [showListItems, setShowListItems] = useState(true);
-        const [search, setSearch] = useState(true);
+        const [search, setSearch] = useState(false);
 
 
         const ListItems : ListItem[] = [
@@ -216,9 +216,7 @@ export default function FullNavbar ({
                                 )
                             })}
                         </div>
-                        <div className="gap-4 bg-black text-white flex justify-center p-2 hover:text-black hover:bg-white border transition">
-                          <button onClick={() => setSearch(false)}>Cancel</button>
-                        </div>
+                          <button className="gap-4 bg-black text-white flex justify-center p-2 hover:text-black hover:bg-[#2c2c2c] border transition" onClick={() => setSearch(false)}>Cancel</button>
                     </div>
                 </DialogPanel>
                 </div>
