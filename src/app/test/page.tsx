@@ -10,7 +10,15 @@ export default function TestPage() {
     useEffect(() => {
         async function fetchPosts() {
             const latestPosts = await axios.get(
-                `/api/strapi/posts?filters[category][$eq]=${encodeURIComponent("Cultura y Ciencia")}&sort=publishedAt:desc&pagination[limit]=5&populate=*`,)
+                `/api/strapi/posts`,
+                {
+                    params: {
+                      'filters[category][$eq]': 'Deportes',
+                      'sort': 'publishedAt:desc',
+                      'pagination[page]': 2,
+                      'pagination[pageSize]': 2,  // Changed from pagination[limit]
+                      'populate': '*'
+                    }})
             console.log(latestPosts.data);
             // setPosts(latestPosts);
         }
