@@ -216,7 +216,7 @@ export default function FullNavbar ({
                                 )
                             })}
                         </div>
-                          <button className="gap-4 bg-black text-white flex justify-center p-2 hover:text-black hover:bg-[#2c2c2c] border transition" onClick={() => setSearch(false)}>Cancel</button>
+                          <button className="gap-4 bg-black text-white flex justify-center p-2 hover:bg-[#d42a23] border transition" onClick={() => setSearch(false)}>Cancel</button>
                     </div>
                 </DialogPanel>
                 </div>
