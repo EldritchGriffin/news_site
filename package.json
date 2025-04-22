@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/compatible": "^5.1.4",
+    "@headlessui/react": "^2.2.2",
+    "antd": "^5.24.8",
     "axios": "^1.8.4",
     "lightningcss": "^1.29.3",
     "lucide-react": "^0.501.0",

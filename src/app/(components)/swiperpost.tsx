@@ -16,6 +16,7 @@ interface Post {
   category: string;
   author: string;
   publishedAt: string;
+  views: number;
 }
 
 export default function SwiperPosts({ posts }: { posts: Post[] }) {

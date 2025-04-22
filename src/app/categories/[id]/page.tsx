@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { GET } from '@/app/api/strapi/[...path]/route';
 import { request } from 'http';
 import axios from 'axios';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 
 
 
@@ -21,10 +22,10 @@ function Populattagss() {
     <div className='w-full max-w-screen-xl'>
     <section className="container  mx-auto  py-6">
         <div className="flex flex-wrap gap-2">
-          {["Politics", "Sports", " Entertainment ", " Business "].map((tag, i) => (
-            <span key={i} className="px-3 py-1 text-sm rounded-full bg-gray-200">
+          {["Economía", "Sports", " Entertainment ", " Business "].map((tag, i) => (
+            <a href={`/categories/${tag}`} key={i} className="px-3 py-1 text-sm rounded-full bg-gray-200">
               {tag}
-            </span>
+            </a>
           ))}
         </div>
       </section>
@@ -51,7 +52,8 @@ interface Item {
   updatedAt : Date,
   publishedAt : Date,
   category : string,
-  banner : Banner
+  banner : Banner,
+  views: number
 }
 
 export default   function Page({ params, }: { params: Promise<{ id: string }> }) {
@@ -62,11 +64,54 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
   const [postspaginationcount, setPostspaginationcount] = useState<number>(1);
   
   const reloadcontent = async () => {
-    console.log(postspaginationcount);
     setPostspaginationcount((prev) => prev + 1);
   };
-  console.log('*=========*',LatesstContent);
   
+  const latestposts = async () => {
+    if (!categoriecontent) return;
+    try {
+      const sortedByDate = [...(categoriecontent?.data || [])].sort(
+        (a, b) => {console.log(new Date(b.publishedAt)) ; return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()}
+      );
+      
+      setCategoriecontent((prev: any) => ({
+        ...prev,
+        data: sortedByDate,
+      }));
+
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  };
+  const mostpopular = async () => {
+    if (!categoriecontent) return;
+    try {
+        const sortedByViews = (categoriecontent?.data || []).sort((a: Item, b: Item) => {   return Number(b.views) - Number(a.views)});
+        setCategoriecontent((prev: any) => ({
+          ...prev,
+          data: sortedByViews,
+        }));
+
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  };
+  const sevendayspopular = async () => {
+    if (!categoriecontent) return;
+    try {
+          const now = new Date();
+          const sevenDaysAgo = new Date();
+          sevenDaysAgo.setDate(now.getDate() - 7);
+        const filteredAndSorted = (categoriecontent?.data || []).filter((post: Item) => new Date(post.publishedAt) >= sevenDaysAgo).sort((a: Item, b: Item) => Number(b.views) - Number(a.views));
+        setCategoriecontent((prev: any) => ({
+          ...prev,
+          data: filteredAndSorted,
+        }));
+
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  };
   useEffect(() => {
     
     const fetchallData = async () => {
@@ -96,6 +141,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
             'pagination[pageSize]': 5, 
             'populate': '*'
           }});
+          console.log("thats it :", res.data);
           setCategoriecontent((prev: any) => ({
             ...res.data,
             data: [...(prev?.data || []), ...(res.data?.data || [])],
@@ -107,7 +153,6 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
     fetchallData();
     fetchlatestData();
   }, [current_categotie, postspaginationcount]);
-
   return(
     <main className=" flex flex-col  w-full  max-w-screen-xl justify-center px-10 py-6  mx-auto">
       <Breadcrumb />
@@ -126,7 +171,26 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
         style={{ fontSize: `calc(1.325rem + 0.9vw)` }}
 
         > You May Like </h2>
-        <button className="bg-black h-fit text-white py-[6px] px-[12px] flex flex-row font-[Baskerville] gap-1" > Latest Post <VscTriangleDown /> </button>
+        <Menu>
+          <MenuButton className="bg-black h-fit text-white py-[6px] px-[12px] flex flex-row font-[Baskerville] gap-1"> Latest Post <VscTriangleDown /> </MenuButton>
+          <MenuItems className={"flex flex-col bg-white py-2 border border-gray-300 rounded-md w-[160px]"} anchor="bottom">
+            <MenuItem  >
+              <span className="text-[16px] text-normal text-[#212529] font-[Baskervville] py-[4px] hover:bg-gray-200 px-[16px]" onClick={latestposts}>
+              Latest Post 
+              </span>
+            </MenuItem>
+            <MenuItem>
+              <span className="text-[16px] text-normal text-[#212529] font-[Baskervville] py-[4px] hover:bg-gray-200 px-[16px]" onClick={mostpopular}>
+              Most popular
+              </span>
+            </MenuItem>
+            <MenuItem>
+              <span className="text-[16px] text-normal text-[#212529] font-[Baskervville] py-[4px] hover:bg-gray-200 px-[16px]" onClick={sevendayspopular}>
+              7 days popular
+              </span>
+            </MenuItem>
+          </MenuItems>
+        </Menu>
       </div>
       <div className="lg:flex lg:flex-row lg:justify-between lg:w-full  lg:gap-10">
 
@@ -138,14 +202,14 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
                 <div key={index} className="w-full h-[300px] md:w-[100%] ">
                  {categoriecontent?.data?.length > 0 && (
                     <CardPost
-                      title={categoriecontent.data[0]?.title || "Untitled"}
+                      title={post?.title || "Untitled"}
                       imageUrl={
                         process.env.NEXT_PUBLIC_STRAPI_URL +
-                        categoriecontent.data[0].banner.url 
+                        post.banner.url 
                       }
-                      category={categoriecontent.data[0]?.category || "Uncategorized"}
-                      author={categoriecontent.data[0]?.author || "Unknown Author"}
-                      date={categoriecontent.data[0]?.publishedAt || "Unknown Date"}
+                      category={post?.category || "Uncategorized"}
+                      author={post?.author || "Unknown Author"}
+                      date={post?.publishedAt || "Unknown Date"}
                     />
                   )}
                 </div>
