@@ -29,7 +29,6 @@ export const getPostByDocumentId = async (documentId: string) => {
 }
 
 export const getAllFromCategory = async (category: string) => {
-    console.log("fl handler kayna :", category);
     try {
         const response = await api.get(`/api/posts?filters[category][$eq]=${category}&populate=*`);
         return response.data;
@@ -71,8 +70,6 @@ export const getLatestPostsPaged = async (limit = 5, page = 1) => {
   }
 
   export const getLatestPostsFromCategory = async (category: string, limit = 5) => {
-    console.log("fl handler kayna lTEST :", category);
-
     try {
       const response = await api.get(`/api/posts?filters[category][$eq]=${category}&sort=publishedAt:desc&pagination[limit]=${limit}&populate=*`);
       return response.data;
@@ -83,7 +80,6 @@ export const getLatestPostsPaged = async (limit = 5, page = 1) => {
   }
 
   export const getLatestPostsFromCategoryPaged = async (category: string, limit = 5, page = 1) => {
-    console.log("fl handler kayna lTEST :", category);
     try {
       const response = await api.get(`/api/posts`, {
         params: {
@@ -104,3 +100,15 @@ export const getLatestPostsPaged = async (limit = 5, page = 1) => {
       throw error;
     }
   }
+
+// from a category get the posts that have been created in the last 7 days and sort them by views
+export const getLatestPostsFromCategoryLast7Days = async (category: string) => {
+    try {
+      const response = await api.get(`/api/posts?filters[category][$eq]=${category}&filters[publishedAt][$gte]=${new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()}&sort=views:desc&populate=*`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  }
+

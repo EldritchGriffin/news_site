@@ -3,7 +3,7 @@ import Navbar from './navbar';
 
 export default async function NavbarWrapper() {
     const politicaData = await getAllFromCategory("Politica");
-    const economiaData = await getAllFromCategory("Economia");
+    const economiaData = await getAllFromCategory("Economía");
     const internacionalData = await getAllFromCategory("Internacional");
     const culturaYCienciaData = await getAllFromCategory("Cultura y Ciencia");
     const deportesData = await getAllFromCategory("Deportes");

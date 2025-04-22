@@ -1,24 +1,15 @@
-'use client';
-
-import { useEffect, useState } from "react";
 import { getLatestPosts } from "../(handlers)/requestHandlers";
 import { getLatestPostsFromCategory } from "../(handlers)/requestHandlers";
 import axios from "axios";
+import { getLatestPostsFromCategoryLast7Days } from "../(handlers)/requestHandlers";
+import {setPublishedAtDateOne10DaysBehind} from "../(handlers)/requestHandlers";
 
-export default function TestPage() {
-    const [posts, setPosts] = useState<any>([]);
-    useEffect(() => {
-        async function fetchPosts() {
-            const latestPosts = await axios.get(
-                `/api/strapi/posts?filters[category][$eq]=${encodeURIComponent("Cultura y Ciencia")}&sort=publishedAt:desc&pagination[limit]=5&populate=*`,)
-            console.log(latestPosts.data);
-            // setPosts(latestPosts);
-        }
-        fetchPosts();
-    }
-    , []);
+export default async function TestPage() {
+    const posts = await getLatestPostsFromCategoryLast7Days("Política");
+    setPublishedAtDateOne10DaysBehind("atn1l4c1jddk14ozbitw7k79");
+    console.log(posts);
     return (
-        <div>
-        </div>
+    <div>
+    </div>
     );
 }
