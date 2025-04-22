@@ -101,7 +101,39 @@ export const getLatestPostsPaged = async (limit = 5, page = 1) => {
     }
   }
 
-// from a category get the posts that have been created in the last 7 days and sort them by views
+
+// from a category get the most popular posts 
+export const getMostPopularPostsFromCategory = async (category: string, limit = 5) => {
+    try {
+      const response = await api.get(`/api/posts?filters[category][$eq]=${category}&sort=views:desc&pagination[limit]=${limit}&populate=*`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  }
+
+  export const getMostPopularPostsFromCategoryPaged = async (category : string, limit = 5, page = 1) => {
+    try {
+      const response = await api.get(`/api/posts`, {
+        params: {
+          'filters[category][$eq]': category,
+          'sort': 'views:desc',
+          'pagination[page]': page,
+          'pagination[pageSize]': limit,
+          'populate': '*'
+        }
+      });
+      return {
+        data: response.data.data,
+        meta: response.data.meta.pagination
+      };
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  }
+
 export const getLatestPostsFromCategoryLast7Days = async (category: string) => {
     try {
       const response = await api.get(`/api/posts?filters[category][$eq]=${category}&filters[publishedAt][$gte]=${new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()}&sort=views:desc&populate=*`);
@@ -112,3 +144,24 @@ export const getLatestPostsFromCategoryLast7Days = async (category: string) => {
     }
   }
 
+  export const getLatestPostsFromCategoryLast7DaysPaged = async (category: string, limit = 5, page = 1) => {
+    try {
+      const response = await api.get(`/api/posts`, {
+        params: {
+          'filters[category][$eq]': category,
+          'filters[publishedAt][$gte]': new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+          'sort': 'views:desc',
+          'pagination[page]': page,
+          'pagination[pageSize]': limit,
+          'populate': '*'
+        }
+      });
+      return {
+        data: response.data.data,
+        meta: response.data.meta.pagination
+      };
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  }
