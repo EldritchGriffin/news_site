@@ -109,7 +109,7 @@ export default function Navbar({
           name : "vídeo",
           value : 7,
           isDropDown : false,
-          trueName : "vídeo",
+          trueName : "vídeos",
           items : []
       }
     ]
@@ -187,9 +187,8 @@ export default function Navbar({
                             </div>}
                           </div>
                         <Link className="text-black self-end" 
-                              href={`${(item.trueName != "" && item.name !== "vídeo") ? "/categories/" : "/"}${item.trueName}`}
-                                     onClick={() => {SetShowList(false);
-                                console.log("name is : ", item.trueName,  " | ", item.name , " | " , (item.trueName != "" && item.name !== "vídeo") ? "/categories/" : "/", item.trueName)}}>
+                              href={`${(item.name != "Portada" && item.name !== "vídeo") ? "/categories/" : "/"}${item.trueName}`}
+                                     onClick={() => {SetShowList(false);}}>
                           <FaLongArrowAltRight size={15} />
                         </Link>
                       </div>

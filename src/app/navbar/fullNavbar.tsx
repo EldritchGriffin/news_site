@@ -94,7 +94,7 @@ export default function FullNavbar ({
                 name : "vídeo",
                 value : 7,
                 isDropDown : false,
-                trueName : "video",
+                trueName : "videos",
                 items : []
             }
         ]
@@ -128,7 +128,7 @@ export default function FullNavbar ({
                                             key={itemIndex}
                                             className="dropdown p-2 h-full items-center justify-center">
                                             <Link className="flex gap-2 cursor-pointer hover:text-black text-md h-full items-center"
-                                            href={`${(item.trueName != "" && item.trueName !== "video") ? "/categories/" : "/"}${item.name == "Portada" ? "" : item.name}`}>
+                                            href={`${(item.name != "Portada" && item.name !== "vídeo") ? "/categories/" : "/"}${item.trueName}`}>
                                               <p className="text-sm">{item.name}</p>
                                               {item.isDropDown && <div className="text-sm flex items-center">
                                                 <TiArrowSortedDown />
