@@ -165,3 +165,14 @@ export const getLatestPostsFromCategoryLast7Days = async (category: string) => {
       throw error;
     }
   }
+
+
+  export const searchPosts = async (searchTerm: string) => {
+    try {
+      const response = await api.get(`/api/posts?filters[title][$contains]=${searchTerm}&populate=*`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  }
