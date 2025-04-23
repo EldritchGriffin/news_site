@@ -16,6 +16,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import axios from "axios";
 
 function decodeSpaces(str: string) {
   return str.replace(/%20/g, ' ');
@@ -42,10 +43,25 @@ export default function Navbar({
     const [ShowList, SetShowList] = useState(false);
     const [showNational, setShowNational] = useState<number>(-1);
     const [path, setPath] = useState<string>("no path");
+    const [seearching, setSearching] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
     const router = useRouter();
 
+    const [searchString, setSearchString] = useState<string>("");
+    const [searchResults, setSearchResults] = useState<Item[]>([]);
+    useEffect(() => {
+        async function fetchSearch() {
+            if (searchString.length > 0)
+                {
+                    const searched = await axios.get(`/api/strapi/posts?filters[title][$contains]=${searchString}&populate=*`);
+                    if (searched.data)
+                        setSearchResults(searched.data.data);
+                }
+        }
+        fetchSearch();
+    }
+    , [searchString]);
     // const currentPath = pathname.split('/');
     // const pathName = currentPath[1];
     // const pathNameDecoded = decodeSpaces(pathName);
@@ -153,16 +169,15 @@ export default function Navbar({
               />
               </Link>
               <div className="flex gap-2 w-full">
-                <input
-                  placeholder="Search"
-                  className="border w-full text-gray-500 border-gray-500  p-2"
-                />
-                <button className="bg-white text-green-500 border-1 border-green-500  p-2">
-                  Search
+                <button className="bg-white text-green-500 border-1 border-green-500  p-2"
+                onClick={() => {
+                  setSearching(!seearching);
+                }}>
+                  {seearching ? "Close" :  "Search"}
                 </button>
               </div>
               <nav>
-                <ul>
+                {!seearching && <ul>
                   {ListItems.map((item: ListItem, itemIndex: number) => (
                     <div key={itemIndex}>
                       <li
@@ -225,7 +240,49 @@ export default function Navbar({
                       )}
                     </div>
                   ))}
-                </ul>
+                </ul>}
+                {seearching && (
+                  <div className="flex flex-col h-[600px] gap-4 bg-white p-4 rounded-md shadow-md overflow-hidden">
+                    <input
+                      placeholder="Search"
+                      className="border border-gray-300 rounded-md w-full text-gray-700 p-2 focus:outline-none focus:ring-2 focus:ring-black"
+                      onChange={(e) => setSearchString(e.currentTarget.value)}
+                    />
+
+                    <p className="text-sm text-gray-600 font-semibold">Search results</p>
+
+                    <ul className="flex flex-col gap-3 overflow-y-auto">
+                      {searchResults.map((item: Item, itemIndex: number) => (
+                        <li
+                          key={itemIndex}
+                          className="flex items-center justify-between gap-4 bg-gray-100 hover:bg-gray-200 p-3 rounded-md transition cursor-pointer"
+                        >
+                          <Link href={`/article/${item.documentId}`} onClick={() => SetShowList(false)} className="flex items-center w-full">
+                            <div className="flex items-center gap-3 w-full">
+                              {/* Thumbnail */}
+                              {item.banner?.url && (
+                                <img
+                                  src={process.env.NEXT_PUBLIC_STRAPI_URL + item.banner.url}
+                                  alt={item.title}
+                                  className="w-12 h-12 object-cover rounded-md border"
+                                />
+                              )}
+
+                              {/* Title */}
+                              <p className="text-sm text-black">{item.title}</p>
+                            
+                              {/* Icon aligned to end */}
+                              <div className="ml-auto">
+                                <FaLongArrowAltRight size={16} className="text-gray-500" />
+                              </div>
+                            </div>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
               </nav>
               <Media />
             </div>
