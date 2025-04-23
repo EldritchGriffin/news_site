@@ -3,7 +3,7 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import { FiSearch } from "react-icons/fi";
 import NavItems from "./navbar-components/NavItems";
 import FullNavMedia from "./navbar-components/FullNavMedia";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from 'next/link';
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 
@@ -12,6 +12,8 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { searchPosts } from "../(handlers)/requestHandlers";
+import axios from "axios";
 
 
 interface FullNavbarProps {
@@ -33,7 +35,20 @@ export default function FullNavbar ({
 }: FullNavbarProps) {
         const [showListItems, setShowListItems] = useState(true);
         const [search, setSearch] = useState(false);
-
+        const [searchString, setSearchString] = useState<string>("");
+        const [searchResults, setSearchResults] = useState<Item[]>([]);
+        useEffect(() => {
+            async function fetchSearch() {
+                if (searchString.length > 0)
+                    {
+                        const searched = await axios.get(`/api/strapi/posts?filters[title][$contains]=${searchString}&populate=*`);
+                        if (searched.data)
+                            setSearchResults(searched.data.data);
+                    }
+            }
+            fetchSearch();
+        }
+        , [searchString]);
 
         const ListItems : ListItem[] = [
             {
@@ -194,18 +209,23 @@ export default function FullNavbar ({
                 </nav>
             </section>
             </div>
-            <Dialog open={search} onClose={() => setSearch(false)} className="relative z-50 w-[50%]">
-                <div className="fixed inset-0 flex w-fulll items-center justify-center p-4">
-                <DialogPanel className="w-full space-y-4 border bg-white p-12">
+            <Dialog open={search} onClose={() => setSearch(false)} className="relative z-50 w-full">
+                <div className="fixed inset-0 flex items-center justify-center p-4 backdrop-blur-sm bg-black/30">
+                <DialogPanel className="w-[70%] space-y-4 border bg-white p-12 shadow-lg">
                 <DialogTitle className="font-bold">Search result:</DialogTitle>
                     <div className="flex flex-col gap-4 text-sm">
                         <input type="text" name="Search"
                             placeholder="Search..."
                             autoFocus
+                            onChange={(e) => {
+                                setSearchString(e.target.value);
+                            }}
                             className="w-full h-full border-b-2 border-black focus:outline-none"/>
                         <div className="flex flex-col gap-2 overflow-x-auto max-h-[400px]">
-                            {deportesData && deportesData.map((searchElement : Item, index) => {
+                            {searchResults?.map((searchElement , index) => {
                                 return (
+                                    <>
+                                    {/* Removed invalid script tag and console.log */}
                                 <div key={index} className="flex gap-2  h-[100px] border-b-2 border-[#2c2c2c]">
                                     <img src={process.env.NEXT_PUBLIC_STRAPI_URL + searchElement.banner.url} alt={searchElement.title} className="max-w-[200px]"/>
                                     <div className="flex flex-col text-center justify-around">
@@ -213,6 +233,7 @@ export default function FullNavbar ({
                                         <p>{searchElement.title}</p>
                                     </div>
                                 </div>
+                                    </>
                                 )
                             })}
                         </div>
