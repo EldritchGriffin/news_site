@@ -10,6 +10,8 @@ import Media from "./navbar-components/media";
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
+import { FiSearch } from "react-icons/fi";
+
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -139,7 +141,7 @@ export default function Navbar({
         </div>
         <div className="w-full bg-[#d42a23]">
           <button
-            className="text-white flex justify-center pl-2 px-[4px] py-[12px] cursor-pointer"
+            className="text-white flex justify-center pl-2 px-[4px] py-[12px] items-center cursor-pointer"
             onClick={() => SetShowList(true)}
           >
             <LuMenu size={30} />
@@ -169,11 +171,12 @@ export default function Navbar({
               />
               </Link>
               <div className="flex gap-2 w-full">
-                {!seearching && <button className="bg-[#d42a23] text-white px-4 py-2"
+                {!seearching && <button className="bg-[#d42a23] flex gap-2 justify-center items-center text-center text-white px-4 py-2"
                 onClick={() => {
                   setSearching(true);
                 }}>
-                  Search
+                    <p>Search</p>
+                    <FiSearch/>
                 </button>}
               </div>
               <nav>
