@@ -7,6 +7,7 @@ import Trending from './trending'
 import Bubbletext from './bubble'
 import SwiperPosts from './swiperpost'
 import Shortcategory from './shortcategory'
+import Infinitloop from './infinitloop'
 
 export default async function Hero() {
   const posts = await getAllPosts()
@@ -21,6 +22,13 @@ export default async function Hero() {
     <>
       {/* <div className="w-full max-w-screen-xl px-4 py-6"> */}
       <div className='w-full max-w-screen-xl '>
+        <div className='flex  w-full mt-10'>
+          <div className='flex items-center justify-center bg-red-600 w-[200px]'>
+
+          <p className=' text-white'>Breaking News</p>
+          </div>
+              <Infinitloop/>
+        </div>
 
         <section className="container mx-auto mb-10 mt-10 ">
           <Bubbletext _text='Main Stories' _width='w-[140px]' />
