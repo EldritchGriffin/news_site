@@ -11,7 +11,7 @@ export default function InfinitLoop() {
           whiteSpace: "nowrap",
         }}
       >
-        Your scrolling text here
+        Jesus zaml ayoub wld nass
       </div>
       <style jsx>{`
         @keyframes scroll {
