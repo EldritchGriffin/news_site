@@ -166,11 +166,34 @@ export const getLatestPostsFromCategoryLast7Days = async (category: string) => {
     }
   }
 
+// get all the posts that were published
+
 
   export const searchPosts = async (searchTerm: string) => {
     try {
       const response = await api.get(`/api/posts?filters[title][$contains]=${searchTerm}&populate=*`);
       return response.data;
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  }
+
+  export const getCategoriesFromLast3Days = async () => {
+    try {
+      const response = await api.get(`/api/posts?filters[publishedAt][$gte]=${new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()}&populate=*`);
+      const categories = response.data.data.reduce((acc: any, post: any) => {
+        const category = post.category;
+        const views = parseInt(post.views);
+        if (!acc[category]) {
+          acc[category] = 0;
+        }
+        acc[category] += views;
+        return acc;
+      }, {});
+      const sortedCategories = Object.entries(categories).sort((a: any, b: any) => b[1] - a[1]);
+      const sortedCategoriesNames = sortedCategories.map((category: any) => category[0]);
+      return sortedCategoriesNames;
     } catch (error) {
       console.error('Error fetching latest posts:', error);
       throw error;
