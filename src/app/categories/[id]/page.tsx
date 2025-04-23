@@ -13,25 +13,27 @@ import { GET } from '@/app/api/strapi/[...path]/route';
 import { request } from 'http';
 import axios from 'axios';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { getCategoriesFromLast3Days } from '@/app/(handlers)/requestHandlers';
 
 
-
-function Populattagss() {
+function Populattagss({ popularetags }: { popularetags: string[] }) {
   return (
-    <>
     <div className='w-full max-w-screen-xl'>
-    <section className="container  mx-auto  py-6">
+      <section className="container mx-auto py-6">
         <div className="flex flex-wrap gap-2">
-          {["Economía", "Sports", " Entertainment ", " Business "].map((tag, i) => (
-            <a href={`/categories/${tag}`} key={i} className="px-3 py-1 text-sm rounded-full bg-gray-200">
+          {popularetags?.map((tag, i) => (
+            <a
+              href={`/categories/${encodeURIComponent(tag)}`}
+              key={i}
+              className="px-3 py-1 text-sm rounded-full bg-gray-200"
+            >
               {tag}
             </a>
           ))}
         </div>
       </section>
     </div>
-    </>
-  )
+  );
 }
 
 interface Banner {
@@ -59,61 +61,52 @@ interface Item {
 export default   function Page({ params, }: { params: Promise<{ id: string }> }) {
 
   const [current_categotie,setCurrent_categotie] = useState<any>("");
-  const [categoriecontent,setCategoriecontent] = useState<any>("");
+  const [categoriecontent,setCategoriecontent] = useState<any>([]);
   const [LatesstContent,setLatesstContent] = useState<Item>();
   const [postspaginationcount, setPostspaginationcount] = useState<number>(1);
-  
+  const [popularetags, setPopularetags] = useState<any>();
+  const [postspaginationtype, setPostspaginationtype] = useState<string>("Latest Post");
   const reloadcontent = async () => {
     setPostspaginationcount((prev) => prev + 1);
   };
   
-  const latestposts = async () => {
-    if (!categoriecontent) return;
-    try {
-      const sortedByDate = [...(categoriecontent?.data || [])].sort(
-        (a, b) => {console.log(new Date(b.publishedAt)) ; return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()}
-      );
-      
-      setCategoriecontent((prev: any) => ({
-        ...prev,
-        data: sortedByDate,
-      }));
-
-    } catch (error) {
-      console.error('Fetch error:', error);
-    }
+  const latestposts = async (type : string) => {
+    if (postspaginationtype != type)
+      {  
+        setPostspaginationtype(type);
+        setPostspaginationcount(1);
+      }
   };
-  const mostpopular = async () => {
-    if (!categoriecontent) return;
-    try {
-        const sortedByViews = (categoriecontent?.data || []).sort((a: Item, b: Item) => {   return Number(b.views) - Number(a.views)});
-        setCategoriecontent((prev: any) => ({
-          ...prev,
-          data: sortedByViews,
-        }));
 
-    } catch (error) {
-      console.error('Fetch error:', error);
-    }
-  };
-  const sevendayspopular = async () => {
-    if (!categoriecontent) return;
-    try {
-          const now = new Date();
-          const sevenDaysAgo = new Date();
-          sevenDaysAgo.setDate(now.getDate() - 7);
-        const filteredAndSorted = (categoriecontent?.data || []).filter((post: Item) => new Date(post.publishedAt) >= sevenDaysAgo).sort((a: Item, b: Item) => Number(b.views) - Number(a.views));
-        setCategoriecontent((prev: any) => ({
-          ...prev,
-          data: filteredAndSorted,
-        }));
-
-    } catch (error) {
-      console.error('Fetch error:', error);
-    }
-  };
   useEffect(() => {
-    
+    const fetccategorie = async () => {
+      try {
+      const threeDaysAgoISO = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
+
+          const res = await axios.get(`/api/strapi/posts`, {
+            params: {
+              'filters[publishedAt][$gte]': threeDaysAgoISO,
+              'populate': '*'
+            }
+          });
+      const categories = res.data.data.reduce((acc: any, post: any) => {
+        const category = post.category;
+        const views = parseInt(post.views);
+        if (!acc[category]) {
+          acc[category] = 0;
+        }
+        acc[category] += views;
+        return acc;
+      }, {});
+      const sortedCategories = Object.entries(categories).sort((a: any, b: any) => b[1] - a[1]);
+      const sortedCategoriesNames = sortedCategories.map((category: any) => category[0]);
+      setPopularetags(sortedCategoriesNames);
+      return sortedCategoriesNames;
+    } catch (error) {
+      console.error('Error fetching latest posts:', error);
+      throw error;
+    }
+  };
     const fetchallData = async () => {
       if (!current_categotie) return;
       try {
@@ -126,22 +119,46 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
         console.error('Fetch error:', error);
       }
     };
-    const fetchlatestData = async () => {
+    const TopViewedRecentPostsPaginated = async () => {
       try {
-        const pathname = await params
-        setCurrent_categotie(pathname.id);
-        
-        
-        
-        const res = await axios.get(`/api/strapi/posts`,{params:
-          {
+        const res = await axios.get(`/api/strapi/posts`, {
+          params: {
             'filters[category][$eq]': decodeURIComponent(current_categotie),
-            'sort': 'publishedAt:desc',
+            'sort': 'views:desc',
             'pagination[page]': postspaginationcount,
-            'pagination[pageSize]': 5, 
+            'pagination[pageSize]': 5,
             'populate': '*'
-          }});
-          console.log("thats it :", res.data);
+          }
+        });
+        if (postspaginationcount == 1)
+          setCategoriecontent(res.data)
+        else
+          setCategoriecontent((prev: any) => ({
+            ...res.data,
+            data: [...(prev?.data || []), ...(res.data?.data || [])],
+          }));
+      } catch (error) {
+        console.error('Error fetching latest posts:', error);
+        throw error;
+      }
+    };
+    const fetchTopViewedRecentPostsPaginated = async () => {
+      try {
+        const sevenDaysAgoISO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+    
+        const res = await axios.get(`/api/strapi/posts`, {
+          params: {
+            'filters[category][$eq]': decodeURIComponent(current_categotie),
+            'filters[publishedAt][$gte]': sevenDaysAgoISO,
+            'sort': 'views:desc',
+            'pagination[page]': postspaginationcount,
+            'pagination[pageSize]': 5,
+            'populate': '*'
+          }
+        });
+        if (postspaginationcount == 1)
+          setCategoriecontent(res.data)
+        else
           setCategoriecontent((prev: any) => ({
             ...res.data,
             data: [...(prev?.data || []), ...(res.data?.data || [])],
@@ -150,9 +167,39 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
         console.error('Fetch error:', error);
       }
     };
+    
+    const fetchlatestData = async () => {
+      try {
+        const pathname = await params
+        setCurrent_categotie(pathname.id);
+        const res = await axios.get(`/api/strapi/posts`,{params:
+          {
+            'filters[category][$eq]': decodeURIComponent(current_categotie),
+            'sort': 'publishedAt:desc',
+            'pagination[page]': postspaginationcount,
+            'pagination[pageSize]': 5, 
+            'populate': '*'
+          }});
+          if (postspaginationcount == 1)
+            setCategoriecontent(res.data)
+          else
+            setCategoriecontent((prev: any) => ({
+              ...res.data,
+              data: [...(prev?.data || []), ...(res.data?.data || [])],
+            }));
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
     fetchallData();
-    fetchlatestData();
-  }, [current_categotie, postspaginationcount]);
+    if(postspaginationtype == "Latest Post")
+      fetchlatestData();
+    else if (postspaginationtype == "Most popular")
+      TopViewedRecentPostsPaginated();
+    else
+      fetchTopViewedRecentPostsPaginated();
+    fetccategorie();
+  }, [current_categotie, postspaginationcount, postspaginationtype]);
   return(
     <main className=" flex flex-col  w-full  max-w-screen-xl justify-center px-10 py-6  mx-auto">
       <Breadcrumb />
@@ -172,20 +219,20 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
 
         > You May Like </h2>
         <Menu>
-          <MenuButton className="bg-black h-fit text-white py-[6px] px-[12px] flex flex-row font-[Baskerville] gap-1"> Latest Post <VscTriangleDown /> </MenuButton>
+          <MenuButton className="bg-black h-fit text-white py-[6px] px-[12px] flex flex-row font-[Baskerville] gap-1"> {postspaginationtype} <VscTriangleDown /> </MenuButton>
           <MenuItems className={"flex flex-col bg-white py-2 border border-gray-300 rounded-md w-[160px]"} anchor="bottom">
             <MenuItem  >
-              <span className="text-[16px] text-normal text-[#212529] font-[Baskervville] py-[4px] hover:bg-gray-200 px-[16px]" onClick={latestposts}>
+              <span className="text-[16px] text-normal text-[#212529] font-[Baskervville] py-[4px] hover:bg-gray-200 px-[16px]" onClick={()=>latestposts("Latest Post")}>
               Latest Post 
               </span>
             </MenuItem>
             <MenuItem>
-              <span className="text-[16px] text-normal text-[#212529] font-[Baskervville] py-[4px] hover:bg-gray-200 px-[16px]" onClick={mostpopular}>
+              <span className="text-[16px] text-normal text-[#212529] font-[Baskervville] py-[4px] hover:bg-gray-200 px-[16px]" onClick={()=>latestposts("Most popular")}>
               Most popular
               </span>
             </MenuItem>
             <MenuItem>
-              <span className="text-[16px] text-normal text-[#212529] font-[Baskervville] py-[4px] hover:bg-gray-200 px-[16px]" onClick={sevendayspopular}>
+              <span className="text-[16px] text-normal text-[#212529] font-[Baskervville] py-[4px] hover:bg-gray-200 px-[16px]" onClick={()=>latestposts("7 days popular")}>
               7 days popular
               </span>
             </MenuItem>
@@ -222,7 +269,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
 
       <div className=" lg:w-[200px]">
         <div className="font-[Baskerville] text-[20px]"> Popular Tags</div>
-        <Populattagss />
+        <Populattagss popularetags={popularetags} />
         <div className="w-full flex flex-col justify-center pt-[30px]">
 
         <div className="w-[300px] h-[500px]  bg-pink-800 text-yellow-400 flex justify-center items-center self-center mb-[15px] lg:w-[200]">
