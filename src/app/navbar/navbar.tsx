@@ -245,15 +245,16 @@ export default function Navbar({
                   ))}
                 </ul>}
                 {seearching && (
-                  <div className="flex flex-col h-[600px] gap-4 bg-white p-4 rounded-md shadow-md overflow-hidden">
-                    <input
-                      placeholder="Search"
-                      className="border border-gray-300 rounded-md w-full text-gray-700 p-2 focus:outline-none focus:ring-2 focus:ring-black"
-                      onChange={(e) => setSearchString(e.currentTarget.value)}
-                    />
-                    <p className="text-sm text-gray-600 font-semibold">Search results</p>
-
-                    <ul className="flex flex-col gap-3 overflow-y-auto">
+                <div className="flex flex-col h-[600px] gap-4 bg-white p-4 rounded-md shadow-md">
+                  <input
+                    placeholder="Search"
+                    className="border border-gray-300 rounded-md w-full text-gray-700 p-2 focus:outline-none focus:ring-2 focus:ring-black"
+                    onChange={(e) => setSearchString(e.currentTarget.value)}
+                  />
+                  <p className="text-sm text-gray-600 font-semibold">Search results</p>
+                              
+                  <div className="flex flex-col flex-grow overflow-hidden">
+                    <ul className="flex flex-col gap-3 overflow-y-auto flex-grow pr-1">
                       {searchResults.map((item: Item, itemIndex: number) => (
                         <li
                           key={itemIndex}
@@ -261,7 +262,6 @@ export default function Navbar({
                         >
                           <Link href={`/article/${item.documentId}`} onClick={() => SetShowList(false)} className="flex items-center w-full">
                             <div className="flex items-center gap-3 w-full">
-                              {/* Thumbnail */}
                               {item.banner?.url && (
                                 <img
                                   src={process.env.NEXT_PUBLIC_STRAPI_URL + item.banner.url}
@@ -269,11 +269,7 @@ export default function Navbar({
                                   className="w-12 h-12 object-cover rounded-md border"
                                 />
                               )}
-
-                              {/* Title */}
                               <p className="text-sm text-black">{item.title}</p>
-                            
-                              {/* Icon aligned to end */}
                               <div className="ml-auto">
                                 <FaLongArrowAltRight size={16} className="text-gray-500" />
                               </div>
@@ -282,17 +278,23 @@ export default function Navbar({
                         </li>
                       ))}
                     </ul>
-                    <button
-                      className="bg-[#d42a23] text-white px-4 py-2"
-                      onClick={() => {
-                        setSearching(false);
-                        setSearchString("");
-                      }}
-                    >
-                      Close
-                    </button>
+                    
+                    {/* Close Button Stays at Bottom */}
+                    <div className="pt-4">
+                      <button
+                        className="bg-[#d42a23] text-white px-4 py-2 rounded-md w-full"
+                        onClick={() => {
+                          setSearching(false);
+                          setSearchString("");
+                        }}
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
-                )}
+                </div>
+              )}
+
 
               </nav>
               <Media />

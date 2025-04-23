@@ -2,7 +2,7 @@ import FullNavbar from './fullNavbar';
 import { getAllFromCategory } from "../(handlers)/requestHandlers";
 
 export default async function FullNavbarWrapper() {
-    const politicaData = await getAllFromCategory("Politica");
+    const politicaData = await getAllFromCategory("Política");
     const economiaData = await getAllFromCategory("Economía");
     const internacionalData = await getAllFromCategory("Internacional");
     const culturaYCienciaData = await getAllFromCategory("Cultura y Ciencia");
