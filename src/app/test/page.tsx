@@ -5,7 +5,6 @@ import { getLatestPostsFromCategoryLast7Days } from "../(handlers)/requestHandle
 
 export default async function TestPage() {
     const cats = await getCategoriesFromLast3Days();
-    console.log(cats); 
     return (
         <div>
         </div>
