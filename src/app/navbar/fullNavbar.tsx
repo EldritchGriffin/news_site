@@ -209,39 +209,54 @@ export default function FullNavbar ({
                 </nav>
             </section>
             </div>
-            <Dialog open={search} onClose={() => setSearch(false)} className="relative z-50 w-full">
-                <div className="fixed inset-0 flex items-center justify-center p-4 backdrop-blur-sm bg-black/30">
-                <DialogPanel className="w-[70%] space-y-4 border bg-white p-12 shadow-lg">
-                <DialogTitle className="font-bold">Search result:</DialogTitle>
-                    <div className="flex flex-col gap-4 text-sm">
-                        <input type="text" name="Search"
-                            placeholder="Search..."
-                            autoFocus
-                            onChange={(e) => {
-                                setSearchString(e.target.value);
-                            }}
-                            className="w-full h-full border-b-2 border-black focus:outline-none"/>
-                        <div className="flex flex-col gap-2 overflow-x-auto max-h-[400px]">
-                            {searchResults?.map((searchElement , index) => {
-                                return (
-                                    <>
-                                    {/* Removed invalid script tag and console.log */}
-                                <div key={index} className="flex gap-2  h-[100px] border-b-2 border-[#2c2c2c]">
-                                    <img src={process.env.NEXT_PUBLIC_STRAPI_URL + searchElement.banner.url} alt={searchElement.title} className="max-w-[200px]"/>
-                                    <div className="flex flex-col text-center justify-around">
-                                        <p className="bg-red-600 p-2 h-[30px] text-white">{searchElement.category}</p>
-                                        <p>{searchElement.title}</p>
-                                    </div>
-                                </div>
-                                    </>
-                                )
-                            })}
+            <Dialog open={search} onClose={() => setSearch(false)} className="relative z-50">
+  {/* Centered with blur background */}
+  <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/30 p-4">
+    {/* Fixed size panel */}
+            <DialogPanel className="w-[800px] h-[600px] space-y-4 border bg-white p-8 shadow-xl rounded-md overflow-hidden">
+              <DialogTitle className="text-xl font-bold">Search result:</DialogTitle>
+
+              <div className="flex flex-col gap-4 text-sm h-full">
+                {/* Search input */}
+                <input
+                  type="text"
+                  name="Search"
+                  placeholder="Search..."
+                  autoFocus
+                  onChange={(e) => setSearchString(e.target.value)}
+                  className="w-full border-b-2 border-black focus:outline-none p-2"
+                />
+
+                {/* Results list */}
+                <div className="flex flex-col gap-2 overflow-y-auto max-h-[400px]">
+                  {searchResults?.map((searchElement, index) => (
+                    <Link href={`/article/${searchElement.documentId}`} onClick={() => setSearch(false)} key={index}>
+                        <div className="flex gap-2 h-[100px] border-b-2 border-gray-300">
+                          <img
+                            src={process.env.NEXT_PUBLIC_STRAPI_URL + searchElement.banner?.url}
+                            alt={searchElement.title}
+                            className="w-[120px] h-full object-cover rounded-sm border"
+                          />
+                          <div className="flex flex-col justify-around text-left">
+                            <p className="bg-red-600 p-1 px-2 text-white text-xs w-fit rounded">{searchElement.category}</p>
+                            <p className="text-sm font-medium">{searchElement.title}</p>
+                          </div>
                         </div>
-                          <button className="gap-4 bg-black text-white flex justify-center p-2 hover:bg-[#d42a23] border transition" onClick={() => setSearch(false)}>Cancel</button>
-                    </div>
-                </DialogPanel>
+                    </Link>
+                  ))}
                 </div>
-            </Dialog>
-        </header>
+              
+                {/* Cancel button */}
+                <button
+                  className="bg-black text-white px-4 py-2 hover:bg-red-600 transition self-center"
+                  onClick={() => setSearch(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </DialogPanel>
+          </div>
+        </Dialog>
+       </header>
     )
 }

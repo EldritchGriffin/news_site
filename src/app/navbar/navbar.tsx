@@ -169,12 +169,12 @@ export default function Navbar({
               />
               </Link>
               <div className="flex gap-2 w-full">
-                <button className="bg-white text-green-500 border-1 border-green-500  p-2"
+                {!seearching && <button className="bg-[#d42a23] text-white px-4 py-2"
                 onClick={() => {
-                  setSearching(!seearching);
+                  setSearching(true);
                 }}>
-                  {seearching ? "Close" :  "Search"}
-                </button>
+                  Search
+                </button>}
               </div>
               <nav>
                 {!seearching && <ul>
@@ -248,7 +248,6 @@ export default function Navbar({
                       className="border border-gray-300 rounded-md w-full text-gray-700 p-2 focus:outline-none focus:ring-2 focus:ring-black"
                       onChange={(e) => setSearchString(e.currentTarget.value)}
                     />
-
                     <p className="text-sm text-gray-600 font-semibold">Search results</p>
 
                     <ul className="flex flex-col gap-3 overflow-y-auto">
@@ -280,6 +279,15 @@ export default function Navbar({
                         </li>
                       ))}
                     </ul>
+                    <button
+                      className="bg-[#d42a23] text-white px-4 py-2"
+                      onClick={() => {
+                        setSearching(false);
+                        setSearchString("");
+                      }}
+                    >
+                      Close
+                    </button>
                   </div>
                 )}
 
