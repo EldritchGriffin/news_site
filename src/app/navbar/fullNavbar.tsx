@@ -54,67 +54,67 @@ export default function FullNavbar ({
         , [searchString]);
 
         const ListItems : ListItem[] = [
-            {
-                name : "Portada",
-                value : 0,
-                isDropDown : false,
-                trueName : "",
-                items : []
-            },
-            {
-                name : "Política",
-                value : 1,
-                isDropDown : true,
-                trueName : "Politica",
-                items : politicaData
+          {
+              name : "Portada",
+              value : 0,
+              isDropDown : false,
+              trueName : "",
+              items : []
+          },
+          {
+              name : "Política",
+              value : 1,
+              isDropDown : true,
+              trueName : "Política",
+              items : politicaData
     
-            },
-            {
-                name : "Economía",
-                value : 2,
-                isDropDown : true,
-                trueName : "Economia",
-                items : economiaData
+          },
+          {
+              name : "Economía",
+              value : 2,
+              isDropDown : true,
+              trueName : "Economía",
+              items : economiaData
     
-            },
-            {
-                name : "Internacional",
-                value : 3,
-                isDropDown : true,
-                trueName : "Internacional",
-                items : internacionalData
+          },
+          {
+              name : "Internacional",
+              value : 3,
+              isDropDown : true,
+              trueName : "Internacional",
+              items : internacionalData
     
-            },
-            {
-                name : "Cultura y Ciencia",
-                value : 4,
-                isDropDown : true,
-                trueName : "Cultura y Ciencia",
-                items : culturaYCienciaData 
-            },
-            {
-                name : "Deportes",
-                value : 5,
-                isDropDown : true,
-                trueName : "Deportes",
-                items : deportesData
+          },
+          {
+              name : "Cultura y Ciencia",
+              value : 4,
+              isDropDown : true,
+              trueName : "Cultura y Ciencia",
+              items : culturaYCienciaData 
+          },
+          {
+              name : "Deportes",
+              value : 5,
+              isDropDown : true,
+              trueName : "Deportes",
+              items : deportesData
     
-            },
-            {
-                name : "Entrevistas",
-                value : 6,
-                isDropDown : true,
-                trueName : "Entrevistas",
-                items : entrevistasData
+          },
+          {
+              name : "Entrevistas",
+              value : 6,
+              isDropDown : true,
+              trueName : "Entrevistas",
+              items : entrevistasData
     
-            },
-            {
-                name : "vídeo",
-                value : 7,
-                isDropDown : false,
-                trueName : "videos",
-                items : []
-            }
+          },
+          {
+              name : "vídeo",
+              value : 7,
+              isDropDown : false,
+              trueName : "vídeos",
+              items : []
+          }
         ]
 
         
