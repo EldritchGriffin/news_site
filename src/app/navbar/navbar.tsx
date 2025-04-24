@@ -263,7 +263,7 @@ export default function Navbar({
                           key={itemIndex}
                           className="flex items-center justify-between gap-4 bg-gray-100 hover:bg-gray-200 p-3 rounded-md transition cursor-pointer"
                         >
-                          <Link href={`/article/${item.documentId}`} onClick={() =>{ setIsLoading(false); SetShowList(false);}} className="flex items-center w-full">
+                          <Link href={`/article/${item.documentId}`} onClick={() =>{setSearchResults([]); setIsLoading(false); SetShowList(false); setSearching(false);}} className="flex items-center w-full">
                             <div className="flex items-center gap-3 w-full">
                               {item.banner?.url && (
                                 <img

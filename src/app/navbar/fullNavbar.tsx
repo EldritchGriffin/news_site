@@ -232,7 +232,7 @@ export default function FullNavbar ({
                     {/* Scrollable results */}
                     {!isLoading && <div className="flex flex-col gap-2 overflow-y-auto flex-grow pr-1">
                       {searchResults?.map((searchElement, index) => (
-                        <Link href={`/article/${searchElement.documentId}`} onClick={() =>{setSearch(false); setIsLoading(false);}} key={index}>
+                        <Link href={`/article/${searchElement.documentId}`} onClick={() =>{setSearchResults([]); setSearch(false); setIsLoading(false);}} key={index}>
                           <div className="flex gap-2 h-[100px] border-b-2 border-gray-300">
                             <img
                               src={process.env.NEXT_PUBLIC_STRAPI_URL + searchElement.banner?.url}
