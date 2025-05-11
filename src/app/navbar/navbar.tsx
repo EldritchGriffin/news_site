@@ -139,7 +139,7 @@ export default function Navbar({
          <header className="w-full h-full flex flex-col scroll-auto">
         <div className="w-full bg-[#222222] flex justify-center py-3">
           <Link href='/'>
-            <Image className="cursor-pointer" src="/logo-trans.png" width={288} height={58} alt="Logo" />
+            <Image className="cursor-pointer" src="/LOGO_MARIBERO_WHITE.png" width={288} height={58} alt="Logo" />
           </Link>
         </div>
         <div className="w-full bg-[#d42a23]">
@@ -167,7 +167,7 @@ export default function Navbar({
               <Link href={'/'} onClick={() => SetShowList(false)}>
               <Image
                 className="cursor-pointer pb-1"
-                src="/mobile-logo.png"
+                src="/LOGO_MARIBERO_BLACK.png"
                 width={152}
                 height={31}
                 alt="Logo"
