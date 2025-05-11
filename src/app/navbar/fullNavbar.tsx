@@ -25,6 +25,14 @@ interface FullNavbarProps {
     entrevistasData: Item[];
 }
 
+function PlaceholderAd() {
+  return (
+      <div className='w-full h-full bg-gray-300 flex justify-center items-center'>
+          <h1 className='text-2xl font-semibold text-gray-500'>Placeholder Ad</h1>
+      </div>
+  )
+}
+
 export default function FullNavbar ({
     politicaData,
     economiaData,
@@ -123,16 +131,20 @@ export default function FullNavbar ({
             <div className="bg-[#222222] relative flex justify-center border-b-1 border-[#2c2c2c] py-3"> 
                 <FullNavMedia/>
             </div>
-            <div className="w-full bg-[#222222] flex justify-center py-3">
+            <div className="w-full bg-[#222222] flex justify-center items-center py-3 h-48">
+              <div className="w-full max-w-screen-xl flex flex-row justify-between gap-20 items-center ">
                 <Link href={'/'}>
                     <img
                         className="cursor-pointer"
-                      src="/logo-trans.png"
-                      width={288}
-                      height={58}
+                      src="/LOGO_MARIBERO_WHITE.png"
+                      width={350}
                       alt="Logo"
                     />
                 </Link>
+                <div className="w-full h-32">
+                  <PlaceholderAd/>
+                </div>
+              </div>
             </div>
             <div className='w-full bg-[#d42a23] h-full' >
             <section className="container mx-auto max-w-screen-xl ">

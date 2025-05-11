@@ -3,8 +3,6 @@ import Markdown from 'react-markdown'
 import { getPostByDocumentId } from '@/app/(handlers)/requestHandlers';
 import CardPost from '@/app/(components)/cardPost';
 import { FaFacebookF } from "react-icons/fa";
-import { BsPinterest } from "react-icons/bs";
-import { FaSquareXTwitter } from "react-icons/fa6";
 import { RiTwitterXLine } from "react-icons/ri";
 import SocialShareButtons from '@/app/(components)/socials';
 
