@@ -8,6 +8,7 @@ import Bubbletext from './bubble'
 import SwiperPosts from './swiperpost'
 import Shortcategory from './shortcategory'
 import Infinitloop from './infinitloop'
+import Opinion from './opinion'
 
 export default async function Hero() {
   const posts = await getAllPosts()
@@ -17,6 +18,27 @@ export default async function Hero() {
   const culturaYCienciaData = await getAllFromCategory('Cultura y Ciencia')
   const deportesData = await getAllFromCategory('Deportes')
   const entrevistasData = await getAllFromCategory('Entrevistas')
+
+  const data = [
+    {
+      title: 'Jahad wld nass khaso li ychwih',
+      author: 'Ayoub scayho',
+      comments: 123,
+      avatar: 'link to image',
+    },
+    {
+      title: 'Jahad wld nass khaso li ychwih',
+      author: 'Ayoub scayho',
+      comments: 123,
+      avatar: 'link to image',
+    },
+    {
+      title: 'Jahad wld nass khaso li ychwih',
+      author: 'Ayoub scayho',
+      comments: 123,
+      avatar: 'link to image',
+    },
+  ];
 
   return (
     <>
@@ -77,6 +99,14 @@ export default async function Hero() {
         categoryName='Entrevistas'
         />
         </div>
+      </div>
+      <div className='w-full max-w-screen-xl'>
+        <Bubbletext _text='Opinion' _width='w-[140px]' />
+        <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-8 mt-6 pb-10">
+        {data.map((item, idx) => (
+          <Opinion key={idx} {...item} />
+        ))}
+      </div>
       </div>
       <Sidebar/>
       <div className='w-full max-w-screen-xl'>

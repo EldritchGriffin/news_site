@@ -11,7 +11,7 @@ export default function InfinitLoop() {
           whiteSpace: "nowrap",
         }}
       >
-        Jesus zaml ayoub wld nass
+        Breaking news place.
       </div>
       <style jsx>{`
         @keyframes scroll {
