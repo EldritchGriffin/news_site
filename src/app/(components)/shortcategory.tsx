@@ -17,7 +17,7 @@ export default function shortcategory({ categoryData, nbPost,categoryName }: { c
                 Ver más
             </Link>
             {nbPost && nbPost == 2 ? <div className='grid grid-cols-1 md:grid-cols-2 md:gap-y-12 gap-2 mt-6'>
-                {categoryData.data.slice(0, nbPost).map((post: any, i: number) => (
+                {categoryData.slice(0, nbPost).map((post: any, i: number) => (
             <article key={i} className='relative'>
                 <CardPostChin
                 title={post.title}
@@ -30,7 +30,7 @@ export default function shortcategory({ categoryData, nbPost,categoryName }: { c
             </article>
             ))}
             </div> : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-y-12 gap-2 mt-6'>
-            {categoryData.data.slice(0,4).map((post: any, i: number) => (
+            {categoryData.slice(0,4).map((post: any, i: number) => (
             <article key={i} className='relative'>
                 <CardPostChin
                 title={post.title}

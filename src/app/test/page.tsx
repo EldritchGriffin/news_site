@@ -1,10 +1,10 @@
-import { getCategoriesFromLast3Days, getLatestPosts } from "../(handlers)/requestHandlers";
-import { getLatestPostsFromCategory } from "../(handlers)/requestHandlers";
-import axios from "axios";
-import { getLatestPostsFromCategoryLast7Days } from "../(handlers)/requestHandlers";
-
+import { getAllPostsClient } from "../(handlers)/strapiApiHandlers";
 export default async function TestPage() {
-    const cats = await getCategoriesFromLast3Days();
+    try {
+        const posts = await getAllPostsClient();
+        console.log(posts);
+    } catch (error) {
+    }
     return (
         <div>
         </div>
