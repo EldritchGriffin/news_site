@@ -56,22 +56,22 @@ export default async function Hero() {
           <Bubbletext _text='Main Stories' _width='w-[140px]' />
           <div className="flex flex-col lg:flex-row gap-2 gap-y-10 mt-6">
           <article className="lg:w-[60%] relative h-[450px] text-white">
-          <SwiperPosts posts={posts.data} />
+          <SwiperPosts posts={posts as any} />
           </article>
             {/* Secondary stories taking remaining 40% width */}
             <div className="lg:w-2/5 grid grid-cols-1 md:grid-cols-2 gap-2 ">
               {[1, 2, 3, 4].map((_, i) => (
                 <article key={i} className="  gap-y-2 relative h-[221px]">
                   <CardPost
-                    title={posts.data[0].title}
-                     imageUrl =  {process.env.NEXT_PUBLIC_STRAPI_URL && posts?.data?.[0]?.banner?.url
-                    ? process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url
+                    title={posts[0].title}
+                     imageUrl =  {process.env.NEXT_PUBLIC_STRAPI_URL && posts?.[0]?.banner?.url
+                    ? process.env.NEXT_PUBLIC_STRAPI_URL + posts[0].banner.url
                     : "/fallback-image.jpg"} // use a fallback image or handle gracefully
                   
                     // imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
-                    category={posts.data[0].category}
-                    author={posts.data[0].author}
-                    date={posts.data[0].publishedAt}
+                    category={posts[0].category}
+                    author={posts[0].author}
+                    date={posts[0].publishedAt}
                   ></CardPost>
                 </article>
               ))}
