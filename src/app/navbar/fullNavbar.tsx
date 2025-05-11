@@ -226,11 +226,11 @@ export default function FullNavbar ({
             </div>
             <Dialog open={search} onClose={() => setSearch(false)} className="relative z-50">
               <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/30 p-4">
-                <DialogPanel className="w-[800px] h-[600px] border bg-white p-8 shadow-xl rounded-md flex flex-col">
+                <DialogPanel className="w-[800px] h-[600px]  bg-white p-8 shadow-xl rounded-md flex flex-col">
                   <DialogTitle className="text-xl font-bold mb-4">Search result:</DialogTitle>
                                     
                   {/* Main content (input + results) grows */}
-                  <div className="flex flex-col gap-4 flex-grow overflow-hidden">
+                  <div className="flex flex-col gap-4 flex-grow overflow-hidden ">
                     {/* Search input */}
                     <input
                       type="text"
@@ -238,11 +238,11 @@ export default function FullNavbar ({
                       placeholder="Search..."
                       autoFocus
                       onChange={(e) => setSearchString(e.target.value)}
-                      className="w-full border-b-2 border-black focus:outline-none p-2"
+                      className="w-full border-b-1  focus:outline-none p-2"
                     />
             
                     {/* Scrollable results */}
-                    {!isLoading && <div className="flex flex-col gap-2 overflow-y-auto flex-grow pr-1">
+                    {!isLoading && <div className="flex flex-col gap-2 overflow-y-auto flex-grow pr-1 ">
                       {searchResults?.map((searchElement, index) => (
                         <Link href={`/article/${searchElement.documentId}`} onClick={() =>{setSearchResults([]); setSearch(false); setIsLoading(false);}} key={index}>
                           <div className="flex gap-2 h-[100px] border-b-2 border-gray-300">
