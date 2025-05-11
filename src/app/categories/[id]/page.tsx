@@ -107,6 +107,15 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
       throw error;
     }
   };
+    const GetCategorie = async () => {
+      try {
+        const pathname = await params
+        setCurrent_categotie(pathname.id);
+        
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
     const fetchallData = async () => {
       if (!current_categotie) return;
       try {
@@ -120,6 +129,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
       }
     };
     const TopViewedRecentPostsPaginated = async () => {
+      if (!current_categotie) return;
       try {
         const res = await axios.get(`/api/strapi/posts`, {
           params: {
@@ -143,6 +153,8 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
       }
     };
     const fetchTopViewedRecentPostsPaginated = async () => {
+      if (!current_categotie) return;
+
       try {
         const sevenDaysAgoISO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
     
@@ -156,6 +168,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
             'populate': '*'
           }
         });
+
         if (postspaginationcount == 1)
           setCategoriecontent(res.data)
         else
@@ -169,6 +182,8 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
     };
     
     const fetchlatestData = async () => {
+      if (!current_categotie) return;
+
       try {
         const pathname = await params
         setCurrent_categotie(pathname.id);
@@ -180,6 +195,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
             'pagination[pageSize]': 5, 
             'populate': '*'
           }});
+
           if (postspaginationcount == 1)
             setCategoriecontent(res.data)
           else
@@ -191,6 +207,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
         console.error('Fetch error:', error);
       }
     };
+    GetCategorie();
     fetchallData();
     if(postspaginationtype == "Latest Post")
       fetchlatestData();
