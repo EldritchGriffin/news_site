@@ -97,7 +97,6 @@ export default function Footer() {
     <div className="flex flex-row space-x-2">
         <FaFacebookF className='text-sm bg-[#212121] text-[#bbbbbb]' />
         <RiTwitterXLine className='text-sm bg-[#212121] text-[#bbbbbb]' />
-        <BsPinterest className='text-sm bg-[#212121] text-[#bbbbbb]' />
     </div>
     </div>
         <div className=''>
