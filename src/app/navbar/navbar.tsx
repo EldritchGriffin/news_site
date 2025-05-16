@@ -134,6 +134,7 @@ export default function Navbar({
           items : []
       }
     ]
+    console.log("data fetched : ", politicaData);
     return (
         <>
          <header className="w-full h-full flex flex-col scroll-auto">

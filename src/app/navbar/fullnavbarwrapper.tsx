@@ -11,12 +11,12 @@ export default async function FullNavbarWrapper() {
 
     return (
         <FullNavbar
-            politicaData={politicaData.data}
-            economiaData={economiaData.data}
-            internacionalData={internacionalData.data}
-            culturaYCienciaData={culturaYCienciaData.data}
-            deportesData={deportesData.data}
-            entrevistasData={entrevistasData.data}
+            politicaData={politicaData}
+            economiaData={economiaData}
+            internacionalData={internacionalData}
+            culturaYCienciaData={culturaYCienciaData}
+            deportesData={deportesData}
+            entrevistasData={entrevistasData}
         />
     );
 }

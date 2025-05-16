@@ -8,8 +8,7 @@ export default async function NavbarWrapper() {
     const culturaYCienciaData = await getAllFromCategory("Cultura y Ciencia");
     const deportesData = await getAllFromCategory("Deportes");
     const entrevistasData = await getAllFromCategory("Entrevistas");
-          
-    return (
+    return ( 
         <Navbar
             politicaData={politicaData}
             economiaData={economiaData}

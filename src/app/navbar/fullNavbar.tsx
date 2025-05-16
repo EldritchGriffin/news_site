@@ -17,12 +17,12 @@ import axios from "axios";
 
 
 interface FullNavbarProps {
-    politicaData: Item[];
-    economiaData: Item[];
-    internacionalData: Item[];
-    culturaYCienciaData: Item[];
-    deportesData: Item[];
-    entrevistasData: Item[];
+    politicaData: [];
+    economiaData: [];
+    internacionalData: [];
+    culturaYCienciaData: [];
+    deportesData: [];
+    entrevistasData: [];
 }
 
 function PlaceholderAd() {
@@ -60,7 +60,7 @@ export default function FullNavbar ({
             fetchSearch();
         }
         , [searchString]);
-
+        console.log("Navbar data fetched : ", politicaData);
         const ListItems : ListItem[] = [
           {
               name : "Portada",
@@ -146,7 +146,7 @@ export default function FullNavbar ({
                 </div>
               </div>
             </div>
-            <div className='w-full bg-[#d42a23] h-full' >
+            <div className='w-full bg-[#d42a23] h-full'>
             <section className="container mx-auto max-w-screen-xl ">
                 <nav className="flex text-white justify-between h-[50px]">
                         <div className="flex gap-8 shadow-2xl">
@@ -159,57 +159,63 @@ export default function FullNavbar ({
                                             className="dropdown p-2 h-full items-center justify-center">
                                             <Link className="flex gap-2 cursor-pointer hover:text-black text-md h-full items-center"
                                             href={`${(item.name != "Portada" && item.name !== "vídeo") ? "/categories/" : "/"}${item.trueName}`}>
-                                              <p className="text-sm">{item.name}</p>
+                                              <p className="lg:text-sm md:text-xs">{item.name}</p>
                                               {item.isDropDown && <div className="text-sm flex items-center">
                                                 <TiArrowSortedDown />
                                               </div>}
                                             </Link>
                                             {item.isDropDown && (
-                                                <ul className="dropdown-content flex transition bg-[#f7f7f7] w-screen h-full z-50 duration-300 left-0 absolute pr-2">
-                                                    <Swiper
-                                                    modules={[Navigation]}
-                                                    slidesPerView={4} 
-                                                    spaceBetween={20} 
-                                                    loop={true} 
-                                                    navigation={{
-                                                        prevEl: `.prev-${itemIndex}`, 
-                                                        nextEl: `.next-${itemIndex}`, 
-                                                    }}
-                                                    className="w-full h-full"
-                                                    >
-                                                    {item.items &&
-                                                        item.items.length > 0 &&
-                                                        item.items.map((element: Item, index: number) => (
-                                                        <SwiperSlide key={index} className="w-full h-full ">
-                                                            <Link href={`/article/${element.documentId}`}>
-                                                            <li className="bg-[#f7f7f7] w-full h-full ">
-                                                                <NavItems
-                                                                title={element.title}
-                                                                content={element.content}
-                                                                banner={
-                                                                    process.env.NEXT_PUBLIC_STRAPI_URL + element.banner.url
-                                                                }
-                                                                Category={element.category}
-                                                                />
-                                                            </li>
-                                                            </Link>
-                                                        </SwiperSlide>
-                                                        ))}
-                                                    </Swiper>
-                                                    <div className="absolute bottom-2 left-4 flex gap-2 z-10">
-                                                    <button
-                                                        className={`prev-${itemIndex} bg-white/10 cursor-pointer text-black border border-gray-600 p-2 transition`}
-                                                    >
-                                                        <ChevronLeft className="w-4 h-4" />
-                                                    </button>
-                                                    <button
-                                                        className={`next-${itemIndex} bg-white/10 cursor-pointer text-black border border-gray-600 p-2 transition`}
-                                                    >
-                                                        <ChevronRight className="w-4 h-4" />
-                                                    </button>
-                                                    </div>
-                                                </ul>
-                                                )}
+                          <ul className="dropdown-content flex transition bg-[#f7f7f7] w-screen h-full z-50 duration-300 left-0 absolute pr-2">
+                            {item.items && item.items.length > 0 ? (
+                            <>
+                            <Swiper
+                              modules={[Navigation]}
+                              slidesPerView={4} 
+                              spaceBetween={20} 
+                              loop={true} 
+                              navigation={{
+                                prevEl: `.prev-${itemIndex}`, 
+                                nextEl: `.next-${itemIndex}`, 
+                              }}
+                              className="w-full h-full"
+                            >
+                              {item.items.map((element: Item, index: number) => (
+                                <SwiperSlide key={index} className="w-full h-full">
+                                  <Link href={`/article/${element.documentId}`}>
+                                    <li className="bg-[#f7f7f7] w-full h-full">
+                                      <NavItems
+                                        title={element.title}
+                                        content={element.content}
+                                        banner={
+                                          process.env.NEXT_PUBLIC_STRAPI_URL + element.banner.url
+                                        }
+                                        Category={element.category}
+                                      />
+                                    </li>
+                                  </Link>
+                                </SwiperSlide>
+                              ))}
+                            </Swiper>
+                            <div className="absolute bottom-2 left-4 flex gap-2 z-10">
+                              <button
+                                className={`prev-${itemIndex} bg-white/10 cursor-pointer text-black border border-gray-600 p-2 transition`}
+                              >
+                                <ChevronLeft className="w-4 h-4" />
+                              </button>
+                              <button
+                                className={`next-${itemIndex} bg-white/10 cursor-pointer text-black border border-gray-600 p-2 transition`}
+                              >
+                                <ChevronRight className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="flex items-center justify-center w-full h-full">
+                            <p className="text-gray-600 text-lg">No data found</p>
+                          </div>
+                        )}
+                      </ul>
+                    )}
                                           </div>
                                         );
                                     }))}
