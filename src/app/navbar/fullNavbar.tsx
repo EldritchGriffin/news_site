@@ -282,7 +282,6 @@ export default function FullNavbar ({
                 </DialogPanel>
               </div>
             </Dialog>
-
        </header>
     )
 }
