@@ -46,7 +46,7 @@ export default function Footer() {
                 <ul className=' text-gray-300 text-[15px] pl-[5px]'>
                     {(Categoriesmap.map((categorie, index) => (
                         <li className="box-border text-[#bbbbbb] md:text-[15px]  text-[14px] font-normal  leading-[21px] list-none list-outside mb-[5px] ml-0 mr-0 mt-0 p-0 text-left text-size-adjust-100 " key={index}>
-                            <a href="" className=''>
+                            <a href={`/categories/${categorie}`} className=''>
                                 {categorie}
                             </a>
                         </li>
@@ -60,7 +60,7 @@ export default function Footer() {
                 <ul className=' text-gray-300 lg:pr-40 pl-[5px]'>
                     {(Aboutmap.map((about, index) => (
                         <li className="box-border text-[#bbbbbb] md:text-[15px] text-[14px] font-normal  leading-[21px] list-none list-outside mb-[5px] ml-0 mr-0 mt-0 p-0 text-left text-size-adjust-100 " key={index}>
-                            <a href="" className='text-[15px]'>
+                            <a href={`/categories/${about}`} className='text-[15px]'>
                                 {about}
                             </a>
                         </li>
