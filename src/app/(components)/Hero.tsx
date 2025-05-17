@@ -72,6 +72,7 @@ export default async function Hero() {
                     category={posts[0].category}
                     author={posts[0].author}
                     date={posts[0].publishedAt}
+                    documentId={posts[0].documentId}
                   ></CardPost>
                 </article>
               ))}

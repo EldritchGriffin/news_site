@@ -67,10 +67,11 @@ export default function Navbar({
         fetchSearch();
     }
     , [searchString]);
-    // const currentPath = pathname.split('/');
-    // const pathName = currentPath[1];
-    // const pathNameDecoded = decodeSpaces(pathName);
-    // setPath(pathNameDecoded);
+    useEffect(() => {
+      const currentPath = pathname.split('/');
+      const pathName = (decodeURIComponent(currentPath[1]) == "videos" ? "videos" : decodeURIComponent(currentPath[2]));
+      setPath(decodeURIComponent(pathName));
+    }, [pathname]);
     const ListItems : ListItem[] = [
       {
           name : "Portada",
@@ -127,10 +128,10 @@ export default function Navbar({
 
       },
       {
-          name : "vídeo",
+          name : "vídeos",
           value : 7,
           isDropDown : false,
-          trueName : "vídeos",
+          trueName : "videos",
           items : []
       }
     ]
@@ -187,7 +188,7 @@ export default function Navbar({
                   {ListItems.map((item: ListItem, itemIndex: number) => (
                     <div key={itemIndex}>
                       <li
-                        className={`flex cursor-pointer gap-2 mb-1 ${path == item.name ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7] text-black' } text-sm w-full p-3 pl-2 content-center`}
+                        className={` flex cursor-pointer gap-2 mb-1 ${path == item.name || path == item.trueName ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7] text-black' } text-sm w-full p-3 pl-2 content-center `}
                         onClick={() =>
                         {
                           if (item.isDropDown) {  

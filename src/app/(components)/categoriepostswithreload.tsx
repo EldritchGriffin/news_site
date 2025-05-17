@@ -30,6 +30,7 @@ export default  function Categoriepostswithreload({ current_categotie }: { curre
                       category={current_categotie.data[0]?.category || "Uncategorized"}
                       author={current_categotie.data[0]?.author || "Unknown Author"}
                       date={current_categotie.data[0]?.publishedAt || "Unknown Date"}
+                      documentId={current_categotie.data[0]?.documentId || ""}
                     />
                   )}
                 </div>
