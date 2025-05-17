@@ -19,6 +19,7 @@ export default async function Hero() {
   const deportesData = await getAllFromCategory('Deportes')
   const entrevistasData = await getAllFromCategory('Entrevistas')
 
+  
   const data = [
     {
       title: 'Jahad wld nass khaso li ychwih',

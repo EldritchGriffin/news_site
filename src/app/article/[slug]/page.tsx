@@ -56,20 +56,12 @@ export default async function Page({
             <div className='max-w-screen-xl w-full justify-center items-center flex flex-col'>
                 <div className='w-full h-[500px] mb-10'>
                     <CardPost
-<<<<<<< HEAD
-                        title={post.data.title}
-                        imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post.data.banner.url}
-                        category={post.data.category}
-                        author={post.data.author}
-                        date={post.data.publishedAt}
-                        documentId={post.data.documentId}
-=======
                         title={post.title}
                         imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
                         category={post.category}
                         author={post.author}
                         date={post.publishedAt}
->>>>>>> 2af9bd160b03dcd6ea26bac7961ae20ce473f526
+                        documentId={post.documentId}
                     >
                     </CardPost>
                 </div>
