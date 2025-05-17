@@ -33,7 +33,6 @@ export default   function Page() {
     setPostspaginationcount((prev) => prev + 1);
   };
   
-  console.log('OpinionsData:', opinionsData.length);
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -12,7 +12,6 @@ export default  function Categoriepostswithreload({ current_categotie }: { curre
 
   const Postslist = ["" , "", "", "", "", "", ""];
   const [current,setCurrent] = useState<any>("");
-    console.log("RED ONE :", current);
   return (
     <div className="">
          <div className="w-full flex flex-col gap-[24px]  my-[30px] md:grid md:grid-cols-2 lg:mt-0 ">

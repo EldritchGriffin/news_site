@@ -4,7 +4,6 @@ import {formatDate}  from '@/app/(utilities)/helperFunctions'
 import {styleText} from '@/app/(utilities)/helperFunctions'
 
 export default function sidebar({ categoryData, nbPost,categoryName }: { categoryData: any, nbPost?: number, categoryName?: string }) {
-  console.log('=======11',categoryData)
   
 
   return (

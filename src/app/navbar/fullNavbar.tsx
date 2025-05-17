@@ -60,7 +60,6 @@ export default function FullNavbar ({
             fetchSearch();
         }
         , [searchString]);
-        console.log("Navbar data fetched : ", politicaData);
         const ListItems : ListItem[] = [
           {
               name : "Portada",

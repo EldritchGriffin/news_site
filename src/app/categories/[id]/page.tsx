@@ -125,7 +125,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
       try {
         const pathname = await params
         setCurrent_categotie(pathname.id);
-        const res = await axios.get(`/api/strapi/posts?filters[category][$eq]=${decodeURIComponent(current_categotie)}&populate=*`);
+        const res = await axios.get(`/api/strapi/posts?filters[category][$eq]=${decodeURIComponent(current_categotie)}&sort=publishedAt:desc&pagination[page]=1&pagination[pageSize]=10&populate=*`);
         setLatesstContent(res.data);
         
       } catch (error) {
