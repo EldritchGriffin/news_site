@@ -7,7 +7,6 @@ import { FaFacebookF } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
 import SocialShareButtons from '@/app/(components)/socials';
 import rehypeRaw from 'rehype-raw'
-import LanguageSelector from '@/app/(components)/languageSelector';
 import NewsSlider from '@/app/(components)/Newslider';
 
 function PlaceholderAd() {
@@ -59,11 +58,6 @@ export default async function Page({
     return (
         <main className="text-gray-900 flex flex-col items-center w-full  ">
             <div className='max-w-screen-xl w-full justify-center items-center flex flex-col '>
-                {/* Add language selector */}
-                <div className="self-end mt-5 mb-4">
-                    <LanguageSelector currentLang={targetLang} />
-                </div>
-                
                 <div className='w-full h-[500px] mb-10'>
                     <CardPost
                         title={title}
