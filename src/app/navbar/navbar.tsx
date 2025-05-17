@@ -259,11 +259,11 @@ export default function Navbar({
                   <p className="text-sm text-gray-600 font-semibold">Search results</p>
                               
                   <div className="flex flex-col flex-grow overflow-hidden">
-                    {!isLoading && <ul className="flex flex-col gap-3 overflow-y-auto flex-grow pr-1">
+                    {!isLoading && <ul className="flex flex-col gap-3 overflow-y-auto flex-grow pr-1  ">
                       {searchResults.map((item: Item, itemIndex: number) => (
                         <li
                           key={itemIndex}
-                          className="flex items-center justify-between gap-4 bg-gray-100 hover:bg-gray-200 p-3 rounded-md transition cursor-pointer"
+                          className="flex items-center justify-between gap-4 bg-gray-100 hover:bg-gray-200 p-3 rounded-md transition cursor-pointer "
                         >
                           <Link href={`/article/${item.documentId}`} onClick={() =>{setSearchResults([]); setIsLoading(false); SetShowList(false); setSearching(false);}} className="flex items-center w-full">
                             <div className="flex items-center gap-3 w-full">
@@ -282,6 +282,12 @@ export default function Navbar({
                           </Link>
                         </li>
                       ))}
+                      {(searchResults.length == 0 && 
+                      <div className="h-full w-full flex justify-center items-center text-gray-400">
+                          No Results
+                      </div>
+
+                      )}
                     </ul>}
                     {isLoading && <div className="text-center  justify-center flex items-center h-full">
                       <div role="status">
