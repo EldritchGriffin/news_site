@@ -20,7 +20,7 @@ export default function sidebar({ categoryData, nbPost,categoryName }: { categor
         <div className='flex flex-col lg:flex-row justify-between gap-2 gap-y-10 mt-6 '> 
         {
             categoryData.slice(0, 1).map((post: any, i: number) => (
-              <a key={i} href={`/articles/${post.documentId}`} className="bg-white shadow h-[480px] w-full block">
+              <a key={i} href={`/article/${post.documentId}`} className="bg-white shadow h-[480px] w-full block">
                 <article className="h-full">
                   <img
                     src={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
