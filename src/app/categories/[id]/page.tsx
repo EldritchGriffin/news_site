@@ -142,7 +142,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
             'filters[category][$eq]': decodeURIComponent(current_categotie),
             'sort': 'views:desc',
             'pagination[page]': postspaginationcount,
-            'pagination[pageSize]': 5,
+            'pagination[pageSize]': 6,
             'populate': '*'
           }
         });
@@ -172,7 +172,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
             'filters[publishedAt][$gte]': sevenDaysAgoISO,
             'sort': 'views:desc',
             'pagination[page]': postspaginationcount,
-            'pagination[pageSize]': 5,
+            'pagination[pageSize]': 6,
             'populate': '*'
           }
         });

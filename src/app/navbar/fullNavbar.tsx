@@ -267,6 +267,12 @@ export default function FullNavbar ({
                         </Link>
                       ))}
                     </div>}
+                      {
+                        searchResults.length == 0 && !isLoading &&
+                    <div className="h-full w-full text-center flex items-center justify-center text-gray-500 ">
+                      No Posts
+                    </div>
+                    }
                     {isLoading && <div className="text-center  justify-center flex items-center h-full">
                       <div role="status">
                         <svg aria-hidden="true" className="inline w-15 h-15 text-gray-200 animate-spin dark:text-gray-600 fill-[#d42a23]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
