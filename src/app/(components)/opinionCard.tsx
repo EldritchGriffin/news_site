@@ -14,7 +14,7 @@ export default function OpinionCard({ title, content, author, avatar }: Props) {
     <div className="flex flex-row justify-between border shadow-lg overflow-hidden mb-6 hover:shadow-2xl transition-shadow duration-200">
       {/* Text section */}
       <div className="flex-1 p-6">
-        <h2 className="text-2xl font-semibold mb-2">{title}</h2>
+        <h2 className="text-2xl font-semibold mb-2">{styleText(title, 42)}</h2>
         <p className="text-gray-700 mb-4">{styleText(content, 42)}</p>
         <p className="text-sm text-gray-500">
           By <span className="font-medium text-gray-800">{author}</span>
