@@ -4,12 +4,9 @@ import Markdown from 'react-markdown'
 import { getPostByDocumentId, translateBatchedText } from '@/app/(handlers)/requestHandlers';
 import CardPost from '@/app/(components)/cardPost';
 import { FaFacebookF } from "react-icons/fa";
-import removeMd from 'remove-markdown';
 import { RiTwitterXLine } from "react-icons/ri";
 import SocialShareButtons from '@/app/(components)/socials';
 import rehypeRaw from 'rehype-raw'
-import { translateMarkdown } from '@/app/(utilities)/helperFunctions';
-import { escape } from 'querystring';
 import LanguageSelector from '@/app/(components)/languageSelector';
 
 function PlaceholderAd() {
@@ -48,7 +45,6 @@ function Socials() {
 
 export default async function Page({
     params,
-    searchParams,
 }: {
     params: Promise<{ slug: string, lang: string
     }>,
@@ -57,33 +53,8 @@ export default async function Page({
     const slug = (await params).slug;
     const targetLang = (await params).lang
     const post = await getPostByDocumentId(slug);
-
-    console.log("this is the lang", targetLang);
-    
-    // Get the target language from URL params, default to 'en'
-  
-    // Translate content if needed
     let content = post.content;
     let title = post.title;
-  
-    if(targetLang === 'es')
-        content = post.content
-    else
-    {
-        try {
-            // First, translate the title using the simple translation function
-            title = await translateBatchedText(post.title, targetLang, 'en');
-            
-            // Then translate the markdown content using our optimized batching
-            content = await translateMarkdown(
-                post.content,
-                (batchText) => translateBatchedText(batchText, targetLang, "en")
-            );
-        } catch (error) {
-            console.error('Translation failed:', error);
-            // Use original content on error
-        }
-    }
     
     console.log("this is the post", post);
     return (

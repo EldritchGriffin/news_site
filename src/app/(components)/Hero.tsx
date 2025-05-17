@@ -9,6 +9,7 @@ import SwiperPosts from './swiperpost'
 import Shortcategory from './shortcategory'
 import Infinitloop from './infinitloop'
 import Opinion from './opinion'
+import {formatDate}  from '@/app/(utilities)/helperFunctions'
 
 export default async function Hero() {
   const posts = await getAllPosts()
@@ -71,7 +72,7 @@ export default async function Hero() {
                       imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts[i].banner.url}
                       category={posts[i].category}
                       author={posts[i].author}
-                      date={posts[i].publishedAt}
+                      date= {formatDate(posts[i].publishedAt)}
                       documentId={posts[i].documentId}
                     ></CardPost>
                   </article>

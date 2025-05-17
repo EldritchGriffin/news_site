@@ -2,6 +2,7 @@ import React from 'react'
 import Bubbletext from './bubble'
 import CardPostChin from './cardPostChin';
 import Link from 'next/link';
+import {formatDate}  from '@/app/(utilities)/helperFunctions'
 
 export default function shortcategory({ categoryData, nbPost,categoryName }: { categoryData: any, nbPost?: number, categoryName?: string }) {
 
@@ -28,7 +29,7 @@ export default function shortcategory({ categoryData, nbPost,categoryName }: { c
                 category={post.category}
                 documentId={post.documentId}
                 author={post.author}
-                date={post.publishedAt}
+                date= {formatDate(post.publishedAt)}
                 />
             </article>
             ))}
@@ -41,7 +42,7 @@ export default function shortcategory({ categoryData, nbPost,categoryName }: { c
                 category={post.category}
                 documentId={post.documentId}
                 author={post.author}
-                date={post.publishedAt}
+                date= {formatDate(post.publishedAt)}
                 />
             </article>
             ))}

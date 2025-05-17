@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import { styleText } from '../(utilities)/helperFunctions';
+import {formatDate}  from '@/app/(utilities)/helperFunctions'
 
 interface CardPostProps {
   title: string;
@@ -53,7 +54,7 @@ const CardPostChin: React.FC<CardPostProps> = ({
         {(author || date) && (
           <div className="flex items-center text-gray-600 text-sm">
             {author && <span className="font-medium">{author}</span>}
-            {date && <span className="ml-2 text-gray-500">{date}</span>}
+            {date && <span className="ml-2 text-gray-500">{formatDate(date)}</span>}
           </div>
         )}
       </div>
