@@ -1,6 +1,6 @@
 import React from 'react'
 import CardPost from './cardPost'
-import { getAllFromCategory, getAllPosts } from '../(handlers)/requestHandlers'
+import { getAllFromCategory, getAllPosts, getOpinionsPaged } from '../(handlers)/requestHandlers'
 import Tabs from './tabs'
 import Sidebar from './sidebar'
 import Trending from './trending'
@@ -9,6 +9,7 @@ import SwiperPosts from './swiperpost'
 import Shortcategory from './shortcategory'
 import Infinitloop from './infinitloop'
 import Opinion from './opinion'
+import {formatDate}  from '@/app/(utilities)/helperFunctions'
 
 export default async function Hero() {
   const posts = await getAllPosts()
@@ -18,6 +19,7 @@ export default async function Hero() {
   const culturaYCienciaData = await getAllFromCategory('Cultura y Ciencia')
   const deportesData = await getAllFromCategory('Deportes')
   const entrevistasData = await getAllFromCategory('Entrevistas')
+  const opinionData = await getOpinionsPaged(3, 1)
 
   
   const data = [
@@ -70,7 +72,7 @@ export default async function Hero() {
                       imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts[i].banner.url}
                       category={posts[i].category}
                       author={posts[i].author}
-                      date={posts[i].publishedAt}
+                      date= {formatDate(posts[i].publishedAt)}
                       documentId={posts[i].documentId}
                     ></CardPost>
                   </article>
@@ -106,7 +108,7 @@ export default async function Hero() {
       <div className='w-full max-w-screen-xl'>
         <Bubbletext _text='Carta al director' _width='w-[200px]' />
         <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-8 mt-6 pb-10">
-        {data.map((item, idx) => (
+        {opinionData?.map((item, idx) => (
           <Opinion key={idx} {...item} />
         ))}
       </div>

@@ -1,13 +1,13 @@
+// app/(blog)/[slug]/page.tsx
 import React from 'react'
 import Markdown from 'react-markdown'
-import { getPostByDocumentId } from '@/app/(handlers)/requestHandlers';
+import { getPostByDocumentId, translateBatchedText } from '@/app/(handlers)/requestHandlers';
 import CardPost from '@/app/(components)/cardPost';
 import { FaFacebookF } from "react-icons/fa";
-import { BsPinterest } from "react-icons/bs";
-import { FaSquareXTwitter } from "react-icons/fa6";
 import { RiTwitterXLine } from "react-icons/ri";
 import SocialShareButtons from '@/app/(components)/socials';
 import rehypeRaw from 'rehype-raw'
+import LanguageSelector from '@/app/(components)/languageSelector';
 
 function PlaceholderAd() {
     return (
@@ -46,17 +46,28 @@ function Socials() {
 export default async function Page({
     params,
 }: {
-    params: Promise<{ slug: string }>
+    params: Promise<{ slug: string, lang: string
+    }>,
+    searchParams?: { [key: string]: string | string[] | undefined }
 }) {
     const slug = (await params).slug;
+    const targetLang = (await params).lang
     const post = await getPostByDocumentId(slug);
-    console.log(post);
+    let content = post.content;
+    let title = post.title;
+    
+    console.log("this is the post", post);
     return (
         <main className="text-gray-900 flex flex-col items-center w-full ">
             <div className='max-w-screen-xl w-full justify-center items-center flex flex-col'>
+                {/* Add language selector */}
+                <div className="self-end mt-5 mb-4">
+                    <LanguageSelector currentLang={targetLang} />
+                </div>
+                
                 <div className='w-full h-[500px] mb-10'>
                     <CardPost
-                        title={post.title}
+                        title={title}
                         imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
                         category={post.category}
                         author={post.author}
@@ -68,7 +79,7 @@ export default async function Page({
                 <div className='prose lg:prose-lg'>
                     <Markdown
                        rehypePlugins={[rehypeRaw]}>
-                        {post.content}
+                        {content}
                     </Markdown>
                     <h5 className='text-red-600 text-sm font-semibold mt-5'>
                         {`Published at : ${new Date(post.publishedAt).toLocaleDateString('en-US', {
@@ -88,7 +99,7 @@ export default async function Page({
                     ></hr>
                     Share this article:
                     <SocialShareButtons
-                        title={post.title}
+                        title={title} 
                     ></SocialShareButtons>
                 </div>
             </div>

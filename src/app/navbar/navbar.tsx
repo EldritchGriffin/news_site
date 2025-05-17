@@ -11,13 +11,10 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import { FiSearch } from "react-icons/fi";
-
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import axios from "axios";
 
 function decodeSpaces(str: string) {

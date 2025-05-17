@@ -1,17 +1,11 @@
 import React from 'react'
 import Bubbletext from './bubble'
+import {formatDate}  from '@/app/(utilities)/helperFunctions'
 
 export default function sidebar({ categoryData, nbPost,categoryName }: { categoryData: any, nbPost?: number, categoryName?: string }) {
   console.log('=======11',categoryData)
   
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric',
-    });
-  };
+
   return (
     <>
     <div className='w-full max-w-screen-xl flex flex-col items-center'>

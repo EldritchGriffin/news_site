@@ -307,3 +307,45 @@ export const getOpinionsPaged = async (limit = 5, page = 1) => {
     throw error;
   }
 }
+
+export async function translateBatchedText(
+  text: string,
+  targetLang: string,
+  sourceLang: string = 'en'
+): Promise<string> {
+  if (!text || !text.trim()) {
+    return text;
+  }
+  
+  try {
+    // Using your local LibreTranslate instance
+    const response = await fetch("http://localhost:5000/translate", {
+      method: "POST",
+      body: JSON.stringify({
+        q: text,
+        source: sourceLang,
+        target: targetLang,
+        format: "text",
+        api_key: "" // Optional - only needed if your instance requires API key
+      }),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Translation API error: ${response.status}`);
+    }
+
+    // LibreTranslate returns a structure like: { translatedText: "..." }
+    const data = await response.json();
+    
+    if (data && data.translatedText) {
+      return data.translatedText;
+    }
+    
+    console.error('Unexpected LibreTranslate API response format:', data);
+    return text; // Return original if response format is unexpected
+  } catch (error) {
+    console.error('Translation error:', error);
+    return text; // Return original text on error
+  }
+}
