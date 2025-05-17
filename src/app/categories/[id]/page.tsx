@@ -202,7 +202,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
             'filters[category][$eq]': decodeURIComponent(current_categotie),
             'sort': 'publishedAt:desc',
             'pagination[page]': postspaginationcount,
-            'pagination[pageSize]': 5, 
+            'pagination[pageSize]': 6, 
             'populate': '*'
           }});
           if (postspaginationcount == 1)
@@ -326,7 +326,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
       }
           </div>
 
-          {!isLoadingtwo  &&  <button className="bg-black text-white px-3 py-2 flex flex-row font-[Baskerville] gap-2 w-fit items-center hover:bg-white hover:text-black hover:border-2 hover:border-black" onClick={reloadcontent} ><TfiReload /> Load more</button>}
+          {!isLoadingtwo  &&  <button className="bg-black text-white px-3 py-2 flex flex-row font-[Baskerville] gap-2 w-fit items-center hover:bg-white hover:text-black h-[40px] hover:border-1 hover:border-black" onClick={reloadcontent} ><TfiReload /> Load more</button>}
       </div>
 
       <div className=" lg:w-[200px]">

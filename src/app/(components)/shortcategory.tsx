@@ -9,13 +9,16 @@ export default function shortcategory({ categoryData, nbPost,categoryName }: { c
     <>
       <section className="container mx-auto mt-10 mb-20">
         <div className="flex gap-6 flex-col  justify-between">
-          <Bubbletext _text={categoryName || 'Default Category'} _width="w-[140px]" />
+          <div className='flex items-center justify-between'>
+
+          <Bubbletext _text={categoryName || 'Default Category'} _width="w-[170px] " />
           {/* <button className="text-sm text-gray-500 text-end hover:text-gray-800">
             View All
             </button> */}
-            <Link className="text-sm text-gray-500 text-end hover:text-gray-800" href={`/categories/${categoryName}`}>
+            <Link className="text-sm text-gray-500 text-end hover:text-gray-800 " href={`/categories/${categoryName}`}>
                 Ver más
             </Link>
+            </div>
             {nbPost && nbPost == 2 ? <div className='grid grid-cols-1 md:grid-cols-2 md:gap-y-12 gap-2 mt-6'>
                 {categoryData.slice(0, nbPost).map((post: any, i: number) => (
             <article key={i} className='relative'>

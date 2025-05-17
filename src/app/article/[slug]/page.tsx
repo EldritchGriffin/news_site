@@ -3,8 +3,11 @@ import Markdown from 'react-markdown'
 import { getPostByDocumentId } from '@/app/(handlers)/requestHandlers';
 import CardPost from '@/app/(components)/cardPost';
 import { FaFacebookF } from "react-icons/fa";
+import { BsPinterest } from "react-icons/bs";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { RiTwitterXLine } from "react-icons/ri";
 import SocialShareButtons from '@/app/(components)/socials';
+import rehypeRaw from 'rehype-raw'
 
 function PlaceholderAd() {
     return (
@@ -47,25 +50,27 @@ export default async function Page({
 }) {
     const slug = (await params).slug;
     const post = await getPostByDocumentId(slug);
+    console.log(post);
     return (
         <main className="text-gray-900 flex flex-col items-center w-full ">
             <div className='max-w-screen-xl w-full justify-center items-center flex flex-col'>
                 <div className='w-full h-[500px] mb-10'>
                     <CardPost
-                        title={post.data.title}
-                        imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post.data.banner.url}
-                        category={post.data.category}
-                        author={post.data.author}
-                        date={post.data.publishedAt}
+                        title={post.title}
+                        imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
+                        category={post.category}
+                        author={post.author}
+                        date={post.publishedAt}
                     >
                     </CardPost>
                 </div>
                 <div className='prose lg:prose-lg'>
-                    <Markdown>
-                        {post.data.content}
+                    <Markdown
+                       rehypePlugins={[rehypeRaw]}>
+                        {post.content}
                     </Markdown>
                     <h5 className='text-red-600 text-sm font-semibold mt-5'>
-                        {`Published at : ${new Date(post.data.publishedAt).toLocaleDateString('en-US', {
+                        {`Published at : ${new Date(post.publishedAt).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric'
@@ -82,7 +87,7 @@ export default async function Page({
                     ></hr>
                     Share this article:
                     <SocialShareButtons
-                        title={post.data.title}
+                        title={post.title}
                     ></SocialShareButtons>
                 </div>
             </div>
