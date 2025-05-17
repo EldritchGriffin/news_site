@@ -64,10 +64,11 @@ export default function Navbar({
         fetchSearch();
     }
     , [searchString]);
-    // const currentPath = pathname.split('/');
-    // const pathName = currentPath[1];
-    // const pathNameDecoded = decodeSpaces(pathName);
-    // setPath(pathNameDecoded);
+    useEffect(() => {
+      const currentPath = pathname.split('/');
+      const pathName = (decodeURIComponent(currentPath[1]) == "videos" ? "videos" : decodeURIComponent(currentPath[2]));
+      setPath(decodeURIComponent(pathName));
+    }, [pathname]);
     const ListItems : ListItem[] = [
       {
           name : "Portada",
@@ -124,10 +125,10 @@ export default function Navbar({
 
       },
       {
-          name : "vídeo",
+          name : "vídeos",
           value : 7,
           isDropDown : false,
-          trueName : "vídeos",
+          trueName : "videos",
           items : []
       }
     ]
@@ -185,7 +186,7 @@ export default function Navbar({
                   {ListItems.map((item: ListItem, itemIndex: number) => (
                     <div key={itemIndex}>
                       <li
-                        className={`flex cursor-pointer gap-2 mb-1 ${path == item.name ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7] text-black' } text-sm w-full p-3 pl-2 content-center`}
+                        className={` flex cursor-pointer gap-2 mb-1 ${path == item.name || path == item.trueName ? 'bg-[#d42a23] text-white' : 'bg-[#f7f7f7] text-black' } text-sm w-full p-3 pl-2 content-center `}
                         onClick={() =>
                         {
                           if (item.isDropDown) {  
@@ -255,11 +256,11 @@ export default function Navbar({
                   <p className="text-sm text-gray-600 font-semibold">Search results</p>
                               
                   <div className="flex flex-col flex-grow overflow-hidden">
-                    {!isLoading && <ul className="flex flex-col gap-3 overflow-y-auto flex-grow pr-1">
+                    {!isLoading && <ul className="flex flex-col gap-3 overflow-y-auto flex-grow pr-1  ">
                       {searchResults.map((item: Item, itemIndex: number) => (
                         <li
                           key={itemIndex}
-                          className="flex items-center justify-between gap-4 bg-gray-100 hover:bg-gray-200 p-3 rounded-md transition cursor-pointer"
+                          className="flex items-center justify-between gap-4 bg-gray-100 hover:bg-gray-200 p-3 rounded-md transition cursor-pointer "
                         >
                           <Link href={`/article/${item.documentId}`} onClick={() =>{setSearchResults([]); setIsLoading(false); SetShowList(false); setSearching(false);}} className="flex items-center w-full">
                             <div className="flex items-center gap-3 w-full">
@@ -278,6 +279,12 @@ export default function Navbar({
                           </Link>
                         </li>
                       ))}
+                      {(searchResults.length == 0 && 
+                      <div className="h-full w-full flex justify-center items-center text-gray-400">
+                          No Results
+                      </div>
+
+                      )}
                     </ul>}
                     {isLoading && <div className="text-center  justify-center flex items-center h-full">
                       <div role="status">

@@ -16,6 +16,7 @@ interface Post {
   category: string;
   author: string;
   publishedAt: string;
+  documentId: string;
   views: number;
 }
 
@@ -62,6 +63,8 @@ export default function SwiperPosts({ posts }: { posts: Post[] }) {
               category={post.category}
               author={post.author}
               date={post.publishedAt}
+              documentId={post.documentId}
+
             />
           
           </SwiperSlide>
