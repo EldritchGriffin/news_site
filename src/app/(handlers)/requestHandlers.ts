@@ -8,7 +8,7 @@ const client = strapi({
 export const getAllPosts = async () => {
   try {
     const response = await client.collection('posts').find({
-      sort: 'publishedAt:asc',
+      sort: 'publishedAt:desc',
       populate: '*'
     });
     return response.data;
@@ -21,7 +21,7 @@ export const getAllPosts = async () => {
 export const getAllPostsPaged = async (limit = 5, page = 1) => {
   try {
     const response = await client.collection('posts').find({
-      sort: 'publishedAt:asc',
+      sort: 'publishedAt:desc',
       pagination: {
         page,
         pageSize: limit
@@ -55,7 +55,7 @@ export const getAllFromCategory = async (category: string) => {
           $eq: category
         }
       },
-      sort: 'publishedAt:asc',
+      sort: 'publishedAt:desc',
       populate: '*'
     });
     return response.data;
@@ -285,6 +285,23 @@ export const getCategoriesFromLast3Days = async () => {
     const sortedCategories = Object.entries(categories).sort((a: any, b: any) => b[1] - a[1]);
     const sortedCategoriesNames = sortedCategories.map((category: any) => category[0]);
     return sortedCategoriesNames;
+  } catch (error) {
+    console.error('Error fetching latest posts:', error);
+    throw error;
+  }
+}
+
+export const getOpinionsPaged = async (limit = 5, page = 1) => {
+  try {
+    const response = await client.collection('opinions').find({
+      sort: 'publishedAt:desc',
+      pagination: {
+        page,
+        pageSize: limit
+      },
+      populate: '*'
+    });
+    return response.data
   } catch (error) {
     console.error('Error fetching latest posts:', error);
     throw error;

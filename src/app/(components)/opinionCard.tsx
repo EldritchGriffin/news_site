@@ -11,7 +11,7 @@ interface Props {
 
 export default function OpinionCard({ title, content, author, image, date }: Props) {
   return (
-    <div className="flex flex-col md:flex-row border rounded-lg shadow-lg overflow-hidden mb-6 hover:shadow-xl transition-shadow duration-200">
+    <div className="flex flex-row justify-between border shadow-lg overflow-hidden mb-6 hover:shadow-xl transition-shadow duration-200">
       {/* Text section */}
       <div className="flex-1 p-6">
         <h2 className="text-2xl font-semibold mb-2">{title}</h2>
@@ -23,11 +23,11 @@ export default function OpinionCard({ title, content, author, image, date }: Pro
       </div>
 
       {/* Image section */}
-      <div className="w-full md:w-48 overflow-hidden">
+      <div className="md:w-48 overflow-hidden">
         <img
           src={"./profileImage.jpg"}
           alt={title}
-          className="w-full h-full object-fit p-4 rounded-full"
+          className="w-fit h-fit object-fit p-4 max-w-[190px] max-h-[190px] rounded-full"
         />
       </div>
     </div>

@@ -17,5 +17,7 @@ interface Item {
     updatedAt : Date,
     publishedAt : Date,
     category : string,
-    banner : Banner
+    banner : Banner,
+    author : string,
+    views : string,
 }

@@ -6,12 +6,12 @@ import Bubbletext from './bubble';
 export default function Tabs({
     politicaData,
     economiaData,
-  internacionalData,
+    internacionalData,
 
 }: {
     politicaData: any;
     economiaData: any;
-  internacionalData: any;
+    internacionalData: any;
 }) {
   const [activeTab, setActiveTab] = useState('Política');
 
@@ -21,17 +21,18 @@ export default function Tabs({
   const filteredPosts = (() => {
     switch (activeTab) {
       case 'Política':
-        return politicaData?.data || [];
+        return politicaData || [];
       case 'Economía':
-        return economiaData?.data || [];
+        return economiaData || [];
       case 'Internacional':
-        return internacionalData?.data || [];
+        return internacionalData || [];
       case 'Cultura y Ciencia':
       default:
         return [];
     }
   })();
 
+    console.log("======>", politicaData)
   return (
     <>
       <div className="w-full max-w-screen-xl ">
