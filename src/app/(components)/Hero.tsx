@@ -1,6 +1,6 @@
 import React from 'react'
 import CardPost from './cardPost'
-import { getAllFromCategory, getAllPosts, getOpinionsPaged } from '../(handlers)/requestHandlers'
+import {getLatestPosts, getLatestPostsFromCategory, getOpinionsPaged } from '../(handlers)/requestHandlers'
 import Tabs from './tabs'
 import Sidebar from './sidebar'
 import Trending from './trending'
@@ -13,13 +13,13 @@ import Link from 'next/link'
 import {formatDate}  from '@/app/(utilities)/helperFunctions'
 
 export default async function Hero() {
-  const posts = await getAllPosts()
-  const politicaData = await getAllFromCategory('Política')
-  const economiaData = await getAllFromCategory('Economía')
-  const internacionalData = await getAllFromCategory('Internacional')
-  const culturaYCienciaData = await getAllFromCategory('Cultura y Ciencia')
-  const deportesData = await getAllFromCategory('Deportes')
-  const entrevistasData = await getAllFromCategory('Entrevistas')
+  const posts = await getLatestPosts(10)
+  const politicaData = await getLatestPostsFromCategory('Política',10)
+  const economiaData = await getLatestPostsFromCategory('Economía',10)
+  const internacionalData = await getLatestPostsFromCategory('Internacional',10)
+  const culturaYCienciaData = await getLatestPostsFromCategory('Cultura y Ciencia',10)
+  const deportesData = await getLatestPostsFromCategory('Deportes',10)
+  const entrevistasData = await getLatestPostsFromCategory('Entrevistas',10)
   const opinionData = await getOpinionsPaged(3, 1)
 
   return (

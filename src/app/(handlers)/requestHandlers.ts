@@ -5,19 +5,6 @@ const client = strapi({
   auth: process.env.STRAPI_API_TOKEN,
 });
 
-export const getAllPosts = async () => {
-  try {
-    const response = await client.collection('posts').find({
-      sort: 'publishedAt:desc',
-      populate: '*'
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    throw error;
-  }
-};
-
 export const getAllPostsPaged = async (limit = 5, page = 1) => {
   try {
     const response = await client.collection('posts').find({
@@ -47,23 +34,6 @@ export const getPostByDocumentId = async (documentId: string) => {
   }
 }
 
-export const getAllFromCategory = async (category: string) => {
-  try {
-    const response = await client.collection('posts').find({
-      filters: {
-        category: {
-          $eq: category
-        }
-      },
-      sort: 'publishedAt:desc',
-      populate: '*'
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    throw error;
-  }
-}
 
 export const getLatestPosts = async (limit = 5) => {
   try {
