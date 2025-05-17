@@ -13,12 +13,13 @@ import Opinion from './opinion'
 export default async function Hero() {
   const posts = await getAllPosts()
   const politicaData = await getAllFromCategory('Política')
-  const economiaData = await getAllFromCategory('Economia')
+  const economiaData = await getAllFromCategory('Economía')
   const internacionalData = await getAllFromCategory('Internacional')
   const culturaYCienciaData = await getAllFromCategory('Cultura y Ciencia')
   const deportesData = await getAllFromCategory('Deportes')
   const entrevistasData = await getAllFromCategory('Entrevistas')
 
+  
   const data = [
     {
       title: 'Jahad wld nass khaso li ychwih',
@@ -70,6 +71,7 @@ export default async function Hero() {
                       category={posts[i].category}
                       author={posts[i].author}
                       date={posts[i].publishedAt}
+                      documentId={posts[i].documentId}
                     ></CardPost>
                   </article>
                 )
@@ -80,10 +82,12 @@ export default async function Hero() {
       </div>
       <Tabs
         politicaData={politicaData}
-        economiaData={economiaData}
-        internacionalData={internacionalData}
       />
-      <Sidebar/>
+      <Sidebar
+        categoryData={economiaData}
+        nbPost={2}
+        categoryName='Economía'
+      />
       <Trending/>
       <div className='w-full max-w-screen-xl'>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
@@ -107,7 +111,11 @@ export default async function Hero() {
         ))}
       </div>
       </div>
-      <Sidebar/>
+      <Sidebar 
+        categoryData={internacionalData}
+        nbPost={2}
+        categoryName='Internacional'
+      />
       <div className='w-full max-w-screen-xl'>
       <Shortcategory
        categoryData={culturaYCienciaData}

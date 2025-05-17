@@ -23,7 +23,6 @@ function subscriveservicce(Email:string, SetEmailvalid:any){
         SetEmailvalid(1);
     else
     SetEmailvalid(0);
-    console.log("daaz men hna :", isValidEmail(Email) , "       ",  Email.length);
 }
 
 export default function Footer() {
@@ -47,13 +46,13 @@ export default function Footer() {
                 <ul className=' text-gray-300 text-[15px] pl-[5px] '>
                     {(Categoriesmap.map((categorie, index) => (
                         <li className="box-border text-[#bbbbbb] md:text-[15px]  text-[14px] font-normal  leading-[21px] list-none list-outside mb-[5px] ml-0 mr-0 mt-0 p-0 text-left text-size-adjust-100 " key={index}>
-                            <a href={`/categories/${categorie}`} className='hover:text-white'>
+                            <a href={`/categories/${categorie}`} className='hover:text-[#d42a23]'>
                                 {categorie}
                             </a>
                         </li>
                     )))}
                         <li className="box-border text-[#bbbbbb] md:text-[15px]  text-[14px] font-normal  leading-[21px] list-none list-outside mb-[5px] ml-0 mr-0 mt-0 p-0 text-left text-size-adjust-100 " key={"Carta al director"}>
-                            <a href="" className='hover:text-white'>
+                            <a href="" className='hover:text-[#d42a23]'>
                             Carta al director
                             </a>
                         </li>
@@ -61,7 +60,7 @@ export default function Footer() {
                 <ul className=' text-gray-300 lg:pr-40 pl-[5px]'>
                     {(Aboutmap.map((about, index) => (
                         <li className="box-border text-[#bbbbbb] md:text-[15px] text-[14px] font-normal  leading-[21px] list-none list-outside mb-[5px] ml-0 mr-0 mt-0 p-0 text-left text-size-adjust-100 " key={index}>
-                            <a href={`/categories/${about}`} className='text-[15px] hover:text-white'>
+                            <a href={`/categories/${about}`} className='text-[15px] hover:text-[#d42a23]'>
                                 {about}
                             </a>
                         </li>
@@ -78,26 +77,26 @@ export default function Footer() {
     
     <li className="flex items-center space-x-2 box-border text-[#bbbbbb]  text-[14px] font-normal  leading-[21px] list-none list-outside mb-[5px] ml-0 mr-0 mt-0 p-0 text-left text-size-adjust-100 ">
         <FaPhoneSquareAlt className="text-sm" />
-        <a href="tel:18002505260" className="text-[15px] font-[Baskerville] hover:text-white">
+        <a href="tel:18002505260" className="text-[15px] font-[Baskerville] hover:text-[#d42a23]">
             1800-250-5260
         </a>
     </li>
     <li className="flex items-center space-x-2 box-border text-[#bbbbbb]  text-[14px] font-normal  leading-[21px] list-none list-outside mb-[5px] ml-0 mr-0 mt-0 p-0 text-left text-size-adjust-100 ">
         <CiMail className="text-sm text-[#bbbbbb]" />
-        <a href="mailto:support@example.com" className="text-[15px] font-[Baskerville] hover:text-white">
+        <a href="mailto:support@example.com" className="text-[15px] font-[Baskerville] hover:text-[#d42a23]">
             support@example.com
         </a>
     </li>
     <li className="flex items-center space-x-2 box-border text-[#bbbbbb]  text-[14px] font-normal  leading-[21px] list-none list-outside mb-[5px] ml-0 mr-0 mt-0 p-0 text-left text-size-adjust-100 ">
         <TbDeviceLandlinePhone className="text-sm" />
-        <a href="mailto:support@example.com" className="text-[15px] font-[Baskerville] hover:text-white">
+        <a href="mailto:support@example.com" className="text-[15px] font-[Baskerville] hover:text-[#d42a23]">
             support@example.com
         </a>
     </li>
     </ul>
     <div className="flex flex-row space-x-2">
-        <FaFacebookF className='text-sm bg-[#212121] text-[#bbbbbb]' />
-        <RiTwitterXLine className='text-sm bg-[#212121] text-[#bbbbbb]' />
+        <FaFacebookF className='text-sm bg-[#212121] text-[#bbbbbb] hover:text-[#d42a23] ' />
+        <RiTwitterXLine className='text-sm bg-[#212121] text-[#bbbbbb] hover:text-[#d42a23] ' />
     </div>
     </div>
         <div className=''>

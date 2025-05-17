@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { styleText } from '../(utilities)/helperFunctions';
 
@@ -6,7 +7,15 @@ interface CardPostProps {
   imageUrl: string;
   category: string;
   author?: string;
+  documentId: string;
   date?: string;
+}
+
+function Clicked(documentId: string) {
+  return () => {
+    //change the route to the article page
+    window.location.href = `/article/${documentId}`;
+  };
 }
 
 const CardPost: React.FC<CardPostProps> = ({ 
@@ -14,12 +23,15 @@ const CardPost: React.FC<CardPostProps> = ({
   imageUrl, 
   category, 
   author, 
-  date 
+  date,
+  documentId
 }) => {
 
 
   return (
-    <div className="relative w-full h-full shadow-md overflow-hidden group">
+    <div className="relative w-full h-full shadow-md overflow-hidden group"
+    onClick={Clicked(documentId)} 
+    >
       {/* Add hover zoom effect */}
       <img 
         src={imageUrl} 
