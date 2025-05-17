@@ -87,7 +87,6 @@ export default async function Hero() {
         categoryData={economiaData}
         nbPost={2}
         categoryName='Economía'
-
       />
       <Trending/>
       <div className='w-full max-w-screen-xl'>

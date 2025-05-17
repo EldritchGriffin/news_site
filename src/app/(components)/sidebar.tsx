@@ -20,24 +20,26 @@ export default function sidebar({ categoryData, nbPost,categoryName }: { categor
         <div className='flex flex-col lg:flex-row justify-between gap-2 gap-y-10 mt-6 '> 
         {
             categoryData.slice(0, 1).map((post: any, i: number) => (
-              <article key={i} className="bg-white  shadow h-[480px] w-full ">
-                <img
-                  src={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
-                  alt="Article Image"
-                  className="w-full h-[60%] object-cover mb-2"
-                />
-                <div className='p-4'>
+              <a key={i} href={`/articles/${post.documentId}`} className="bg-white shadow h-[480px] w-full block">
+                <article className="h-full">
+                  <img
+                    src={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
+                    alt="Article Image"
+                    className="w-full h-[60%] object-cover mb-2"
+                  />
+                  <div className='p-4'>
 
-                  <p className="text-sm text-red-600 mb-1">{categoryName}</p>
-                  <h2 className="text-lg font-semibold mb-2">{post.title}</h2>
-                  <span className="text-xs text-gray-500">{post.author} / {formatDate(post.publishedAt)}</span>
-                </div>
-
-              </article>
+                    <p className="text-sm text-red-600 mb-1">{categoryName}</p>
+                    <h2 className="text-lg font-semibold mb-2">{post.title}</h2>
+                    <span className="text-xs text-gray-500">{post.author} / {formatDate(post.publishedAt)}</span>
+                  </div>
+                </article>
+              </a>
             ))}
-            <aside className='space-y-4 w-full md:w-[70%]'>
+            <aside className='space-y-4 w-full xl:w-[70%]'>
             {categoryData.slice(1, 5).map((post: any, i: number) => (
               <div key={i} className='bg-white p-3 shadow w-full flex gap-2'>
+                <a href={`/article/${post.documentId}`} className="flex gap-2">
                 <img
                   src={process.env.NEXT_PUBLIC_STRAPI_URL + post.banner.url}
                   alt="Article Image"
@@ -48,6 +50,7 @@ export default function sidebar({ categoryData, nbPost,categoryName }: { categor
                 <p className="text-sm">{post.title}</p>
                 <span className="text-xs text-gray-500">{post.author} / {formatDate(post.publishedAt)}</span>
                 </div>
+                </a>
 
               </div>
             ))}
