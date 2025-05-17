@@ -1,7 +1,7 @@
 // app/(blog)/[slug]/page.tsx
 import React from 'react'
 import Markdown from 'react-markdown'
-import { getPostByDocumentId, translateBatchedText } from '@/app/(handlers)/requestHandlers';
+import { getPostByDocumentId} from '@/app/(handlers)/requestHandlers';
 import CardPost from '@/app/(components)/cardPost';
 import { FaFacebookF } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
@@ -52,12 +52,10 @@ export default async function Page({
     searchParams?: { [key: string]: string | string[] | undefined }
 }) {
     const slug = (await params).slug;
-    const targetLang = (await params).lang
     const post = await getPostByDocumentId(slug);
     let content = post.content;
     let title = post.title;
     
-    console.log("this is the post", post);
     return (
         <main className="text-gray-900 flex flex-col items-center w-full  ">
             <div className='max-w-screen-xl w-full justify-center items-center flex flex-col '>

@@ -5,19 +5,6 @@ const client = strapi({
   auth: process.env.STRAPI_API_TOKEN,
 });
 
-export const getAllPosts = async () => {
-  try {
-    const response = await client.collection('posts').find({
-      sort: 'publishedAt:desc',
-      populate: '*'
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    throw error;
-  }
-};
-
 export const getAllPostsPaged = async (limit = 5, page = 1) => {
   try {
     const response = await client.collection('posts').find({
@@ -47,23 +34,6 @@ export const getPostByDocumentId = async (documentId: string) => {
   }
 }
 
-export const getAllFromCategory = async (category: string) => {
-  try {
-    const response = await client.collection('posts').find({
-      filters: {
-        category: {
-          $eq: category
-        }
-      },
-      sort: 'publishedAt:desc',
-      populate: '*'
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    throw error;
-  }
-}
 
 export const getLatestPosts = async (limit = 5) => {
   try {
@@ -308,44 +278,3 @@ export const getOpinionsPaged = async (limit = 5, page = 1) => {
   }
 }
 
-export async function translateBatchedText(
-  text: string,
-  targetLang: string,
-  sourceLang: string = 'en'
-): Promise<string> {
-  if (!text || !text.trim()) {
-    return text;
-  }
-  
-  try {
-    // Using your local LibreTranslate instance
-    const response = await fetch("http://localhost:5000/translate", {
-      method: "POST",
-      body: JSON.stringify({
-        q: text,
-        source: sourceLang,
-        target: targetLang,
-        format: "text",
-        api_key: "" // Optional - only needed if your instance requires API key
-      }),
-      headers: { "Content-Type": "application/json" }
-    });
-
-    if (!response.ok) {
-      throw new Error(`Translation API error: ${response.status}`);
-    }
-
-    // LibreTranslate returns a structure like: { translatedText: "..." }
-    const data = await response.json();
-    
-    if (data && data.translatedText) {
-      return data.translatedText;
-    }
-    
-    console.error('Unexpected LibreTranslate API response format:', data);
-    return text; // Return original if response format is unexpected
-  } catch (error) {
-    console.error('Translation error:', error);
-    return text; // Return original text on error
-  }
-}

@@ -3,17 +3,11 @@ import Bubbletext from '@/app/(components)/bubble';
 import { VscTriangleDown } from "react-icons/vsc";
 import { TfiReload } from "react-icons/tfi";
 import Breadcrumb from '@/app/(components)/breadcrumb';
-import { getAllPosts } from '@/app/(handlers)/requestHandlers';
 import SwiperPosts from '@/app/(components)/swiperpost';
 import CardPost from '@/app/(components)/cardPost';
-import { getLatestPostsFromCategory } from '@/app/(handlers)/requestHandlers';
-import { getAllFromCategory } from '@/app/(handlers)/requestHandlers';
 import { useEffect, useState } from 'react';
-import { GET } from '@/app/api/strapi/[...path]/route';
-import { request } from 'http';
 import axios from 'axios';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { getCategoriesFromLast3Days } from '@/app/(handlers)/requestHandlers';
 
 
 function Populattagss({ popularetags }: { popularetags: string[] }) {
@@ -125,7 +119,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
       try {
         const pathname = await params
         setCurrent_categotie(pathname.id);
-        const res = await axios.get(`/api/strapi/posts?filters[category][$eq]=${decodeURIComponent(current_categotie)}&populate=*`);
+        const res = await axios.get(`/api/strapi/posts?filters[category][$eq]=${decodeURIComponent(current_categotie)}&sort=publishedAt:desc&pagination[page]=1&pagination[pageSize]=10&populate=*`);
         setLatesstContent(res.data);
         
       } catch (error) {
