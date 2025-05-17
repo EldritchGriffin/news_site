@@ -212,7 +212,8 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
       setIsLoadingtwo(false);
     };
     GetCategorie();
-    fetchallData();
+    if (!LatesstContent?.data?.length)
+      fetchallData();
     if(postspaginationtype == "Latest Post")
       fetchlatestData();
     else if (postspaginationtype == "Most popular")

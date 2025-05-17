@@ -66,6 +66,11 @@ export default function Footer() {
                         </li>
                         
                     )))}
+                        <li className="box-border text-[#bbbbbb] md:text-[15px]  text-[14px] font-normal  leading-[21px] list-none list-outside mb-[5px] ml-0 mr-0 mt-0 p-0 text-left text-size-adjust-100 " key={"Carta al director"}>
+                            <a href="" className='hover:text-[#d42a23]'>
+                                Carta al director
+                            </a>
+                        </li>
                 </ul>
             </div>
         </div>
