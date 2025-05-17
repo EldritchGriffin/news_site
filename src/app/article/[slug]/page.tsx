@@ -7,6 +7,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
 import SocialShareButtons from '@/app/(components)/socials';
 import rehypeRaw from 'rehype-raw'
+import NewsSlider from '@/app/(components)/Newslider';
 
 function PlaceholderAd() {
     return (
@@ -55,8 +56,8 @@ export default async function Page({
     let title = post.title;
     
     return (
-        <main className="text-gray-900 flex flex-col items-center w-full ">
-            <div className='max-w-screen-xl w-full justify-center items-center flex flex-col'>
+        <main className="text-gray-900 flex flex-col items-center w-full  ">
+            <div className='max-w-screen-xl w-full justify-center items-center flex flex-col '>
                 <div className='w-full h-[500px] mb-10'>
                     <CardPost
                         title={title}
@@ -68,7 +69,7 @@ export default async function Page({
                     >
                     </CardPost>
                 </div>
-                <div className='prose lg:prose-lg'>
+                <div className='prose lg:prose-lg w-full xl:w-[1100px] max-w-screen-xl px-4'>
                     <Markdown
                        rehypePlugins={[rehypeRaw]}>
                         {content}
@@ -93,6 +94,9 @@ export default async function Page({
                     <SocialShareButtons
                         title={title} 
                     ></SocialShareButtons>
+                    <div>
+                        <NewsSlider></NewsSlider>
+                    </div>
                 </div>
             </div>
         </main>
