@@ -1,6 +1,7 @@
 import React from 'react'
 import Bubbletext from './bubble'
 import {formatDate}  from '@/app/(utilities)/helperFunctions'
+import {styleText} from '@/app/(utilities)/helperFunctions'
 
 export default function sidebar({ categoryData, nbPost,categoryName }: { categoryData: any, nbPost?: number, categoryName?: string }) {
   console.log('=======11',categoryData)
@@ -24,7 +25,7 @@ export default function sidebar({ categoryData, nbPost,categoryName }: { categor
                   <div className='p-4'>
 
                     <p className="text-sm text-red-600 mb-1">{categoryName}</p>
-                    <h2 className="text-lg font-semibold mb-2">{post.title}</h2>
+                    <h2 className="text-lg font-semibold mb-2">{styleText(post.title,150)}</h2>
                     <span className="text-xs text-gray-500">{post.author} / {formatDate(post.publishedAt)}</span>
                   </div>
                 </article>
@@ -39,9 +40,9 @@ export default function sidebar({ categoryData, nbPost,categoryName }: { categor
                   alt="Article Image"
                   className="w-36 h-19 object-cover mb-2"
                 />
-                <div className='flex flex-col justify-center'>
+                <div className='flex flex-col justify-center space-y-2'>
 
-                <p className="text-sm">{post.title}</p>
+                <p className="text-sm">{styleText(post.title,60)}</p>
                 <span className="text-xs text-gray-500">{post.author} / {formatDate(post.publishedAt)}</span>
                 </div>
                 </a>

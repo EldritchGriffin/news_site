@@ -3,7 +3,7 @@ import { TfiReload } from "react-icons/tfi";
 import Breadcrumb from '@/app/(components)/breadcrumb';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import OpinionCard from '../(components)/opinionCard';
+import Opinion from '../(components)/opinion';
 
 interface Banner {
   id : number,
@@ -75,12 +75,13 @@ export default   function Page() {
         <section className="lg:col-span-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {!isLoading && opinionsData?.map((o, index) => (
-              <OpinionCard
+              <Opinion
                 key={index}
                 title={o.title}
-                avatar={process.env.NEXT_PUBLIC_STRAPI_URL + o.avatar.url}
-                content={o.content}
                 author={o.author}
+                comments={2}
+                avatar={o.avatar}
+
               />
             ))}
             {!isLoading && opinionsData.length === 0 && (

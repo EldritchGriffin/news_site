@@ -11,7 +11,7 @@ interface Props {
 
 export default function OpinionCard({ title, content, author, avatar }: Props) {
   return (
-    <div className="flex flex-row justify-between border shadow-lg overflow-hidden mb-6 hover:shadow-2xl transition-shadow duration-200">
+    <div className="flex flex-row justify-between border shadow-lg overflow-hidden mb-6 hover:shadow-2xl transition-shadow duration-200 bb">
       {/* Text section */}
       <div className="flex-1 p-6">
         <h2 className="text-2xl font-semibold mb-2">{styleText(title, 42)}</h2>
@@ -26,7 +26,7 @@ export default function OpinionCard({ title, content, author, avatar }: Props) {
         <img
           src={avatar}
           alt={title}
-          className="w-fit h-fit object-fit p-4 max-w-[190px] max-h-[190px] rounded-full"
+          className="w-36 h-36 shrink-0 object-fit p-4  rounded-full"
         />
       </div>
     </div>

@@ -5,7 +5,7 @@ export default function InfiniteLoop() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const positionRef = useRef(0);
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number | undefined>(undefined);
 
   const newsItems = [
     "Breaking: Market hits all-time high!",

@@ -21,7 +21,7 @@ export default function NavItems(props : {title: string, content: string, banner
           {props.Category}
         </span>
         <h2 className="text-lg text-black mt-4 p-t-4 font-bold">
-          {styleText(props.title, 42)}
+          {styleText(props.title, 36)}
         </h2>
       </div>
     </div>

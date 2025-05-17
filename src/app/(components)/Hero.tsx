@@ -9,6 +9,7 @@ import SwiperPosts from './swiperpost'
 import Shortcategory from './shortcategory'
 import Infinitloop from './infinitloop'
 import Opinion from './opinion'
+import Link from 'next/link'
 import {formatDate}  from '@/app/(utilities)/helperFunctions'
 
 export default async function Hero() {
@@ -20,28 +21,6 @@ export default async function Hero() {
   const deportesData = await getAllFromCategory('Deportes')
   const entrevistasData = await getAllFromCategory('Entrevistas')
   const opinionData = await getOpinionsPaged(3, 1)
-
-  
-  const data = [
-    {
-      title: 'Jahad wld nass khaso li ychwih',
-      author: 'Ayoub scayho',
-      comments: 123,
-      avatar: 'link to image',
-    },
-    {
-      title: 'Jahad wld nass khaso li ychwih',
-      author: 'Ayoub scayho',
-      comments: 123,
-      avatar: 'link to image',
-    },
-    {
-      title: 'Jahad wld nass khaso li ychwih',
-      author: 'Ayoub scayho',
-      comments: 123,
-      avatar: 'link to image',
-    },
-  ];
 
   return (
     <>
@@ -106,7 +85,12 @@ export default async function Hero() {
         </div>
       </div>
       <div className='w-full max-w-screen-xl'>
-        <Bubbletext _text='Carta al director' _width='w-[200px]' />
+      <div className='flex items-center justify-between'>
+          <Bubbletext _text={'Carta al director'} _width="w-[170px] " />
+            <Link className="text-sm text-gray-500 text-end hover:text-gray-800 " href={`/opinions`}>
+                Ver más
+            </Link>
+            </div>
         <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-8 mt-6 pb-10">
         {opinionData?.map((item, idx) => (
           <Opinion key={idx} {...item} />
