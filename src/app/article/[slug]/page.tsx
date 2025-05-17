@@ -61,6 +61,7 @@ export default async function Page({
                         category={post.category}
                         author={post.author}
                         date={post.publishedAt}
+                        documentId={post.documentId}
                     >
                     </CardPost>
                 </div>

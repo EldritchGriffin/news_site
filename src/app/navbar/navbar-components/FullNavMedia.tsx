@@ -16,8 +16,7 @@ export default function FullNavMedia() {
     <div className='container mx-auto'>
         <div className='flex bg-[#222222] w-full text-sm justify-between items-center text-white'>
             <div className='flex gap-2'>
-                <a className='cursor-pointer'>Contact us</a>
-                <a className='cursor-pointer'>Blog</a>
+                <a className='cursor-pointer hover:text-[#d42a23]'>Contact us</a>
             </div>
             <div>
                 <p>{formattedDate}</p>

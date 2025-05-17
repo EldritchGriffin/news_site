@@ -19,6 +19,7 @@ export default async function Hero() {
   const deportesData = await getAllFromCategory('Deportes')
   const entrevistasData = await getAllFromCategory('Entrevistas')
 
+  
   const data = [
     {
       title: 'Jahad wld nass khaso li ychwih',
@@ -70,6 +71,7 @@ export default async function Hero() {
                       category={posts[i].category}
                       author={posts[i].author}
                       date={posts[i].publishedAt}
+                      documentId={posts[i].documentId}
                     ></CardPost>
                   </article>
                 )

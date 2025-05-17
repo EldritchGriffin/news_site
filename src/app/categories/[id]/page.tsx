@@ -238,7 +238,7 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
 
       <div className="w-full h-96 mb-14  ">
         {!isLoading && LatesstContent?.data?.length > 0 && (
-          <SwiperPosts posts={LatesstContent.data} />
+          <SwiperPosts posts={LatesstContent?.data} />
         )}
         {!isLoading && LatesstContent?.data?.length == 0 && (
           <div className="w-full h-full flex items-center justify-center text-gray-400 text-2xl">
@@ -303,13 +303,14 @@ export default   function Page({ params, }: { params: Promise<{ id: string }> })
                       category={post?.category || "Uncategorized"}
                       author={post?.author || "Unknown Author"}
                       date={post?.publishedAt || "Unknown Date"}
+                      documentId={post?.documentId}
                     />
                   )}
                 </div>
               ))
             )}
                     {!isLoadingtwo && categoriecontent?.data?.length == 0 && (
-          <div className="w-auto  h-[1000px] border-2 border-amber-400 flex col-span-2  items-center justify-center text-gray-400 text-2xl">
+          <div className="w-auto  h-[1000px]  flex col-span-2  items-center justify-center text-gray-400 text-2xl">
           No Posts
         </div>
         
