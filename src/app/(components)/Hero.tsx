@@ -13,7 +13,7 @@ import Opinion from './opinion'
 export default async function Hero() {
   const posts = await getAllPosts()
   const politicaData = await getAllFromCategory('Política')
-  const economiaData = await getAllFromCategory('Economía')
+  const economiaData = await getAllFromCategory('Economia')
   const internacionalData = await getAllFromCategory('Internacional')
   const culturaYCienciaData = await getAllFromCategory('Cultura y Ciencia')
   const deportesData = await getAllFromCategory('Deportes')
@@ -100,7 +100,7 @@ export default async function Hero() {
         </div>
       </div>
       <div className='w-full max-w-screen-xl'>
-        <Bubbletext _text='Opinion' _width='w-[140px]' />
+        <Bubbletext _text='Carta al director' _width='w-[200px]' />
         <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-8 mt-6 pb-10">
         {data.map((item, idx) => (
           <Opinion key={idx} {...item} />

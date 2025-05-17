@@ -232,7 +232,7 @@ export default function FullNavbar ({
             </div>
             <Dialog open={search} onClose={() => setSearch(false)} className="relative z-50">
               <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/30 p-4">
-                <DialogPanel className="w-[800px] h-[600px]  bg-white p-8 shadow-xl rounded-md flex flex-col">
+                <DialogPanel className="w-[800px] h-[600px]  bg-white p-8 shadow-xl  flex flex-col">
                   <DialogTitle className="text-xl font-bold mb-4">Search result:</DialogTitle>
                                     
                   {/* Main content (input + results) grows */}
@@ -241,24 +241,24 @@ export default function FullNavbar ({
                     <input
                       type="text"
                       name="Search"
-                      placeholder="Search..."
+                      placeholder="Seasrch..."
                       autoFocus
                       onChange={(e) => setSearchString(e.target.value)}
-                      className="w-full border-b-1  focus:outline-none p-2"
+                      className="w-full border-b-1  focus:outline-none p-2 focus:border-[#d42a23]"
                     />
             
                     {/* Scrollable results */}
                     {!isLoading && <div className="flex flex-col gap-2 overflow-y-auto flex-grow pr-1 ">
                       {searchResults?.map((searchElement, index) => (
                         <Link href={`/article/${searchElement.documentId}`} onClick={() =>{setSearchResults([]); setSearch(false); setIsLoading(false);}} key={index}>
-                          <div className="flex gap-2 h-[100px] border-b-2 border-gray-300">
+                          <div className="flex gap-2 h-[100px] border-b-2 border-gray-300 hover:bg-gray-300 p-1">
                             <img
                               src={process.env.NEXT_PUBLIC_STRAPI_URL + searchElement.banner?.url}
                               alt={searchElement.title}
-                              className="w-[120px] h-full object-cover rounded-sm border"
+                              className="w-[120px] h-full object-cover "
                             />
                             <div className="flex flex-col justify-around text-left">
-                              <p className="bg-red-600 p-1 px-2 text-white text-xs w-fit rounded">
+                              <p className="bg-red-600 p-1 px-2 text-white text-xs w-fit ">
                                 {searchElement.category}
                               </p>
                               <p className="text-sm font-medium">{searchElement.title}</p>
@@ -288,7 +288,6 @@ export default function FullNavbar ({
                 </DialogPanel>
               </div>
             </Dialog>
-
        </header>
     )
 }

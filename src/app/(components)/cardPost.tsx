@@ -34,7 +34,7 @@ const CardPost: React.FC<CardPostProps> = ({
           </div>
         )}
         <h2 className="text-white text-xl font-bold leading-snug mb-3 drop-shadow-md">
-          {styleText(title)}
+          {styleText(title, 30)}
         </h2>
         {author && (
           <div className="flex items-center text-white/80 text-sm">

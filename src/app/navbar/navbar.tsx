@@ -306,8 +306,6 @@ export default function Navbar({
                   </div>
                 </div>
               )}
-
-
               </nav>
               <Media />
             </div>
