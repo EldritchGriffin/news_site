@@ -15,7 +15,7 @@ export default function NavItems(props : {title: string, content: string, banner
         <img
           src={props.banner}
           alt="Banner"
-          className="w-full h-32 object-cover pb-2 pt-2 transform transition-transform duration-300 group-hover:scale-110"
+          className="w-full h-32 object-cover pb-2 pt-2 transform transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
         <span className="text-xs p-2 text-white bg-[#d42a23] w-fit">
           {props.Category}
