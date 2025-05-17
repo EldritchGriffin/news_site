@@ -60,20 +60,19 @@ export default async function Hero() {
           </article>
             {/* Secondary stories taking remaining 40% width */}
             <div className="lg:w-2/5 grid grid-cols-1 md:grid-cols-2 gap-2 ">
-              {[1, 2, 3, 4].map((_, i) => (
-                <article key={i} className="  gap-y-2 relative h-[221px]">
-                  <CardPost
-                    title={posts[0].title}
-                     imageUrl =  {process.env.NEXT_PUBLIC_STRAPI_URL && posts?.[0]?.banner?.url
-                    ? process.env.NEXT_PUBLIC_STRAPI_URL + posts[0].banner.url
-                    : "/fallback-image.jpg"} // use a fallback image or handle gracefully
-                  
-                    // imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts.data[0].banner.url}
-                    category={posts[0].category}
-                    author={posts[0].author}
-                    date={posts[0].publishedAt}
-                  ></CardPost>
-                </article>
+              {posts.map((_, i) => (
+                i > 0 && i < 5 && (
+                  // Only render the first 4 posts after the main story
+                  <article key={i} className="relative h-[221px]">
+                    <CardPost
+                      title={posts[i].title}
+                      imageUrl={process.env.NEXT_PUBLIC_STRAPI_URL + posts[i].banner.url}
+                      category={posts[i].category}
+                      author={posts[i].author}
+                      date={posts[i].publishedAt}
+                    ></CardPost>
+                  </article>
+                )
               ))}
             </div>
           </div>
@@ -94,7 +93,7 @@ export default async function Hero() {
         categoryName='Deportes'
         />
       <Shortcategory
-       categoryData={deportesData}
+       categoryData={entrevistasData}
         nbPost={2}
         categoryName='Entrevistas'
         />
@@ -111,9 +110,9 @@ export default async function Hero() {
       <Sidebar/>
       <div className='w-full max-w-screen-xl'>
       <Shortcategory
-       categoryData={deportesData}
+       categoryData={culturaYCienciaData}
         nbPost={4}
-        categoryName='Deportes'
+        categoryName='Cultura y Ciencia'
         />
       </div>
       {/* </div> */}

@@ -11,7 +11,7 @@ export default function shortcategory({ categoryData, nbPost,categoryName }: { c
         <div className="flex gap-6 flex-col  justify-between">
           <div className='flex items-center justify-between'>
 
-          <Bubbletext _text={categoryName || 'Default Category'} _width="w-[140px] " />
+          <Bubbletext _text={categoryName || 'Default Category'} _width="w-[170px] " />
           {/* <button className="text-sm text-gray-500 text-end hover:text-gray-800">
             View All
             </button> */}

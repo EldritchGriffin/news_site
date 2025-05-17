@@ -7,6 +7,7 @@ import { BsPinterest } from "react-icons/bs";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { RiTwitterXLine } from "react-icons/ri";
 import SocialShareButtons from '@/app/(components)/socials';
+import rehypeRaw from 'rehype-raw'
 
 function PlaceholderAd() {
     return (
@@ -64,7 +65,8 @@ export default async function Page({
                     </CardPost>
                 </div>
                 <div className='prose lg:prose-lg'>
-                    <Markdown>
+                    <Markdown
+                       rehypePlugins={[rehypeRaw]}>
                         {post.content}
                     </Markdown>
                     <h5 className='text-red-600 text-sm font-semibold mt-5'>
